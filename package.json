@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "-t",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "nodemon index.js"
   },
   "author": "jesseren",
   "license": "ISC",
