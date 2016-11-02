@@ -1,3 +1,7 @@
+#fixlabel{
+  color: black;
+  font-family: Helvetica;
+}
 /*input[type="text"], textarea {
 }*/
 
@@ -5,18 +9,43 @@
   width:100%;
 
 }*/
-body, input, select, textarea {
-    color: #ffffff;
-    font-family: "Source Sans Pro", Helvetica, sans-serif;
+
+/*.box {
+    position: absolute;
+    width: 50%;
+    height: 300px;
+    line-height: 300px;
+    font-size: 50px;
+    text-align: center;
+    border: 2px solid black;
+    left: 50%;
+    top: 100px;
+    margin-left: -25%;
+}
+*/
+
+  input, select, textarea {
+    border-radius: 6px;
+    /*border-style: none;*/
+    /*border-color: ;*/
+    /*box-shadow: 1pt 1pt   0pt 2pt #bcbcbc;*/
+    /*border-style: none;*/
+    color: black;
+    font-family: Helvetica, sans-serif;
     font-size: 17pt;
     font-weight: 300;
     letter-spacing: 0.025em;
     line-height: 1.65;
 }
+
+input{
+  width:100%;
+
+}
 .bookform{
   background-color: #F5F5F7;
   margin:auto;
-  height: 700px;
+  height: 400px;
   width: 500px;
   padding:10px;
 }
@@ -41,6 +70,12 @@ label {
 .first {
   width: 40%;
   float: left;
+  padding: 0 1em 0 0;
+}
+
+.full {
+  width: 100%;
+  /*float: left;*/
   padding: 0 1em 0 0;
 }
 

@@ -17,34 +17,87 @@
 	</head>
 	<body>
 
-	<div class="bookform" style="width: 600px; margin: auto;">
-		<form  method="post" action="/acuity">
-			<!-- <div class="field half first"> -->
-			<div class="first">
-				<label for="name">CarType</label>
-				<input class="bookinput" type="text" name="name" id="name" />
-			</div>
-			<!-- <div class="field half"> -->
-			<div class="half">
-				<label for="email">LicensePlate</label>
-				<input type="text" name="email" id="email" />
-			</div>
-			<!-- <div class="field">
-				<label for="message">CheckBox</label>
-				<input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
-			</div> -->
-			<div class="field half">
-				<!-- <button class="bookingBtn" type="button" onClick="alertWorld()"> Submit </button> -->
-				<button class="bookingBtn" type="submit" onClick="alertWorld()"> Submit </button>
+
+
+		<div>
+			<button></button>
+			<button></button>
+		</div>
+
+
+
+
+		<form   class="bookform" method="post" action="/acuity">
+			<div id="form1">
+				<div class="field first">
+					<label class="fixlabel" for="name">CarType</label>
+					<input class="bookinput" type="text" name="cartype" id="name" />
+				</div>
+				<div class="field half">
+					<label for="email">LicensePlate</label>
+					<input type="text" name="license" id="email" />
+				</div>
+				<div class="field half">
+					<button class="bookingBtn" id="button1" type="button"> Submit </button>
+					<!-- <button class="bookingBtn" type="submit" onClick="alertWorld"> Submit </button> -->
+				</div>
 			</div>
 
 
-			<ul class="actions">
-				<!-- <li><input type="submit" value="Send Message" class="special" /></li> -->
-				<!-- <li><input type="reset" value="Clear" /></li> -->
-			</ul>
+
+			<div id="form2">
+				<div class="first">
+					<label for="name">First Name</label>
+					<input class="bookinput" type="text" name="firstname" id="name" />
+				</div>
+				<div class="half">
+					<label for="name">Last Name</label>
+					<input class="bookinput" type="text" name="lastname" id="name" />
+				</div>
+				<!-- <div class="field half"> -->
+				<div class="full">
+					<label for="email">Phone Number</label>
+					<input type="text" name="phone" id="email" />
+				</div>
+				<div class="full">
+					<label for="email">Email</label>
+					<input type="text" name="email" id="email" />
+				</div>
+				<div class="field half">
+					<!-- <button class="bookingBtn" type="button" onClick="alertWorld()"> Submit </button> -->
+					<button  class="bookingBtn" id="button2" type="button"> Submit2 </button>
+				</div>
+			</div>
+
+
+
+
+			<div id="form3">
+				<div class="full">
+					<label for="email">Card Number</label>
+					<input type="text" name="email" id="email" />
+				</div>
+				<div class="first">
+					<label for="name">Month</label>
+					<input class="bookinput" type="text" name="name" id="name" />
+				</div>
+				<div class="half">
+					<label for="name">CV</label>
+					<input class="bookinput" type="text" name="name" id="name" />
+				</div>
+				<div class="field half">
+					<button  class="bookingBtn" id="button3" type="button"> Submit3 </button>
+				</div>
+			</div>
+
 		</form>
-	</div>
+
+
+
+
+
+
+
 
 
 
@@ -55,15 +108,16 @@
 
 
 		<!-- Scripts -->
-		  <script src="js/script.js"></script>
+		<!-- Order matters -->
 
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
+			<script src="js/jquery.min.js"></script>
+			<script src="js/jquery.scrolly.min.js"></script>
+			<script src="js/jquery.scrollex.min.js"></script>
+			<script src="js/skel.min.js"></script>
+			<script src="js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+		  <script src="js/script.js"></script>
 
 	</body>
 </html>

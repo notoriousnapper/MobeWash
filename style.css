@@ -1,5 +1,15 @@
 /*input[type="text"], textarea {
 }*/
+
+
+#form2{
+  display:none;
+}
+#form3{
+  display:none;;
+}
+
+
 .bookform{
   background-color: white;
   height: 500px;
