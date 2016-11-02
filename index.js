@@ -22,10 +22,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-acuity.request('/appointments', function (err, res, appointments) {
-  if (err) return console.error(err);
-  console.log(appointments);
-});
+// acuity.request('/appointments', function (err, res, appointments) {
+//   if (err) return console.error(err);
+//   console.log(appointments);
+// });
 
 
 
