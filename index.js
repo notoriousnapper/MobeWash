@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var bodyParser = require('body-parser')
 
 
 
@@ -13,6 +14,13 @@ var acuity = Acuity.basic({
   userId: userId,
   apiKey: apiKey
 });
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
+
 
 acuity.request('/appointments', function (err, res, appointments) {
   if (err) return console.error(err);
@@ -34,6 +42,12 @@ app.listen(3000, function () {
 });
 
 
+app.post('/test', function(request, response) {
+  var body = request.body;
+  // var res = res.body;
+  console.log(JSON.stringify(body,null, 4));
+  // console.log(res);
+});
 
 app.post('/acuity', function (request, response) {
   console.log("A Reservation is in the process of being made");
