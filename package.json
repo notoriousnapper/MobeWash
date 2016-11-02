@@ -1,0 +1,16 @@
+{
+  "name": "jesseren",
+  "version": "1.0.0",
+  "description": "website starter for MobeWash",
+  "main": "index.js",
+  "scripts": {
+    "test": "-t",
+    "dev": "nodemon index.js"
+  },
+  "author": "jesseren",
+  "license": "ISC",
+  "dependencies": {
+    "acuityscheduling": "^0.1.6",
+    "express": "^4.14.0"
+  }
+}

@@ -1,0 +1,22 @@
+/*input[type="text"], textarea {
+}*/
+.bookform{
+  background-color: white;
+  height: 500px;
+  width: 500px;
+  padding:10px;
+}
+
+.bookinput{
+  display:inline-block;
+  /*background-color: #black;*/
+  /*height: 500px; */
+  width: 100%;
+}
+
+#service{
+}
+#contact{
+}
+#payment{
+}
