@@ -16,6 +16,19 @@ var acuity = Acuity.basic({
 });
 
 
+// Booking.js still needs access to jquery, so make sure its available
+var $ = require('jquery');
+// Pull in the module, ES2015 imports also works:
+// import TimekitBooking from 'timekit-booking'
+// var TimekitBooking = require('timekit-booking');
+// Booking.js is now available as local var TimekitBooking instead of global window.timekitBooking
+// var widget = new TimekitBooking();
+
+
+//user token: jDS7KZvUz8YEHiOhfYnnxtTMSkH68Xi5 // Booking
+//widget token: UnSDH4DSNge7ZNK0l6vQLpAMthMQ4HeP
+
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
@@ -27,7 +40,7 @@ app.use(bodyParser.json())
 //   console.log(appointments);
 // });
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 8000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
