@@ -137,13 +137,18 @@ app.post('/acuity', function (request, response) {
   var time = "2016-11-04T09:00:00-0700";
   var appointmentTypeID = 2048071; // Corporate
                           // 1800725;  // MobePlus
-  var body = {};
-  body['firstName'] = "Jesse";
-  body['lastName']  = "Ren";
-  body['email']     = "jeren.neurogen@gmail.com";
-  body['phone']     = 8588475518;
-  body['fields']    = {
-  }
+  // var body = {};
+  // body['firstName'] = "Jesse";
+  // body['lastName']  = "Ren";
+  // body['email']     = "jeren.neurogen@gmail.com";
+  // body['phone']     = 8588475518;
+  // }
+
+  var body = request.body;
+  console.log(JSON.stringify(body,null, 4));
+  console.log("FLAG");
+  console.log("FLAG");
+  console.log("FLAG");
 
   // "calendarIDs": [
   //           740794
@@ -154,9 +159,9 @@ app.post('/acuity', function (request, response) {
     method: 'POST',
     body: {
       appointmentTypeID: appointmentTypeID,
-      datetime:          time,
-      firstName:         body.firstName,
-      lastName:          body.lastName,
+      datetime:          body.time,
+      firstName:         body.firstname,
+      lastName:          body.lastname,
       email:             body.email,
       phone:             body.phone
     }
