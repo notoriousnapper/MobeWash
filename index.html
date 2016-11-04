@@ -11,174 +11,176 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<!-- <link rel="stylesheet" href="css/main.css" /> -->
-		<link rel="stylesheet" href="css/style.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
 
-
-
-		<div>
+		<div style="margin:auto; width:100%;height:200px;">
 			<button>On-Demand</button>
-			<button>Corporate</button>
+			<button id="calClick">Corporate</button>
 		</div>
 
 
+  <!-- React -->
+	<div id="container"></div>
 
 
 
+	<div id= "tableform">
+		<div>DayBreak Game</div>
 		<table id="table1">
 			<tr>
 		<th></th>
-	<th id="hth"> <div id="headTh">MON</div><div id="sideTh">11/2</div > </th>
-	<th id="hth"> <div id="headTh">TUE</div><div id="sideTh">11/2</div > </th>
-	<th id="hth"> <div id="headTh">WED</div><div id="sideTh">11/2</div > </th>
-	<th id="hth"> <div id="headTh">THU</div><div id="sideTh">11/2</div > </th>
-	<th id="hth"> <div id="headTh">FRI</div><div id="sideTh">11/2</div > </th>
-	<th id="hth"> <div id="headTh">SAT</div><div id="sideTh">11/2</div > </th>
-	<th id="hth"> <div id="headTh">SUN</div><div id="sideTh">11/2</div > </th>
-  </tr>
-    <tr>
-			<th id="times">8am </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-		</tr>
-		<tr>
-			<th id="times">9am </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th class="avail">
-				<button class="1" id="avail" >9:00am</button>
-			</th>
-			<th> </th>
-			<th> </th>
-		</tr>
-    <tr>
-			<th id="times">10am</th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th class="avail">
-				<button id="avail" class="2">10:00am</button>
-			</th>
-			<th> </th>
-			<th> </th>
-		</tr>
-    <tr>
-			<th id="times">11am</th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th class="avail">
-				<button id="avail" class="3">11:00am</button>
-			</th>
-			<th> </th>
-			<th> </th>
-		</tr>
-    <tr>
-			<th id="times">12pm</th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th class="avail">
-				<button id="avail" class="4">12:00pm</button>
-			</th>
-			<th> </th>
-			<th> </th>
-		</tr>
-    <tr>
-			<th id="times">1pm </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th class="avail">
-				<button id="avail" class="5">1:00pm</button>
-			</th>
-			<th> </th>
-			<th> </th>
-		</tr>
-    <tr>
-			<th id="times">2pm </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th class="avail">
-				<button id="avail" class="6">2:00pm</button>
-			</th>
-			<th> </th>
-			<th> </th>
-		</tr>
-    <tr>
-			<th id="times">3pm </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th class="avail">
-				<button id="avail" class="7">3:00pm</button>
-			</th>
-			<th> </th>
-			<th> </th>
-		</tr>
-    <tr>
-			<th id="times">4pm </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th class="avail">
-				<button id="avail" class="8">4:00pm</button>
-			</th>
-			<th> </th>
-			<th> </th>
-		</tr>
-    <tr>
-			<th id="times">5pm </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th class="avail">
-				<button id="avail" class="9">5:00pm</button>
-			</th>
-			<th> </th>
-			<th> </th>
-		</tr>
-    <tr>
-			<th id="times">6pm </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th class="avail">
-				<button id="avail" class="10">6:00pm</button>
-			</th>
-			<th> </th>
-			<th> </th>
-		</tr>
-    <tr>
-			<th id="times">7pm </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-		</tr>
-</table>
+				<th id="hth"> <div id="headTh">S</div><div id="sideTh"></div > </th>
+				<th id="hth"> <div id="headTh">M</div><div id="sideTh"></div > </th>
+				<th id="hth"> <div id="headTh">T</div><div id="sideTh"></div > </th>
+				<th id="hth"> <div id="headTh">W</div><div id="sideTh"></div > </th>
+				<th id="hth"> <div id="headTh">T</div><div id="sideTh"></div > </th>
+				<th id="hth"> <div id="headTh">F</div><div id="sideTh"></div > </th>
+				<th id="hth"> <div id="headTh">S</div><div id="sideTh"></div > </th>
+			  </tr>
+			    <tr>
+						<th id="times">8am </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+					</tr>
+					<tr>
+						<th id="times">9am </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th class="avail">
+							<button class="1" id="avail" >9:00am</button>
+						</th>
+						<th> </th>
+						<th> </th>
+					</tr>
+			    <tr>
+						<th id="times">10am</th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th class="avail">
+							<button id="avail" class="2">10:00am</button>
+						</th>
+						<th> </th>
+						<th> </th>
+					</tr>
+			    <tr>
+						<th id="times">11am</th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th class="avail">
+							<button id="avail" class="3">11:00am</button>
+						</th>
+						<th> </th>
+						<th> </th>
+					</tr>
+			    <tr>
+						<th id="times">12pm</th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th class="avail">
+							<button id="avail" class="4">12:00pm</button>
+						</th>
+						<th> </th>
+						<th> </th>
+					</tr>
+			    <tr>
+						<th id="times">1pm </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th class="avail">
+							<button id="avail" class="5">1:00pm</button>
+						</th>
+						<th> </th>
+						<th> </th>
+					</tr>
+			    <tr>
+						<th id="times">2pm </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th class="avail">
+							<button id="avail" class="6">2:00pm</button>
+						</th>
+						<th> </th>
+						<th> </th>
+					</tr>
+			    <tr>
+						<th id="times">3pm </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th class="avail">
+							<button id="avail" class="7">3:00pm</button>
+						</th>
+						<th> </th>
+						<th> </th>
+					</tr>
+			    <tr>
+						<th id="times">4pm </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th class="avail">
+							<button id="avail" class="8">4:00pm</button>
+						</th>
+						<th> </th>
+						<th> </th>
+					</tr>
+			    <tr>
+						<th id="times">5pm </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th class="avail">
+							<button id="avail" class="9">5:00pm</button>
+						</th>
+						<th> </th>
+						<th> </th>
+					</tr>
+			    <tr>
+						<th id="times">6pm </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th class="avail">
+							<button id="avail" class="10">6:00pm</button>
+						</th>
+						<th> </th>
+						<th> </th>
+					</tr>
+			    <tr>
+						<th id="times">7pm </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+						<th> </th>
+					</tr>
+		</table>
+	</div>
 
 
 
@@ -220,8 +222,6 @@
 
 
 		<form id="masterform" style="display:none;" class="bookform" method="post" action="/acuity">
-
-
 			<input id="hiddenTime" type="hidden" name="time" value="sth">
 			<div id="form1">
 				<div class="field first">
@@ -304,6 +304,14 @@
 
 		<!-- Scripts -->
 		<!-- Order matters -->
+
+			<script src="//fb.me/react-0.14.8.js"></script>
+			<script src="//fb.me/react-dom-0.14.8.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	    <script src="js/reactscript.js" type="text/babel"></script>
+
+		  <link rel="stylesheet" href="css/style.css" />
+
 
 			<script src="js/jquery.min.js"></script>
 			<script src="js/jquery.scrolly.min.js"></script>

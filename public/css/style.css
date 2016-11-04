@@ -23,18 +23,33 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
 }
+body{
+  background-color: #D9D9D9;
+
+}
+
+
 
 #times{
   text-align: right;
+  color:   #BBB9BB;
+  padding-right:2px;
+  width:20px;
 }
-#table1{
+#tableform{
+  /*display:none;*/
   margin:auto;
+  width:60%;
 }
+/*#table1{
+  margin:auto;
+}*/
 #sideTh{
   text-align: center;
   font-family: Helvetica;
   font-size: 14px;
   padding-bottom: 8px;
+
 }
 
 #headTh{
@@ -52,6 +67,7 @@ time, mark, audio, video {
   padding-left: 20px;
   padding-right: 20px;
   font-family: Helvetica;
+  background-color: #444444;
 }
 
 #avail{
@@ -71,6 +87,8 @@ table {
     background-color: #FBFBFB;
     padding: 0;
     margin: 0;
+    border:2px solid #CCC;
+    border-collapse:collapse;
     /*padding-left: 5px;*/
 }
 
@@ -241,8 +259,6 @@ label {
 				}
 
 		}
-
-
 .bookinput{
   background-color: white;
   display:inline-block;

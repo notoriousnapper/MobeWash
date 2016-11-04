@@ -19,9 +19,15 @@ var times = [
 ]
 
 
+  $('#calendar1').hide();
   $('#form2').hide();
   $('#form3').hide();
   // $('#masterform').show();
+
+$('#calClick').click(function(e){
+  console.log("first button clicked");
+  $('#calendar1').show();
+};
 
 $('.avail').click(function(e){
   console.log("first button clicked");
@@ -50,7 +56,7 @@ $('#button2').click(function(){
 $('#button3').click(function(){
   console.log("second button clicked");
   $('#form3').fadeOut(100);
-  $('#form1').fadeIn(1000);
+  // $('#form1').fadeIn(1000);
 });
 
 
