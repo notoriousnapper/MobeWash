@@ -14,8 +14,10 @@ var Row = React.createClass({
 var VacancySign = React.createClass({
   revealCal: function(){
     var m = document.getElementsByClassName("cal1")[0];
+    var n = document.getElementsByClassName("logoImg")[0];
     console.log(m);
     m.style.display = "block";
+    n.style.display = "block";
   },
   render: function() {
     var buttonStyle={
@@ -24,10 +26,10 @@ var VacancySign = React.createClass({
       paddingRight:"10px"
     }
     var avatarStyle={
-
+      disply: "none",
       margin: "auto",
-      width:"128px",
-      height:"128px",
+      width:  "128px",
+      height: "128px",
       // margin: "10px",
       border:"10px solid white",
       borderRadius: "500px",
@@ -150,29 +152,6 @@ var VacancySign = React.createClass({
     var r6 = generateTr(op6, [4], chosenStyle, content);
 
 
-
-
-    // var r1 = op1.map(function(item){
-    //     return <th style={headStyle}>{item}</th>;
-    // });
-    // var r2 = op2.map(function(item){
-    //     return <th style={topStyle}>{item}</th>;
-    // });
-    // var r3 = op3.map(function(item){
-    //     return <th style={topStyle}>{item}</th>;
-    // });
-    // var r4 = op4.map(function(item){
-    //     return <th style={topStyle}>{item}</th>;
-    // });
-    // var r5 = op5.map(function(item){
-    //     return <th style={topStyle}>{item}</th>;
-    // });
-    // var r6 = op6.map(function(item){
-    //     return <th style={topStyle}>{item}</th>;
-    // });
-    //
-
-
     var text;
     if (this.props.hasvacancy) {
       text = 'Vacancy';
@@ -183,11 +162,10 @@ var VacancySign = React.createClass({
 
 
     <button style={buttonStyle} onClick={this.revealCal}> Corporate </button>
-
-     <div className="cal1" style={{display:"none"}}>
-    <img style={avatarStyle} src="daybreakgames.jpg"></img>
+    <div  style={{display:"none"}}>
+    <img style={avatarStyle} src="img/daybreakgames.jpg"></img>
      </div>
-      <div style={{height:"600px", width:"60%", borderRadius:"10px", backgroundColor:"white", borderColor:"black"}}>
+      <div className="cal1" style={{display:"none", height:"600px", width:"60%", borderRadius:"10px", backgroundColor:"white", borderColor:"black"}}>
         <div style={{fontFamily: "Helvetica", height:"50px", width:"100%", backgroundColor:"white", borderColor:"grey",borderRadius:"10px"}}>
         DayBreak Games
         </div>
