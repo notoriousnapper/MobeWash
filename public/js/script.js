@@ -27,7 +27,7 @@ var times = [
 $('#calClick').click(function(e){
   console.log("first button clicked");
   $('#calendar1').show();
-};
+});
 
 $('.avail').click(function(e){
   console.log("first button clicked");
