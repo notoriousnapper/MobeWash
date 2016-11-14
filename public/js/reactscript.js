@@ -98,11 +98,11 @@ var Calendar = React.createClass({
     // alert("date selected");
     var m = document.getElementsByClassName("cal1")[0];
     var n = document.getElementsByClassName("cal2")[0];
-    var m = document.getElementsByClassName("cal1")[0];
-    var n = document.getElementsByClassName("cal2")[0];
+    var o = document.getElementById("select");
 
 
     m.style.display = "none";
+    o.style.display = "none";
     n.style.display = "block";
   },
   revealCal: function(){
