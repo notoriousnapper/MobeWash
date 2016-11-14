@@ -7,20 +7,21 @@ var TimeSlot = React.createClass({
   getInitialState: function(){
     return {
       day: "15",
-      time: "9:00"
+      hour: "9:00"
     }
   },
   revealInfoBox: function(e){
     var t1 = "2016-11";
-    var time = t1 + "-" + this.state.day + "T0" + this.state.time + ":00-0800";
     // var time = "2016-11-15T09:00:00-0800";
-
-    var l = document.getElementById("hiddenTime");
     var m = document.getElementsByClassName("bookform")[0];
     var n = document.getElementsByClassName("cal2")[0];
+    var l = $('.bookform')[0];
     var hour = ($(e.target).parent().children('.test2').text()).split(" ")[0];
-    console.log("l is " + l);
-    l.style.value = time;
+    var time = t1 + "-" + this.state.day + "T0" + hour + ":00-0800";
+    console.log('before: ' + l.style.value);
+    l.style.value = time;  // The part that changes the value we need
+
+    console.log("l is " + JSON.stringify(l, null, 4));
     console.log(l.style.value);
     console.log("button inside is: " + hour);
     m.style.display = "block";

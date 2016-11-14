@@ -160,7 +160,7 @@ app.post('/acuity', function (request, response) {
     method: 'POST',
     body: {
       appointmentTypeID: appointmentTypeID,
-      datetime:          time2,
+      datetime:          body.time, 
       firstName:         body.firstname,
       lastName:          body.lastname,
       email:             body.email,
