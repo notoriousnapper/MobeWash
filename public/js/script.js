@@ -4,6 +4,11 @@
 
 $(document).ready(function () {
 
+var baseTime = "2016";
+var year = "2016"; //Always for now
+var month = "2016"; //Always November for now
+var day = "15"; // Changes based off of button
+
 var selectedTime = "2016-11-04T09:00:00-0700";
 var times = [
 "2016-11-04T09:00:00-0700",
@@ -15,6 +20,8 @@ var times = [
 "2016-11-04T15:00:00-0700",
 "2016-11-04T16:00:00-0700",
 ]
+
+var selectedTime = year+"-"+month+"-"+day;
 
 
   $('#calendar1').hide();

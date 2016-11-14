@@ -22,19 +22,17 @@
 			<button id="calClick">Corporate</button>
 		</div>
 
-
   <!-- React -->
-	<div id="container"></div>
-		<form id="masterform" style="display:none;" class="bookform" method="post" action="/acuity">
+	<div id="container" className="jumbotron-flat"></div>
+		<form id="masterform" style="display:none; font-family: Helvetica" class="bookform" method="post" action="/acuity">
 			<input id="hiddenTime" type="hidden" name="time" value="sth">
 			<div id="form1">
 				<div class="field first">
-					<label class="fixlabel" for="name">CarType</label>
-					<input class="bookinput" type="text" name="cartype"  />
+					<input class="bookinput" type="text" name="cartype" placeholder='CarType'/>
 				</div>
 				<div class="field half">
-					<label for="email">LicensePlate</label>
-					<input type="text" name="license" />
+					<input type="text" name="license" placeholder='LicensePlate'/>
+					<input type="text" name="extrainfo" placeholder='Extra Info.  i.e. 2nd floor'/>
 				</div>
 				<div class="field half">
 					<button class="bookingBtn" id="button1" type="button"> Submit </button>
@@ -46,52 +44,29 @@
 
 			<div id="form2">
 				<div class="first">
-					<label for="name">First Name</label>
-					<input class="bookinput" type="text" name="firstname" id="name" />
+					<input class="bookinput" type="text" name="firstname" id="firstname" placeholder="First Name" />
+					<input class="bookinput" type="text" name="lastname" id="lastname" placeholder="Last Name" />
 				</div>
 				<div class="half">
-					<label for="name">Last Name</label>
-					<input class="bookinput" type="text" name="lastname" id="name" />
 				</div>
 				<!-- <div class="field half"> -->
 				<div class="full">
-					<label for="email">Phone Number</label>
-					<input type="text" name="phone" id="email" />
+					<input type="text" name="phone" placeholder="Phone" id="phone" />
 				</div>
+
 				<div class="full">
-					<label for="email">Email</label>
-					<input type="text" name="email" id="email" />
+					<input type="text" name="email" placeholder="Email" id="email" />
 				</div>
 				<div class="field half">
 					<!-- <button class="bookingBtn" type="button" onClick="alertWorld()"> Submit </button> -->
-					<button  class="bookingBtn" id="button2" type="button"> Submit2 </button>
+					<button  class="bookingBtn" id="button2" type="submit"> Submit2 </button>
 				</div>
 			</div>
+			</form>
 
 
 
-
-			<div id="form3">
-				<div class="full">
-					<label for="email">Card Number</label>
-					<input type="text" name="cardnumber" id="email" />
-				</div>
-				<div class="first">
-					<label for="name">Month</label>
-					<input class="bookinput" type="text" name="month" id="name" />
-				</div>
-				<div class="half">
-					<label for="name">CV</label>
-					<input class="bookinput" type="text" name="cv" id="name" />
-				</div>
-				<div class="field half">
-					<button  class="bookingBtn" id="button3" type="submit"> Submit3 </button>
-				</div>
-			</div>
-		</form>
-
-
-<form style="display:none" id="stripe" action="/your-server-side-code" method="POST">
+<form style="display:none; margin:auto" id="stripe" action="/your-server-side-code" method="POST">
 	<script
 	  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 	  data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
@@ -105,9 +80,7 @@
 </form>
 		<!-- Scripts -->
 		<!-- Order matters -->
-
 		  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
 			<script src="//fb.me/react-0.14.8.js"></script>
 			<script src="//fb.me/react-dom-0.14.8.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>

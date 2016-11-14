@@ -1,13 +1,30 @@
 /* React */
 
 
+
+
 var TimeSlot = React.createClass({
-  revealInfoBox: function(){
+  getInitialState: function(){
+    return {
+      day: "15",
+      time: "9:00"
+    }
+  },
+  revealInfoBox: function(e){
+    var t1 = "2016-11";
+    var time = t1 + "-" + this.state.day + "T0" + this.state.time + ":00-0800";
+    // var time = "2016-11-15T09:00:00-0800";
+
+    var l = document.getElementById("hiddenTime");
     var m = document.getElementsByClassName("bookform")[0];
     var n = document.getElementsByClassName("cal2")[0];
-    console.log(m);
+    console.log("l is " + l);
+    l.style.value = time;
+    console.log(l.style.value);
+    console.log("button inside is: " + JSON.stringify($(e.target).text(), null, 4));
     m.style.display = "block";
     n.style.display = "none";
+
   },
   render: function() {
     var rowStyle = {
@@ -20,6 +37,7 @@ var TimeSlot = React.createClass({
       margin: "auto",
       backgroundColor:"#5CB85C",
       borderColor:"#5CB85C",
+      borderStyle: "solid",
       borderRadius:"5px",
       height: "30px",
       width: "300px",
@@ -38,11 +56,20 @@ var TimeSlot = React.createClass({
     var list = times.map(function(item){
       return (<tr><div style={rowStyle}>
         <div style={{width:"100px", display:"inline-block"}}>{item} </div>
-        <button style={buttonStyle} onClick={self.revealInfoBox}> Open </button>
+        <button className="test" value ="1" style={buttonStyle} onClick={self.revealInfoBox}> Open </button>
       </div></tr>);
-
     });
+
+    // Onclicks
+    var buttons = document.getElementsByClassName('test');
+    for (var i = 0; i < buttons.length; i++){
+        buttons[i].onclick = function(){ console.log(this.id) };
+    }
+
+
+
     return <div className="cal2" style={{display:"none"}}>
+    <div> Please Select a TimeSlot </div>
     <table style={{ border:"1px solid black", borderColor:"black", width:"100%"}}>
       <tbody>
       {list}
@@ -82,7 +109,7 @@ var Calendar = React.createClass({
   },
   render: function() {
     var buttonStyle={
-      argin: "auto",
+      margin: "auto",
       paddingLeft:"10px",
       paddingRight:"10px"
     }
@@ -223,8 +250,6 @@ var Calendar = React.createClass({
       text = 'No Vacancy';
     }
     return <div>
-
-
     <button style={buttonStyle} onClick={this.revealCal}> Corporate </button>
     <div  style={{display:"none"}}>
     <img style={avatarStyle} src="img/daybreakgames.jpg"></img>
@@ -244,8 +269,8 @@ var Calendar = React.createClass({
             <tr>{r6}</tr>
           </tbody>
         </table>
-      </div>;
-    </div>;
+      </div>
+    </div>
   }
 });
 

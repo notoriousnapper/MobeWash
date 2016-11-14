@@ -19,8 +19,8 @@ time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
+    /*font-size: 100%;*/
+    /*font: inherit;*/
     vertical-align: baseline;
 }
 body{
@@ -28,6 +28,34 @@ body{
 
 }
 
+input{
+  font-size:14px;
+}
+:placeholder-shown{
+  /*padding:4px;*/
+  font-size:14px;
+}
+::placeholder{
+  /*padding:4px;*/
+  font-size:14px;
+}
+.bookform{
+  background-color: #F5F5F7;
+  margin:auto;
+  height: 400px;
+  width: 500px;
+  padding:10px;
+}
+
+.bookingBtn{
+  background-color: #2CA0E3;
+  color: white;
+  height: 30px;
+  width: 150px;
+  font-size: 14px;
+  border-radius: 2px;
+  border-style: solid;
+}
 
 
 #times{
@@ -110,167 +138,4 @@ th.avail {
 
 tr:nth-child(even) {
     /*background-color: #dddddd;*/
-}
-
-#fixlabel{
-  color: black;
-  font-family: Helvetica;
-}
-/*input[type="text"], textarea {
-}*/
-
-/*input{
-  width:100%;
-
-}*/
-
-/*.box {
-    position: absolute;
-    width: 50%;
-    height: 300px;
-    line-height: 300px;
-    font-size: 50px;
-    text-align: center;
-    border: 2px solid black;
-    left: 50%;
-    top: 100px;
-    margin-left: -25%;
-}
-*/
-
-  input, select, textarea {
-    border-radius: 6px;
-    /*border-style: none;*/
-    /*border-color: ;*/
-    /*box-shadow: 1pt 1pt   0pt 2pt #bcbcbc;*/
-    /*border-style: none;*/
-    color: black;
-    font-family: Helvetica, sans-serif;
-    font-size: 17pt;
-    font-weight: 300;
-    letter-spacing: 0.025em;
-    line-height: 1.65;
-}
-
-input{
-  width:100%;
-
-}
-.bookform{
-  background-color: #F5F5F7;
-  margin:auto;
-  height: 400px;
-  width: 500px;
-  padding:10px;
-}
-
-
-label {
-  color: black;
-  display: block;
-  font-size: 0.8em;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  margin: 0 0 1em 0;
-  text-transform: uppercase;
-}
-
-.half {
-  width: 50%;
-  float: left;
-  padding: 0 0 0 1em;
-}
-
-.first {
-  width: 40%;
-  float: left;
-  padding: 0 1em 0 0;
-}
-
-.full {
-  width: 100%;
-  /*float: left;*/
-  padding: 0 1em 0 0;
-}
-
-#service{
-}
-#contact{
-}
-#payment{
-}
-
-
-
-/* Inherited */
-/* Form */
-	form {
-		margin: 0 0 2em 0;
-	}
-
-		form .field {
-			margin: 0 0 2em 0;
-		}
-
-			form .field.half {
-				width: 50%;
-				float: left;
-				padding: 0 0 0 1em;
-			}
-
-				form .field.half.first {
-					padding: 0 1em 0 0;
-				}
-
-		form > .actions {
-			margin: 2.5em 0 0 0 !important;
-		}
-
-		@media screen and (max-width: 736px) {
-
-			form .field {
-				margin: 0 0 1.5em 0;
-			}
-
-				form .field.half {
-					padding: 0 0 0 0.75em;
-				}
-
-					form .field.half.first {
-						padding: 0 0.75em 0 0;
-					}
-
-			form > .actions {
-				margin: 2em 0 0 0 !important;
-			}
-
-		}
-
-		@media screen and (max-width: 480px) {
-
-			form .field.half {
-				width: 100%;
-				float: none;
-				padding: 0;
-			}
-
-				form .field.half.first {
-					padding: 0;
-				}
-
-		}
-.bookinput{
-  background-color: white;
-  display:inline-block;
-  width: 100%;
-}
-
-.bookingBtn{
-  background-color: #3DA8E4;
-  radius
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  padding: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
 }

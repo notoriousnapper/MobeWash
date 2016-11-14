@@ -134,7 +134,8 @@ app.post('/acuity', function (request, response) {
     });
   }
   */
-  var time = "2016-11-04T09:00:00-0700";
+  var time  = "2016-11-15T09:00:00-0700";
+  var time2 = "2016-11-15T09:00:00-0800";
   var appointmentTypeID = 2048071; // Corporate
                           // 1800725;  // MobePlus
   // var body = {};
@@ -159,11 +160,18 @@ app.post('/acuity', function (request, response) {
     method: 'POST',
     body: {
       appointmentTypeID: appointmentTypeID,
-      datetime:          body.time,
+      datetime:          time2,
       firstName:         body.firstname,
       lastName:          body.lastname,
       email:             body.email,
-      phone:             body.phone
+      phone:             body.phone,
+      fields: [
+         {"id": 2242840, "value": body.cartype},
+         {"id": 2242842, "value": body.license},
+         {"id": 2242851, "value": body.extrainfo}
+       ]
+      // cartype:          'toyota white gmc',
+      // license:          '123dearme'
     }
   };
   return acuity.request('/appointments', options, function (err, res, appointment) {
