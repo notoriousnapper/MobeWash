@@ -1,8 +1,5 @@
 /* React */
 
-
-
-
 var TimeSlot = React.createClass({
   getInitialState: function(){
     return {
@@ -13,16 +10,18 @@ var TimeSlot = React.createClass({
   revealInfoBox: function(e){
     var t1 = "2016-11";
     // var time = "2016-11-15T09:00:00-0800";
+    var l = $('.bookform')[0][0];
+    // document.getElementsByClassName("hideaway")[0];
     var m = document.getElementsByClassName("bookform")[0];
     var n = document.getElementsByClassName("cal2")[0];
-    var l = $('.bookform')[0];
     var hour = ($(e.target).parent().children('.test2').text()).split(" ")[0];
-    var time = t1 + "-" + this.state.day + "T0" + hour + ":00-0800";
-    console.log('before: ' + l.style.value);
-    l.style.value = time;  // The part that changes the value we need
+    var time = t1 + "-" + this.state.day + "T" + hour + ":00-0800";
+    console.log('before: ' + l.value);
+    l.value = time;  // The part that changes the value we need
 
-    console.log("l is " + JSON.stringify(l, null, 4));
-    console.log(l.style.value);
+    console.log("l is " + JSON.stringify(l,null,4));
+    console.log("n is " + JSON.stringify(n,null,4));
+    console.log(l.value);
     console.log("button inside is: " + hour);
     m.style.display = "block";
     n.style.display = "none";
@@ -41,7 +40,7 @@ var TimeSlot = React.createClass({
       borderStyle: "solid",
       borderRadius:"5px",
       height: "30px",
-      width: "300px",
+      width: "300px"
     };
     var times = [
       "9:00 am",
@@ -70,12 +69,9 @@ var TimeSlot = React.createClass({
     // list.map(function(item){
     //   // console.log(JSON.stringify(item, null, 4));
     // })
-
-
-
-    return <div className="cal2" style={{display:"none"}}>
-    <div> Please Select a TimeSlot </div>
-    <table style={{ border:"1px solid black", borderColor:"black", width:"100%"}}>
+    return <div className="cal2" style={{display:"none", margin:"auto", width: "400px"}}>
+    <div  style={{margin:"auto", backgroundColor:"white"}}> Please Select a TimeSlot </div>
+    <table style={{ border:"1px solid black", borderColor:"black", width:"500px"}}>
       <tbody>
       {list}
       </tbody>
@@ -102,22 +98,37 @@ var Calendar = React.createClass({
     // alert("date selected");
     var m = document.getElementsByClassName("cal1")[0];
     var n = document.getElementsByClassName("cal2")[0];
+    var m = document.getElementsByClassName("cal1")[0];
+    var n = document.getElementsByClassName("cal2")[0];
+
+
     m.style.display = "none";
     n.style.display = "block";
   },
   revealCal: function(){
-    var m = document.getElementsByClassName("cal1")[0];
-    var n = document.getElementsByClassName("logoImg")[0];
+    // var m = document.getElementsByClassName("cal1")[0];
+    var m = document.getElementById("select");
+    // var n = document.getElementsByClassName("logoImg")[0];
+    var o = document.getElementsByClassName("corporateBtn")[0];
     console.log(m);
     m.style.display = "block";
+    o.style.display = "none";
     // n.style.display = "block";
   },
   render: function() {
     var buttonStyle={
+      display: "block",
       margin: "auto",
-      paddingLeft:"10px",
-      paddingRight:"10px"
+      backgroundColor:"#5CB85C",
+      borderColor:"#5CB85C",
+      borderStyle: "solid",
+      borderRadius:"5px",
+      height: "40px",
+      width: "180px",
+      color: "white",
+      fontFamily: "19px"
     }
+
     var avatarStyle={
       disply: "none",
       margin: "auto",
@@ -216,23 +227,27 @@ var Calendar = React.createClass({
       var rowStyle;
       var i = 0, j = 0;
       var cont = <div></div>;
+      var clicker = ()=>{console.log('sigh');}
       console.log(days);
       console.log(days[0]);
       console.log(days[1]);
       return arr.map(function(item){
             // Reset style & content
-            cont = <div></div>;
+            cont     = <div></div>;
             rowStyle = defaultStyle;
+            clicker  =  ()=>{console.log('sigh');}
+
             for(j = 0; j <days.length; j++){
               if(i == days[j]){
                 console.log(i + " " + days[j]);
                 rowStyle = selStyle;
                 cont = content;
+                clicker = self.selectDate
                 break;
               }
             }
             i++;
-            return <th style={rowStyle} onClick={self.selectDate}>{item}<br/>{cont}</th>;
+            return <th style={rowStyle} onClick={clicker}>{item}<br/>{cont}</th>;
       });
     };
 
@@ -241,11 +256,11 @@ var Calendar = React.createClass({
     var content = <div style={{textAlign:"left"}} > DayBreak Games <br/> 9am-4pm </div>;
 
     var r1 = generateTr(op1, [0,1,2,3,4,5,6], headStyle, null);
-    var r2 = generateTr(op2, [4], chosenStyle, content);
-    var r3 = generateTr(op3, [4], chosenStyle, content);
+    var r2 = generateTr(op2, [], chosenStyle, null);
+    var r3 = generateTr(op3, [], chosenStyle, null);
     var r4 = generateTr(op4, [4], chosenStyle, content);
-    var r5 = generateTr(op5, [4], chosenStyle, content);
-    var r6 = generateTr(op6, [4], chosenStyle, content);
+    var r5 = generateTr(op5, [], chosenStyle, null);
+    var r6 = generateTr(op6, [], chosenStyle, null);
 
 
     var text;
@@ -255,12 +270,12 @@ var Calendar = React.createClass({
       text = 'No Vacancy';
     }
     return <div>
-    <button style={buttonStyle} onClick={this.revealCal}> Corporate </button>
+    <button className="corporateBtn" style={buttonStyle} onClick={this.revealCal}> Corporate </button>
     <div  style={{display:"none"}}>
     <img style={avatarStyle} src="img/daybreakgames.jpg"></img>
      </div>
-      <div className="cal1" style={{display:"none", height:"600px", width:"60%", borderRadius:"10px", backgroundColor:"white", borderColor:"black"}}>
-        <div style={{fontFamily: "Helvetica", height:"50px", width:"100%", backgroundColor:"white", borderColor:"grey",borderRadius:"10px"}}>
+      <div className="cal1" style={{margin: "auto", display:"none", height:"600px", width:"60%", borderRadius:"10px", backgroundColor:"white", borderColor:"black"}}>
+        <div style={{padding: "10px", fontFamily: "Helvetica", height:"50px", width:"100%", backgroundColor:"white", borderColor:"grey",borderRadius:"10px"}}>
         DayBreak Games
         </div>
 

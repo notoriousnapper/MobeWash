@@ -1,15 +1,38 @@
 // alert("Yo!");
+$(function() {
+    $('#select').change(function(){
+        if ($(this).val() == "2") {
+            $('#warning').show();
+            $('#warning').show();
+            $('.cal1').show();
+        } else {
+            $('#warning').hide();
+        }
+    });
+});
 
 
 
 $(document).ready(function () {
+var canSubmit = false;
+$( "#masterform" ).submit(function( event ) {
+  // alert( "Handler for .submit() called." );
+  if(canSubmit==false)
+  event.preventDefault();
+});
+$( "#stripe" ).submit(function( event ) {
+  alert( "Handler for .submitstripe() called." );
+  // event.preventDefault();
+  canSubmit=true;
+  document.getElementById("masterform").submit();
+});
 
 var baseTime = "2016";
 var year = "2016"; //Always for now
 var month = "2016"; //Always November for now
 var day = "15"; // Changes based off of button
 
-var selectedTime = "2016-11-04T09:00:00-0700";
+var selectedTime = "2016-11-04T09:00:00-0800";
 var times = [
 "2016-11-04T09:00:00-0700",
 "2016-11-04T10:00:00-0700",
