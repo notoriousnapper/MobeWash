@@ -1,23 +1,84 @@
 /* React */
+
+
+var TimeSlot = React.createClass({
+  revealInfoBox: function(){
+    var m = document.getElementsByClassName("bookform")[0];
+    var n = document.getElementsByClassName("cal2")[0];
+    console.log(m);
+    m.style.display = "block";
+    n.style.display = "none";
+  },
+  render: function() {
+    var rowStyle = {
+      padding: "10px",
+      paddingLeft: "20px",
+      backgroundColor:"#F9F9F9",
+      height: "50px"
+    };
+    var buttonStyle = {
+      margin: "auto",
+      backgroundColor:"#5CB85C",
+      borderColor:"#5CB85C",
+      borderRadius:"5px",
+      height: "30px",
+      width: "300px",
+    };
+    var times = [
+      "9:00 am",
+      "10:00 am",
+      "11:00 am",
+      "12:00 pm",
+      "1:00 pm",
+      "2:00 pm",
+      "3:00 pm",
+      "4:00 pm"
+    ];
+    var self = this;
+    var list = times.map(function(item){
+      return (<tr><div style={rowStyle}>
+        <div style={{width:"100px", display:"inline-block"}}>{item} </div>
+        <button style={buttonStyle} onClick={self.revealInfoBox}> Open </button>
+      </div></tr>);
+
+    });
+    return <div className="cal2" style={{display:"none"}}>
+    <table style={{ border:"1px solid black", borderColor:"black", width:"100%"}}>
+      <tbody>
+      {list}
+      </tbody>
+      </table>
+    </div>;
+  }
+});
+
 var Row = React.createClass({
   render: function() {
-
     var res = this.props.elems.map(function(item){
       return <tr> {item} </tr>;
     });
-
     return <div>
       {res}
     </div>;
   }
 });
-var VacancySign = React.createClass({
+var Calendar = React.createClass({
+  getInitialState: function(){
+    return {hover: false}
+  },
+  selectDate: function(){
+    // alert("date selected");
+    var m = document.getElementsByClassName("cal1")[0];
+    var n = document.getElementsByClassName("cal2")[0];
+    m.style.display = "none";
+    n.style.display = "block";
+  },
   revealCal: function(){
     var m = document.getElementsByClassName("cal1")[0];
     var n = document.getElementsByClassName("logoImg")[0];
     console.log(m);
     m.style.display = "block";
-    n.style.display = "block";
+    // n.style.display = "block";
   },
   render: function() {
     var buttonStyle={
@@ -116,6 +177,9 @@ var VacancySign = React.createClass({
     // Function that dynamically selects day of the week to add in custom html
     // arr = array of values representing table cells
     // selectedDays are the days chosen.  Ranges from [0-6]
+
+
+    var self = this; // For binding purposes
     function generateTr(arr, days, selStyle, content){
       var rowStyle;
       var i = 0, j = 0;
@@ -136,13 +200,13 @@ var VacancySign = React.createClass({
               }
             }
             i++;
-            return <th style={rowStyle}>{item}<br/>{cont}</th>;
+            return <th style={rowStyle} onClick={self.selectDate}>{item}<br/>{cont}</th>;
       });
     };
 
     // Data to be used for calendar function
     var selDays = 4; // Thursday for DayBreak Games
-    var content = <div style={{textAlign:"left"}}> DayBreak Games <br/> 9am-4pm </div>;
+    var content = <div style={{textAlign:"left"}} > DayBreak Games <br/> 9am-4pm </div>;
 
     var r1 = generateTr(op1, [0,1,2,3,4,5,6], headStyle, null);
     var r2 = generateTr(op2, [4], chosenStyle, content);
@@ -185,7 +249,16 @@ var VacancySign = React.createClass({
   }
 });
 
+var Master = React.createClass({
+  render: function() {
+    return <div>
+    <Calendar/>
+    <TimeSlot/>
+    </div>;
+  }
+});
+
 ReactDOM.render(
-  <VacancySign hasvacancy={false} />,
+  <Master />,
   document.getElementById('container')
 );
