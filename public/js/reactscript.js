@@ -18,13 +18,13 @@ var TimeSlot = React.createClass({
     var l = document.getElementById("hiddenTime");
     var m = document.getElementsByClassName("bookform")[0];
     var n = document.getElementsByClassName("cal2")[0];
+    var hour = ($(e.target).parent().children('.test2').text()).split(" ")[0];
     console.log("l is " + l);
     l.style.value = time;
     console.log(l.style.value);
-    console.log("button inside is: " + JSON.stringify($(e.target).text(), null, 4));
+    console.log("button inside is: " + hour);
     m.style.display = "block";
     n.style.display = "none";
-
   },
   render: function() {
     var rowStyle = {
@@ -52,19 +52,23 @@ var TimeSlot = React.createClass({
       "3:00 pm",
       "4:00 pm"
     ];
-    var self = this;
+    var self = this.revealInfoBox;
+    var i = 0;
     var list = times.map(function(item){
-      return (<tr><div style={rowStyle}>
-        <div style={{width:"100px", display:"inline-block"}}>{item} </div>
-        <button className="test" value ="1" style={buttonStyle} onClick={self.revealInfoBox}> Open </button>
-      </div></tr>);
+      i++;
+      return <tr style={rowStyle}>
+      <td>
+      <div style={rowStyle}>
+        <div className="test2" style={{width:"100px", display:"inline-block"}}>{item} </div>
+        <button className="test" style={buttonStyle} key={i} onClick={self}> Open </button>
+      </div>
+      </td>
+      </tr>;
     });
-
-    // Onclicks
-    var buttons = document.getElementsByClassName('test');
-    for (var i = 0; i < buttons.length; i++){
-        buttons[i].onclick = function(){ console.log(this.id) };
-    }
+    // console.log('list is: ' + JSON.stringify(list, null, 4));
+    // list.map(function(item){
+    //   // console.log(JSON.stringify(item, null, 4));
+    // })
 
 
 
