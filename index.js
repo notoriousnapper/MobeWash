@@ -1,3 +1,15 @@
+var stripeApiKey = "sk_live_j6IlQpiF6Yxa8xsjZZt2OJax";
+var stripeApiKeyTesting = "sk_test_qJDADwvdjliJBbkP1Ng0epVR";
+
+// Because randomly adds a whitespace
+var trimmedKey = stripeApiKeyTesting.trim(" ");
+console.log("KEY FOR TESTING IS" + stripeApiKeyTesting + "[ENDS HERE]..hopefully");
+console.log("KEY FOR TESTING IS" + trimmedKey + "[ENDS HERE]..hopefully");
+
+
+
+var stripe = require('stripe')(stripeApiKey);
+
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -46,7 +58,6 @@ app.listen(process.env.PORT || 8000, function(){
 
 
 
-
 // Servce static files to client
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function (req, res) {
@@ -57,13 +68,55 @@ app.get('/', function (req, res) {
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
-
-
 app.post('/test', function(request, response) {
   var body = request.body;
   // var res = res.body;
   console.log(JSON.stringify(body,null, 4));
   // console.log(res);
+});
+
+
+app.post('/booking', function(req, res){
+  // Set your secret key: remember to change this to your live secret key in production
+  //Initializations
+   var amount = 100;
+   var stripeToken = req.body.stripeToken;
+   console.log("Stripe Token is: " + stripeToken);
+
+  /*
+  stripe.customers.create({
+     card : stripeToken,
+     email : "jeren.neurogen@gmail.com" // customer's email (get it from db or session)
+    //  plan : "browserling_developer"
+   }, function (err, customer) {
+     if (err) {
+       var msg = customer.error.message || "unknown";
+       res.send("Error while processing your payment: " + msg);
+     }
+     else {
+       var id = customer.id;
+       console.log('Success! Customer with Stripe ID ' + id + ' just signed up!');
+       // save this customer to your database here!
+      //  res.send('ok');
+     }
+   });
+   */
+   // Charging as well
+    var charge = stripe.charges.create({
+        card: stripeToken,
+        currency: 'usd',
+        amount: amount
+    },
+    function(err, charge) {
+        if (err) {
+            // res.send(500, err);
+        } else {
+            // res.send(204);
+        }
+    });
+
+
+
 });
 
 app.post('/acuity', function (request, response) {
@@ -160,7 +213,7 @@ app.post('/acuity', function (request, response) {
     method: 'POST',
     body: {
       appointmentTypeID: appointmentTypeID,
-      datetime:          body.time, 
+      datetime:          body.time,
       firstName:         body.firstname,
       lastName:          body.lastname,
       email:             body.email,

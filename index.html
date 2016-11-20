@@ -15,6 +15,35 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
+		<div id="stripe-form">
+
+
+			<!-- Tutorial outside -->
+  <h1> COME ON </h1>
+  <form action="/booking" method="POST" id="payment-form">
+    <div class="form-row">
+      <div class="cc-text">Card Number</div>
+      <input type="text" size="30" autocomplete="off" class="card-number"/>
+    </div>
+    <div class="form-row">
+      <div class="cc-text">CVC</div>
+      <input type="text" size="4" autocomplete="off" class="card-cvc"/>
+    </div>
+    <div class="form-row">
+      <div class="cc-text">Expiration (MM/YYYY)</div>
+      <input type="text" size="2" class="card-expiry-month"/>
+      <span> / </span>
+      <input type="text" size="4" class="card-expiry-year"/>
+    </div>
+    <input type="hidden" name="amount" value="1000" id="cc-amount">
+    <button type="submit" class="submit-button">Submit Payment</button>
+  </form>
+</div>
+<div id="error" class="hidden"></div>
+<div id="success" class="hidden">Thanks for signing up at Browserling!</div>
+
+
+
 
 
 		<div style="padding-top: 200px; margin:auto; display: block; height:200px;">
@@ -23,18 +52,54 @@
 
   <!-- React -->
 	<div id="container" className="jumbotron-flat"></div>
-	<form style="display:none; margin: auto; width: 200px;" id="stripe" action="/acuity" method="POST">
+
+
+
+  <h1> COME ON </h1>
+	<!-- <form action="/booking" method="POST" id="payment-form">
+  <span class="payment-errors"></span>
+
+  <div class="form-row">
+    <label>
+      <span>Card Number</span>
+      <input type="text" size="20" data-stripe="number">
+    </label>
+  </div>
+
+  <div class="form-row">
+    <label>
+      <span>Expiration (MM/YY)</span>
+      <input type="text" size="2" data-stripe="exp_month">
+    </label>
+    <span> / </span>
+    <input type="text" size="2" data-stripe="exp_year">
+  </div>
+
+  <div class="form-row">
+    <label>
+      <span>CVC</span>
+      <input type="text" size="4" data-stripe="cvc">
+    </label>
+  </div> -->
+
+
+  <input type="submit" class="submit" value="Submit Payment">
+</form>
+
+
+
+	<!-- <form style="display:none; margin: auto; width: 200px;" id="payment-form" action="/booking" method="POST">
 		<script
 		  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 		  data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-		  data-amount="1200"
+		  data-amount="1000"
 		  data-name="Stripe.com"
 		  data-description="2 widgets"
 		  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
 		  data-locale="auto"
 		  data-zip-code="true">
 		</script>
-	</form>
+	</form> -->
 <select style="margin:auto; display:none" id="select">
     <option value="1">Select Company</option>
     <option value="2">DayBreak Games </option>
@@ -83,7 +148,9 @@
 		</div>
 		<!-- Scripts -->
 		<!-- Order matters -->
+
 		  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+			<!-- <script type="text/javascript"> Stripe.setPublishableKey('pk_test_uAebO3XYb3lPE6SJjQ0LQKVj'); </script> -->
 			<script src="//fb.me/react-0.14.8.js"></script>
 			<script src="//fb.me/react-dom-0.14.8.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
