@@ -109,9 +109,9 @@ app.post('/booking', function(req, res){
     },
     function(err, charge) {
         if (err) {
-            // res.send(500, err);
+            res.send(500, err);
         } else {
-            // res.send(204);
+            res.send(204);
         }
     });
 

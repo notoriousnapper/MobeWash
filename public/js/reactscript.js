@@ -1,5 +1,8 @@
 /* React */
 
+
+
+
 var TimeSlot = React.createClass({
   getInitialState: function(){
     return {
@@ -13,7 +16,7 @@ var TimeSlot = React.createClass({
     var l = $('.bookform')[0][0];
     // document.getElementsByClassName("hideaway")[0];
     var m = document.getElementsByClassName("bookform")[0];
-    var n = document.getElementsByClassName("cal2")[0];
+    var n = document.getElementsByClassName("timeslot")[0];
     var hour = ($(e.target).parent().children('.test2').text()).split(" ")[0];
     var time = t1 + "-" + this.state.day + "T" + hour + ":00-0800";
     console.log('before: ' + l.value);
@@ -24,7 +27,11 @@ var TimeSlot = React.createClass({
     console.log(l.value);
     console.log("button inside is: " + hour);
     m.style.display = "block";
-    n.style.display = "none";
+    // document.getElementById('masterform').scrollIntoView();
+    $('html, body').animate({
+        scrollTop: $("#masterform").offset().top
+    }, 700);
+    // n.style.display = "none";
   },
   render: function() {
     var rowStyle = {
@@ -69,8 +76,8 @@ var TimeSlot = React.createClass({
     // list.map(function(item){
     //   // console.log(JSON.stringify(item, null, 4));
     // })
-    return <div className="cal2" style={{display:"none", margin:"auto", width: "400px"}}>
-    <div  style={{margin:"auto", backgroundColor:"white"}}> Please Select a TimeSlot </div>
+    return <div className="timeslot" style={{display:"none", height: "500px"}}>
+    <div style={{backgroundColor:"white"}}> Please Select a TimeSlot </div>
     <table style={{ border:"1px solid black", borderColor:"black", width:"500px"}}>
       <tbody>
       {list}
@@ -94,20 +101,24 @@ var Calendar = React.createClass({
   getInitialState: function(){
     return {hover: false}
   },
+  toggleHover: function(){
+    this.setState({hover: !this.state.hover})
+  },
   selectDate: function(){
     // alert("date selected");
     var m = document.getElementsByClassName("cal1")[0];
-    var n = document.getElementsByClassName("cal2")[0];
-    var o = document.getElementById("select");
+    var n = document.getElementsByClassName("timeslot")[0];
+    // var o = document.getElementById("select");
 
 
-    m.style.display = "none";
-    o.style.display = "none";
+    // m.style.display = "none";
     n.style.display = "block";
+    // o.style.display = "none";
   },
   revealCal: function(){
     // var m = document.getElementsByClassName("cal1")[0];
-    var m = document.getElementById("select");
+    // var m = document.getElementById("select");
+    var m = document.getElementsByClassName("cal1")[0];
     // var n = document.getElementsByClassName("logoImg")[0];
     var o = document.getElementsByClassName("corporateBtn")[0];
     console.log(m);
@@ -127,21 +138,7 @@ var Calendar = React.createClass({
       width: "180px",
       color: "white",
       fontFamily: "19px"
-    }
-
-    var avatarStyle={
-      disply: "none",
-      margin: "auto",
-      width:  "128px",
-      height: "128px",
-      // margin: "10px",
-      border:"10px solid white",
-      borderRadius: "500px",
-      webkitBorderRadius: "500px",
-      mozBorderRadius: "500px"
-    }
-
-
+    };
     var topStyle={
       height: '100px',
       width: '100px',
@@ -202,7 +199,6 @@ var Calendar = React.createClass({
       color: '#ADADAB'
     };
 
-
     var op1 = ['S','M','T','W','T','F','S'];
     var op2 = ['30','31','1','2','3','4','5'];
     var op3 = ['6','7','8','9','10','11','12'];
@@ -210,13 +206,10 @@ var Calendar = React.createClass({
     var op5 = ['20','21','22','23','24','25','26'];
     var op6 = ['27','28','29','30','1','2','3'];
 
-
     var res = function(arr){arr.map(function(item){
         return <th style={topStyle}>{item}</th>;
       });
     };
-
-
     // Function that dynamically selects day of the week to add in custom html
     // arr = array of values representing table cells
     // selectedDays are the days chosen.  Ranges from [0-6]
@@ -254,7 +247,6 @@ var Calendar = React.createClass({
     // Data to be used for calendar function
     var selDays = 4; // Thursday for DayBreak Games
     var content = <div style={{textAlign:"left"}} > DayBreak Games <br/> 9am-4pm </div>;
-
     var r1 = generateTr(op1, [0,1,2,3,4,5,6], headStyle, null);
     var r2 = generateTr(op2, [], chosenStyle, null);
     var r3 = generateTr(op3, [], chosenStyle, null);
@@ -262,22 +254,25 @@ var Calendar = React.createClass({
     var r5 = generateTr(op5, [], chosenStyle, null);
     var r6 = generateTr(op6, [], chosenStyle, null);
 
-
-    var text;
-    if (this.props.hasvacancy) {
-      text = 'Vacancy';
+    // For Hovering UI
+    var linkStyle;
+    if (this.state.hover) {
+      linkStyle = {backgroundColor: 'red'}
     } else {
-      text = 'No Vacancy';
+      linkStyle = {backgroundColor: 'blue'}
     }
+
+
+
     return <div>
     <button className="corporateBtn" style={buttonStyle} onClick={this.revealCal}> Corporate </button>
-    <div  style={{display:"none"}}>
-    <img style={avatarStyle} src="img/daybreakgames.jpg"></img>
+    <div  style={{}}>
      </div>
-      <div className="cal1" style={{margin: "auto", display:"none", height:"600px", width:"60%", borderRadius:"10px", backgroundColor:"white", borderColor:"black"}}>
-        <div style={{padding: "10px", fontFamily: "Helvetica", height:"50px", width:"100%", backgroundColor:"white", borderColor:"grey",borderRadius:"10px"}}>
-        DayBreak Games
-        </div>
+      <div className="cal1" style={{display:"none", height:"600px", width:"100%", borderRadius:"10px", backgroundColor:"white", borderColor:"black"}}>
+         <select>
+             <option value="1">Select Company</option>
+             <option value="2">DayBreak Games </option>
+         </select>
 
         <table style={{borderColor:"black", width:"100%"}}>
           <tbody>
@@ -296,10 +291,26 @@ var Calendar = React.createClass({
 
 var Master = React.createClass({
   render: function() {
+    var avatarStyle={
+      disply: "none",
+      margin: "auto",
+      width:  "128px",
+      height: "128px",
+      // margin: "10px",
+      border:"10px solid white",
+      borderRadius: "500px",
+      webkitBorderRadius: "500px",
+      mozBorderRadius: "500px"
+    };
+
     return <div>
-    <Calendar/>
-    <TimeSlot/>
-    </div>;
+    <img style={avatarStyle} src="img/daybreakgames.jpg"></img>
+    <div style={{display:"flex"}}>
+    <Calendar style={{flex:"3"}} />
+    <TimeSlot style={{flex:"1"}}/>
+    </div>
+    </div>
+    ;
   }
 });
 

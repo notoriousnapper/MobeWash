@@ -58,9 +58,8 @@ $("#payment-form").submit(function(event) {
 
 
 
-
-
-$(function() {
+// Select Calendar reveal commented for now
+/*$(function() {
     $('#select').change(function(){
         if ($(this).val() == "2") {
             $('#warning').show();
@@ -71,40 +70,7 @@ $(function() {
         }
     });
 });
-
-// // Stripe Handler
-// var $form = $('#payment-form');
-//  $form.submit(function(event) {
-//    // Disable the submit button to prevent repeated clicks:
-//    $form.find('.submit').prop('disabled', true);
-//    // Request a token from Stripe:
-//    Stripe.card.createToken($form, stripeResponseHandler);
-//    // Prevent the form from being submitted:
-//    return false;
-//  });
-//
-//  function stripeResponseHandler(status, response) {
-//   // Grab the form:
-//   var $form = $('#payment-form');
-//
-//   if (response.error) { // Problem!
-//
-//     // Show the errors on the form:
-//     $form.find('.payment-errors').text(response.error.message);
-//     $form.find('.submit').prop('disabled', false); // Re-enable submission
-//
-//   } else { // Token was created!
-//
-//     // Get the token ID:
-//     var token = response.id;
-//
-//     // Insert the token ID into the form so it gets submitted to the server:
-//     $form.append($('<input type="hidden" name="stripeToken">').val(token));
-//
-//     // Submit the form:
-//     $form.get(0).submit();
-//   }
-// };
+*/
 
 $(document).ready(function () {
 var canSubmit = false;
@@ -139,8 +105,8 @@ var times = [
 var selectedTime = year+"-"+month+"-"+day;
   $('#calendar1').hide();
   // $('#form1').hide();
-  $('#form2').hide();
-  $('#form3').hide();
+  // $('#form2').hide();
+  // $('#form3').hide();
   // $('#masterform').show();
 
 $('#calClick').click(function(e){
@@ -160,14 +126,15 @@ $('.avail').click(function(e){
 });
 
 
-$('#button1').click(function(){
-  console.log("first button clicked");
-  $('#form1').fadeOut(100);
-  $('#form2').fadeIn(1500);
-});
+// $('#button1').click(function(){
+//   console.log("first button clicked");
+//   $('#form1').fadeOut(100);
+//   $('#form2').fadeIn(1500);
+// });
 
 $('#button2').click(function(){
   console.log("second button clicked");
+  $('#form1').fadeOut(100);
   $('#form2').fadeOut(100);
   $('#form3').fadeIn(1000);
   $('#stripe').fadeIn(1000);
