@@ -33,7 +33,7 @@
       <input type="text" size="4" class="card-expiry-year"/>
     </div>
     <input type="hidden" name="amount" value="1000" id="cc-amount">
-    <button type="submit" class="submit-button">Submit Payment</button>
+    <button type="submit" class="submit-button">Submit</button>
   </form>
 </div>
 <div id="error" class="hidden"></div>
@@ -48,13 +48,12 @@
 			<button id="calClick" class="bookingBtn">Corporate</button> -->
 
   <!-- React -->
-	<div id="container" className="jumbotron-flat"></div>
-
-
-
+	<div style="display:flex">
+	<button class="corporateBtn" style="width:180px"> Mobile </button>
+	<div id="container" style="flex:1" className="jumbotron-flat"></div>
+</div>
 	<!-- <form action="/booking" method="POST" id="payment-form">
   <span class="payment-errors"></span>
-
   <div class="form-row">
     <label>
       <span>Card Number</span>
@@ -79,9 +78,10 @@
   </div> -->
 
 
-  <input type="submit" class="submit" value="Submit Payment">
-</form>
-	<!-- <form style="display:none; margin: auto; width: 200px;" id="payment-form" action="/booking" method="POST">
+  <!-- <input type="submit" class="submit" value="Submit Payment">
+</form> -->
+
+	<!-- <form style=" margin: auto; width: 200px;" id="payment-form" action="/booking" method="POST">
 		<script
 		  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 		  data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
@@ -109,7 +109,14 @@
 					<!-- <button class="bookingBtn" type="submit" onClick="alertWorld"> Submit </button> -->
 				</div>
 			</div>
+
+
+			<h3> Contact Info </h3>
+			<br/>
+			<br/>
 			<div id="form2">
+				<h2> Enter Details </h2>
+
 				<div class="first">
 					<input class="bookinput" type="text" name="firstname" id="firstname" placeholder="First Name" />
 					<input class="bookinput" type="text" name="lastname" id="lastname" placeholder="Last Name" />
@@ -124,11 +131,34 @@
 				<div class="full">
 					<input type="text" name="email" placeholder="Email" id="email" />
 				</div>
+					<br/>
 				<div class="field half">
-					<!-- <button class="bookingBtn" type="button" onClick="alertWorld()"> Submit </button> -->
-					<button  class="bookingBtn" id="button2" type="submit"> Submit2 </button>
+					<br/>
+					<button  class="bookingBtn" id="bookingBtn" type="text"> Continue </button>
 				</div>
 			</div>
+
+			<div id="form3" style="display:none">
+				<div class="form-row">
+					<div class="cc-text">Card Number</div>
+					<input type="text" size="30" autocomplete="off" class="card-number"/>
+				</div>
+				<div class="form-row">
+					<div class="cc-text">CVC</div>
+					<input type="text" size="4" autocomplete="off" class="card-cvc"/>
+				</div>
+				<div class="form-row">
+					<div class="cc-text">Expiration (MM/YYYY)</div>
+					<input type="text" size="2" class="card-expiry-month"/>
+					<span> / </span>
+					<input type="text" size="4" class="card-expiry-year"/>
+				</div>
+				<input type="hidden" name="amount" value="1000" id="cc-amount">
+				<button type="submit"  class="submit-button" id="bookingBtn" type="submit">Submit Payment</button>
+			</div>
+
+
+
 			</form>
 
 </div>

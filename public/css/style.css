@@ -29,7 +29,27 @@ body{
 }
 
 input{
-  font-size:14px;
+  height:        20px;
+  font-size:     14px;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  border-color:  #CCCCCC;
+  border-width:  1px;
+  padding:       5px;
+}
+
+.corporateBtn{
+  display: block;
+  margin: auto;
+  background-color:#5CB85C;
+  border-color:#5CB85C;
+  border-style: solid;
+  border-radius:5px;
+  height: 40px;
+  width: 180px;
+  color: white;
+  font-family: 19px;
+  flex: 1;
 }
 :placeholder-shown{
   /*padding:4px;*/
@@ -40,20 +60,24 @@ input{
   font-size:14px;
 }
 .bookform{
-  background-color: #F5F5F7;
+  background-color: #FBFDFF;
   margin:auto;
   height: 400px;
   width: 500px;
-  padding:10px;
+  padding-left: 30px;
+  padding-right:30px;
 }
 
-.bookingBtn{
-  background-color: #2CA0E3;
+#bookingBtn{
+  background-color: #5FA7E6;
   color: white;
   height: 30px;
   width: 150px;
   font-size: 14px;
-  border-radius: 2px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-bottom-width:4px;
+  border-color: #518EC4;
   border-style: solid;
 }
 

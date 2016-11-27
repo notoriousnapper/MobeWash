@@ -121,24 +121,26 @@ var Calendar = React.createClass({
     var m = document.getElementsByClassName("cal1")[0];
     // var n = document.getElementsByClassName("logoImg")[0];
     var o = document.getElementsByClassName("corporateBtn")[0];
+    var p = document.getElementsByClassName("corporateBtn")[1];
     console.log(m);
     m.style.display = "block";
     o.style.display = "none";
+    p.style.display = "none";
     // n.style.display = "block";
   },
   render: function() {
-    var buttonStyle={
-      display: "block",
-      margin: "auto",
-      backgroundColor:"#5CB85C",
-      borderColor:"#5CB85C",
-      borderStyle: "solid",
-      borderRadius:"5px",
-      height: "40px",
-      width: "180px",
-      color: "white",
-      fontFamily: "19px"
-    };
+    // var buttonStyle={
+    //   display: "block",
+    //   margin: "auto",
+    //   backgroundColor:"#5CB85C",
+    //   borderColor:"#5CB85C",
+    //   borderStyle: "solid",
+    //   borderRadius:"5px",
+    //   height: "40px",
+    //   width: "180px",
+    //   color: "white",
+    //   fontFamily: "19px"
+    // };
     var topStyle={
       height: '100px',
       width: '100px',
@@ -265,7 +267,7 @@ var Calendar = React.createClass({
 
 
     return <div>
-    <button className="corporateBtn" style={buttonStyle} onClick={this.revealCal}> Corporate </button>
+    <button className="corporateBtn" onClick={this.revealCal}> Corporate </button>
     <div  style={{}}>
      </div>
       <div className="cal1" style={{display:"none", height:"600px", width:"100%", borderRadius:"10px", backgroundColor:"white", borderColor:"black"}}>
@@ -303,8 +305,8 @@ var Master = React.createClass({
       mozBorderRadius: "500px"
     };
 
+    // <img style={avatarStyle} src="img/daybreakgames.jpg"></img>
     return <div>
-    <img style={avatarStyle} src="img/daybreakgames.jpg"></img>
     <div style={{display:"flex"}}>
     <Calendar style={{flex:"3"}} />
     <TimeSlot style={{flex:"1"}}/>

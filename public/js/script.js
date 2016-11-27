@@ -132,12 +132,12 @@ $('.avail').click(function(e){
 //   $('#form2').fadeIn(1500);
 // });
 
-$('#button2').click(function(){
+$('#bookingBtn').click(function(){
   console.log("second button clicked");
   $('#form1').fadeOut(100);
   $('#form2').fadeOut(100);
   $('#form3').fadeIn(1000);
-  $('#stripe').fadeIn(1000);
+  // $('#stripe').fadeIn(1000);
 });
 
 $('#button3').click(function(){

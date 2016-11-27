@@ -114,9 +114,6 @@ app.post('/booking', function(req, res){
             res.send(204);
         }
     });
-
-
-
 });
 
 app.post('/acuity', function (request, response) {
