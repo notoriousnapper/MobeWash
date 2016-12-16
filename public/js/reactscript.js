@@ -1,7 +1,58 @@
 
 
+
+
+
+var Hover = React.createClass({
+  getInitialState: function(){
+    return { hover: false}
+  },
+  onMouseEnterHandler: function(){
+    this.setState({
+      hover: true
+    })
+    console.log("Entered");
+  },
+  onMouseLeaveHandler: function(){
+    this.setState({
+      hover: false
+    })
+    console.log("Left");
+  },
+  render: function(){
+    var outer = {
+    height: '100%', width: '100%', margin: '0px', backgroundColor: 'transparent',
+    cursor: 'pointer', position: 'relative'
+}
+
+    var normal = {
+    position: 'absolute', top: 0, bottom: 0, left: 0, right: 0,
+    backgroundColor: '#C32025', opacity: 0
+}
+
+    var hover = {
+      position: 'absolute', top: 0, bottom: 0, left: 0, right: 0,
+    backgroundColor: '#C32025', opacity: 1
+    }
+    /* Magic code */
+    var inner = normal;
+            if(this.state.hover) {
+                inner = hover;
+            }
+    return <div style={outer}>
+                <div style={inner}
+                    onMouseEnter={this.onMouseEnterHandler}
+                    onMouseLeave={this.onMouseLeaveHandler} >
+                    {this.props.children}
+                </div>
+            </div>
+  }
+
+})
+
 // these are labels for the days of the week
-cal_days_labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+cal_days_labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+// cal_days_labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 // these are human-readable month name labels, in order
 cal_months_labels = ['January', 'February', 'March', 'April',
@@ -16,7 +67,7 @@ function Calendar(month, year) {
   this.month = (isNaN(month) || month == null) ? cal_current_date.getMonth() : month;
   this.year  = (isNaN(year) || year == null) ? cal_current_date.getFullYear() : year;
   this.html = '';
-}
+  }
 
 /* React */
 
@@ -52,13 +103,18 @@ var Calendar_C = React.createClass({
       fontFamily: 'Helvetica', backgroundColor: '#444444b', borderColor:"black"
     };
     var headStyle={
-      height: '40px', width: '100px', textAlign: 'center', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
+      height: '30px', width: '100px', textAlign: 'center', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
       paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#444444',
       borderColor:"black", color: '#ADADAB' };
     var chosenStyle={
       height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
       paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: '#7A7A7A',
       borderColor:"black", color: '#ADADAB'
+    };
+    var hoverStyle={
+      height: '40px', width: '100px', textAlign: 'center',
+      paddingLeft: '4px',  fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: '#7A7A7A',
+      borderColor:"black", color: '#ADADAB', padding: "0", margin: "0"
     };
     var defaultStyle={
       height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
@@ -110,9 +166,10 @@ var Calendar_C = React.createClass({
     if(validDay){
       for(var k = 0; k <days.length; k++){
         if(weekday == days[k]){
-          rowStyle = chosenStyle;
+          // rowStyle = chosenStyle;
+          rowStyle = hoverStyle;
           company  = companyData[k];
-          content  = <div> {company.name}  <br/>  {company.range} </div>;
+          content  = <Hover><div style={{textAlign:'right'}}>{day}</div> {company.name}  <br/>  {company.range} </Hover>;
           // clicker  = self.selectDate;
           break;
         }
@@ -123,9 +180,15 @@ var Calendar_C = React.createClass({
     else{
     day = null;
     }
-    return <th style={rowStyle} >{day} <br/>{content}</th>
+
+
+
+
+    return <th style={rowStyle} >{content}</th>
   }
 
+    comp.push(<tr> <th style={{textAlign:"center"}} colSpan="7"> {cal_months_labels[this.state.month]}</th></tr>);
+    // Week Day Labels
     for(var i = 0; i <= 6; i++ ){
       temp = <th style={headStyle}>{cal_days_labels[i]} <br/>{}</th>;
       temp2.push(temp);
@@ -303,6 +366,7 @@ var Master = React.createClass({
     <div style={{display:"flex"}}>
     <Calendar style={{flex:"3"}} />
     <Calendar_C />
+    <Hover/>
     </div>
     </div>
     ;
