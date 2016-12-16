@@ -167,6 +167,7 @@
 		<!-- Scripts -->
 		<!-- Order matters -->
 
+		  <script src="js/calendar.js"></script>
 		  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 			<!-- <script type="text/javascript"> Stripe.setPublishableKey('pk_test_uAebO3XYb3lPE6SJjQ0LQKVj'); </script> -->
 			<script src="//fb.me/react-0.14.8.js"></script>
@@ -185,6 +186,11 @@
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 		  <script src="js/script.js"></script>
+			<script type="text/javascript">
+		  	var cal = new Calendar(11,2016);
+		  	cal.generateHTML();
+		  	document.write(cal.getHTML());
+			</script>
 
 	</body>
 </html>

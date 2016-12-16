@@ -1,111 +1,103 @@
-// these are labels for the days of the week
-cal_days_labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-// these are human-readable month name labels, in order
-cal_months_labels = ['January', 'February', 'March', 'April',
-                     'May', 'June', 'July', 'August', 'September',
-                     'October', 'November', 'December'];
-
-// these are the days of the week for each month, in order
-cal_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-
-function Calendar(month, year) {
-  this.month = (isNaN(month) || month == null) ? cal_current_date.getMonth() : month;
-  this.year  = (isNaN(year) || year == null) ? cal_current_date.getFullYear() : year;
-  this.html = '';
-}
-
 /* React */
 
 
     // Somehow this code doesn't translate past - etc.
-    // var cal = new Calendar(11,2016);
-    // cal.generateHTML();
-    // var html = cal.getHTML();
+    var cal = new Calendar(11,2016);
+    cal.generateHTML();
+    var html = cal.getHTML();
     //var html = document.write(cal.getHTML());
 
-
-// Helper Functions
-var getDaysInMonth = function(month, year){
-  return new Date(year, month, 0).getDate();
-}
-
-var curr = new Date();
-var m = curr.getMonth();
-var y = curr.getFullYear();
-var initialState = {
-  month: m,
-  year: y,
-  dayCount: getDaysInMonth(y, m)
-};
-
-
-var temp = [], temp2 = [], comp = [], day = 1, item = [];
-
 var Calendar_C = React.createClass({
-  getInitialState: function(){
-    return {
-      month: m,
-      year: y,
-      dayCount: getDaysInMonth(y, m)
-    }
-  },
   render: function(){
-    var defaultStyle={
-      height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px', paddingLeft: '4px', paddingRight: '4px',
-      fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: 'white', borderColor:"black", color: '#ADADAB'
-    };
-    /* Major code for filling in days */
-  // get first day of month
-  var day = 1;
-  var firstDay = new Date(this.state.year, this.state.month, 1);
-  var startingDay = firstDay.getDay();
-
-  // find number of days in month
-  var monthLength = cal_days_in_month[this.state.month];
-  // compensate for leap year
-  if (this.state.month == 1) { // February only!
-    if((this.state.year % 4 == 0 && this.state.year % 100 != 0) || this.state.year % 400 == 0){
-      monthLength = 29;
-    }
-  }
-
-
-
-    for (var i = 0; i < 5; i++) {  // this loop is for is weeks (rows)
-      for (var j = 0; j <= 6; j++) {  // this loop is for weekdays (cells)
-        if (day <= monthLength && (i > 0 || j >= startingDay)) {  // Sets up for starting day
-          // Set style and clickability for valid dates
-          item = day;
-          // style = day;
-          // click = day;
-          day++;
-        }
-        temp =  <th style={defaultStyle}>{item} <br/></th>
-        temp2.push(temp);
-      }
-      comp.push(<tr> {temp2} </tr>);
-      // stop making rows if we've run out of days
-      if (day > monthLength) {
-        break;
-      } else {
-      }
-      // Clear temporaries
-      temp = [];
-      temp2 = [];
-    }
-    // for( var i = this.state.dayCount; i > 0; i--){
-    //   console.log(i);
-    //   comp.push(<div> {i} work </div>);
-    // }
     // Generate calendar based on selected Date
     // Default date is current month --> Populates the next few months, etc.
-    return <div> <table> <tbody> {comp}
-    </tbody> </table></div>
+    return <div></div>
   }
 })
 
+var TimeSlot = React.createClass({
+  getInitialState: function(){
+    return {
+      day: "15",
+      hour: "9:00"
+    }
+  },
+  revealInfoBox: function(e){
+    var t1 = "2016-11";
+    // var time = "2016-11-15T09:00:00-0800";
+    var l = $('.bookform')[0][0];
+    // document.getElementsByClassName("hideaway")[0];
+    var m = document.getElementsByClassName("bookform")[0];
+    var n = document.getElementsByClassName("timeslot")[0];
+    var hour = ($(e.target).parent().children('.test2').text()).split(" ")[0];
+    var time = t1 + "-" + this.state.day + "T" + hour + ":00-0800";
+    console.log('before: ' + l.value);
+    l.value = time;  // The part that changes the value we need
+
+    console.log("l is " + JSON.stringify(l,null,4));
+    console.log("n is " + JSON.stringify(n,null,4));
+    console.log(l.value);
+    console.log("button inside is: " + hour);
+    m.style.display = "block";
+    // document.getElementById('masterform').scrollIntoView();
+    $('html, body').animate({
+        scrollTop: $("#masterform").offset().top
+    }, 700);
+    // n.style.display = "none";
+  },
+  render: function() {
+    var rowStyle = {
+      padding: "10px",
+      paddingLeft: "20px",
+      backgroundColor:"#F9F9F9",
+      height: "50px"
+    };
+    var buttonStyle = {
+      margin: "auto",
+      backgroundColor:"#5CB85C",
+      borderColor:"#5CB85C",
+      borderStyle: "solid",
+      borderRadius:"5px",
+      height: "30px",
+      width: "300px"
+    };
+    var times = [
+      "9:00 am",
+      "10:00 am",
+      "11:00 am",
+      "12:00 pm",
+      "1:00 pm",
+      "2:00 pm",
+      "3:00 pm",
+      "4:00 pm"
+    ];
+    var self = this.revealInfoBox;
+    var i = 0;
+    var list = times.map(function(item){
+      i++;
+      return <tr style={rowStyle}>
+      <td>
+      <div style={rowStyle}>
+        <div className="test2" style={{width:"100px", display:"inline-block"}}>{item} </div>
+        <button className="test" style={buttonStyle} key={i} onClick={self}> Open </button>
+      </div>
+      </td>
+      </tr>;
+    });
+    // console.log('list is: ' + JSON.stringify(list, null, 4));
+    // list.map(function(item){
+    //   // console.log(JSON.stringify(item, null, 4));
+    // })
+    return <div className="timeslot" style={{display:"none", height: "500px"}}>
+    <div style={{backgroundColor:"white"}}> Please Select a TimeSlot </div>
+    <table style={{ border:"1px solid black", borderColor:"black", width:"500px"}}>
+      <tbody>
+      {list}
+      </tbody>
+      </table>
+    </div>;
+  }
+});
 
 
 
@@ -117,18 +109,26 @@ var Calendar = React.createClass({
     this.setState({hover: !this.state.hover})
   },
   selectDate: function(){
+    // alert("date selected");
     var m = document.getElementsByClassName("cal1")[0];
     var n = document.getElementsByClassName("timeslot")[0];
+    // var o = document.getElementById("select");
+    // m.style.display = "none";
     n.style.display = "block";
+    // o.style.display = "none";
   },
   revealCal: function(){
+    // var m = document.getElementsByClassName("cal1")[0];
+    // var m = document.getElementById("select");
     var m = document.getElementsByClassName("cal1")[0];
+    // var n = document.getElementsByClassName("logoImg")[0];
     var o = document.getElementsByClassName("corporateBtn")[0];
     var p = document.getElementsByClassName("corporateBtn")[1];
     console.log(m);
     m.style.display = "block";
     o.style.display = "none";
     p.style.display = "none";
+    // n.style.display = "block";
   },
   render: function() {
     var topStyle={
@@ -149,6 +149,7 @@ var Calendar = React.createClass({
       marginTop: '10px',
       marginBottom: '0px',
       paddingTop: '10px',
+      // paddingBottom:'10px',
       paddingLeft: '4px',
       paddingRight: '4px',
       fontFamily: 'Helvetica',
@@ -164,6 +165,7 @@ var Calendar = React.createClass({
       marginTop: '10px',
       marginBottom: '0px',
       paddingTop: '10px',
+      // paddingBottom:'10px',
       paddingLeft: '4px',
       paddingRight: '4px',
       fontFamily: 'Helvetica',
@@ -179,6 +181,7 @@ var Calendar = React.createClass({
       marginTop: '10px',
       marginBottom: '0px',
       paddingTop: '10px',
+      // paddingBottom:'10px',
       paddingLeft: '4px',
       paddingRight: '4px',
       fontFamily: 'Helvetica',
@@ -203,12 +206,16 @@ var Calendar = React.createClass({
     // arr = array of values representing table cells
     // selectedDays are the days chosen.  Ranges from [0-6]
 
+
     var self = this; // For binding purposes
     function generateTr(arr, days, selStyle, content){
       var rowStyle;
       var i = 0, j = 0;
       var cont = <div></div>;
       var clicker = ()=>{console.log('sigh');}
+      console.log(days);
+      console.log(days[0]);
+      console.log(days[1]);
       return arr.map(function(item){
             // Reset style & content
             cont     = <div></div>;
@@ -238,6 +245,16 @@ var Calendar = React.createClass({
     var r4 = generateTr(op4, [4], chosenStyle, content);
     var r5 = generateTr(op5, [], chosenStyle, null);
     var r6 = generateTr(op6, [], chosenStyle, null);
+
+    // For Hovering UI
+    var linkStyle;
+    if (this.state.hover) {
+      linkStyle = {backgroundColor: 'red'}
+    } else {
+      linkStyle = {backgroundColor: 'blue'}
+    }
+
+
 
     return <div>
     <button className="corporateBtn" onClick={this.revealCal}> Corporate </button>
@@ -282,6 +299,7 @@ var Master = React.createClass({
     return <div>
     <div style={{display:"flex"}}>
     <Calendar style={{flex:"3"}} />
+    <TimeSlot style={{flex:"1"}}/>
     <Calendar_C />
     </div>
     </div>
