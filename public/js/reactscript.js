@@ -41,7 +41,7 @@ var initialState = {
 };
 
 
-var temp = [], temp2 = [], comp = [], day = 1, item = [];
+var temp = [], temp2 = [], comp = [], day = 1, item = -1;
 
 var Calendar_C = React.createClass({
   getInitialState: function(){
@@ -52,16 +52,43 @@ var Calendar_C = React.createClass({
     }
   },
   render: function(){
-    var defaultStyle={
-      height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px', paddingLeft: '4px', paddingRight: '4px',
-      fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: 'white', borderColor:"black", color: '#ADADAB'
+    var topStyle={
+      height: '100px', width: '100px', textAlign: 'right', marginTop: '10px', paddingLeft: '4px', paddingRight: '4px',
+      fontFamily: 'Helvetica', backgroundColor: '#444444b', borderColor:"black"
     };
-    /* Major code for filling in days */
+    var headStyle={
+      height: '40px', width: '100px', textAlign: 'center', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#444444b',
+      borderColor:"black", color: '#ADADAB' };
+    var chosenStyle={
+      height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: '#7A7A7A',
+      borderColor:"black", color: '#ADADAB'
+    };
+    var defaultStyle={
+      height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: 'white',
+      borderColor:"black", color: '#ADADAB'
+    };
+    var companyData =
+    [
+      {
+        name: "DayBreak Games",
+        day: 3,
+        range: "11:00am-5pm" // Should be changed to time objects -- Later iteration
+      },
+      {
+        name: "Illumina",
+        day: 3,
+        range: "11:00am-5pm" // Should be changed to time objects -- Later iteration
+      },
+    ]
+
+  /* Major code for filling in days */
   // get first day of month
   var day = 1;
   var firstDay = new Date(this.state.year, this.state.month, 1);
   var startingDay = firstDay.getDay();
-
   // find number of days in month
   var monthLength = cal_days_in_month[this.state.month];
   // compensate for leap year
@@ -72,17 +99,37 @@ var Calendar_C = React.createClass({
   }
 
 
+  function decorateCell(companyData, i){
+    var days     = companyData.map(function(c){
+      return c.day
+    })
+    // Default options
+    var c        = null;
+    var rowStyle = defaultStyle;
+    var cont     = <div></div>
+    var clicker  = ()=>{};
 
+
+    for(j = 0; j <days.length; j++){
+      if(i == days[j]){
+        rowStyle = chosenStyle;
+        c        = companyData[j];
+        cont     = <div> c.name  <br/>  c.range </div>;
+        clicker  = self.selectDate;
+        break;
+      }
+    }
+    return <th style={rowStyle}>{i} <br/>{cont}</th>
+  }
     for (var i = 0; i < 5; i++) {  // this loop is for is weeks (rows)
       for (var j = 0; j <= 6; j++) {  // this loop is for weekdays (cells)
         if (day <= monthLength && (i > 0 || j >= startingDay)) {  // Sets up for starting day
-          // Set style and clickability for valid dates
           item = day;
-          // style = day;
-          // click = day;
           day++;
         }
-        temp =  <th style={defaultStyle}>{item} <br/></th>
+
+        // temp = <th style={defaultStyle}>{item} <br/>{}</th>;
+        temp = decorateCell(companyData, day, item);
         temp2.push(temp);
       }
       comp.push(<tr> {temp2} </tr>);
@@ -94,15 +141,10 @@ var Calendar_C = React.createClass({
       // Clear temporaries
       temp = [];
       temp2 = [];
+      item = -1;
     }
-    // for( var i = this.state.dayCount; i > 0; i--){
-    //   console.log(i);
-    //   comp.push(<div> {i} work </div>);
-    // }
-    // Generate calendar based on selected Date
-    // Default date is current month --> Populates the next few months, etc.
-    return <div> <table> <tbody> {comp}
-    </tbody> </table></div>
+
+    return <div> <table> <tbody> {comp} </tbody> </table></div>
   }
 })
 
@@ -132,60 +174,22 @@ var Calendar = React.createClass({
   },
   render: function() {
     var topStyle={
-      height: '100px',
-      width: '100px',
-      textAlign: 'right',
-      marginTop: '10px',
-      paddingLeft: '4px',
-      paddingRight: '4px',
-      fontFamily: 'Helvetica',
-      backgroundColor: '#444444b',
-      borderColor:"black"
+      height: '100px', width: '100px', textAlign: 'right', marginTop: '10px', paddingLeft: '4px', paddingRight: '4px',
+      fontFamily: 'Helvetica', backgroundColor: '#444444b', borderColor:"black"
     };
     var headStyle={
-      height: '40px',
-      width: '100px',
-      textAlign: 'center',
-      marginTop: '10px',
-      marginBottom: '0px',
-      paddingTop: '10px',
-      paddingLeft: '4px',
-      paddingRight: '4px',
-      fontFamily: 'Helvetica',
-      fontSize: '14px',
-      backgroundColor: '#444444b',
-      borderColor:"black",
-      color: '#ADADAB'
-    };
+      height: '40px', width: '100px', textAlign: 'center', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#444444b',
+      borderColor:"black", color: '#ADADAB' };
     var chosenStyle={
-      height: '40px',
-      width: '100px',
-      textAlign: 'right',
-      marginTop: '10px',
-      marginBottom: '0px',
-      paddingTop: '10px',
-      paddingLeft: '4px',
-      paddingRight: '4px',
-      fontFamily: 'Helvetica',
-      fontSize: '12px',
-      backgroundColor: '#7A7A7A',
-      borderColor:"black",
-      color: '#ADADAB'
+      height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: '#7A7A7A',
+      borderColor:"black", color: '#ADADAB'
     };
     var defaultStyle={
-      height: '40px',
-      width: '100px',
-      textAlign: 'right',
-      marginTop: '10px',
-      marginBottom: '0px',
-      paddingTop: '10px',
-      paddingLeft: '4px',
-      paddingRight: '4px',
-      fontFamily: 'Helvetica',
-      fontSize: '12px',
-      backgroundColor: 'white',
-      borderColor:"black",
-      color: '#ADADAB'
+      height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: 'white',
+      borderColor:"black", color: '#ADADAB'
     };
 
     var op1 = ['S','M','T','W','T','F','S'];
