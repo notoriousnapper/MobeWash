@@ -1,3 +1,5 @@
+
+
 // these are labels for the days of the week
 cal_days_labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -30,18 +32,11 @@ function Calendar(month, year) {
 var getDaysInMonth = function(month, year){
   return new Date(year, month, 0).getDate();
 }
-
+// Initializations
 var curr = new Date();
 var m = curr.getMonth();
 var y = curr.getFullYear();
-var initialState = {
-  month: m,
-  year: y,
-  dayCount: getDaysInMonth(y, m)
-};
-
-
-var temp = [], temp2 = [], comp = [], day = 1, item = -1;
+var temp = [], temp2 = [], comp = [], day = 1, item = [];
 
 var Calendar_C = React.createClass({
   getInitialState: function(){
@@ -58,7 +53,7 @@ var Calendar_C = React.createClass({
     };
     var headStyle={
       height: '40px', width: '100px', textAlign: 'center', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#444444b',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#444444',
       borderColor:"black", color: '#ADADAB' };
     var chosenStyle={
       height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
@@ -70,6 +65,7 @@ var Calendar_C = React.createClass({
       paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: 'white',
       borderColor:"black", color: '#ADADAB'
     };
+
     var companyData =
     [
       {
@@ -79,7 +75,7 @@ var Calendar_C = React.createClass({
       },
       {
         name: "Illumina",
-        day: 3,
+        day: 4,
         range: "11:00am-5pm" // Should be changed to time objects -- Later iteration
       },
     ]
@@ -87,9 +83,10 @@ var Calendar_C = React.createClass({
   /* Major code for filling in days */
   // get first day of month
   var day = 1;
+  var validDay = false;
   var firstDay = new Date(this.state.year, this.state.month, 1);
-  var startingDay = firstDay.getDay();
-  // find number of days in month
+  var startingDay = firstDay.getDay(); // find number of days in month
+  var weekday = 6;           // Weekday counter
   var monthLength = cal_days_in_month[this.state.month];
   // compensate for leap year
   if (this.state.month == 1) { // February only!
@@ -99,38 +96,57 @@ var Calendar_C = React.createClass({
   }
 
 
-  function decorateCell(companyData, i){
+  function decorateCell(companyData, day, validDay, weekday){
     var days     = companyData.map(function(c){
       return c.day
     })
-    // Default options
-    var c        = null;
+    // Default Options
+    var company        = null;
     var rowStyle = defaultStyle;
-    var cont     = <div></div>
+    var content     = <div></div>
     var clicker  = ()=>{};
 
-
-    for(j = 0; j <days.length; j++){
-      if(i == days[j]){
-        rowStyle = chosenStyle;
-        c        = companyData[j];
-        cont     = <div> c.name  <br/>  c.range </div>;
-        clicker  = self.selectDate;
-        break;
+    // Company Options
+    if(validDay){
+      for(var k = 0; k <days.length; k++){
+        if(weekday == days[k]){
+          rowStyle = chosenStyle;
+          company  = companyData[k];
+          content  = <div> {company.name}  <br/>  {company.range} </div>;
+          // clicker  = self.selectDate;
+          break;
+        }
       }
+          console.log("weekday" + weekday);
+          console.log("corporate" + days[k]);
     }
-    return <th style={rowStyle}>{i} <br/>{cont}</th>
+    else{
+    day = null;
+    }
+    return <th style={rowStyle} >{day} <br/>{content}</th>
   }
+
+    for(var i = 0; i <= 6; i++ ){
+      temp = <th style={headStyle}>{cal_days_labels[i]} <br/>{}</th>;
+      temp2.push(temp);
+    }
+    comp.push(<tr> {temp2} </tr>);
+    temp = [];
+    temp2 = [];
+
+
     for (var i = 0; i < 5; i++) {  // this loop is for is weeks (rows)
       for (var j = 0; j <= 6; j++) {  // this loop is for weekdays (cells)
         if (day <= monthLength && (i > 0 || j >= startingDay)) {  // Sets up for starting day
           item = day;
           day++;
+          validDay = true;
+          console.log(day);
         }
-
         // temp = <th style={defaultStyle}>{item} <br/>{}</th>;
-        temp = decorateCell(companyData, day, item);
+        temp = decorateCell(companyData, day, validDay, weekday);
         temp2.push(temp);
+        if(weekday<6) weekday++;  else { weekday = 0; } // Update weekday
       }
       comp.push(<tr> {temp2} </tr>);
       // stop making rows if we've run out of days
@@ -141,9 +157,9 @@ var Calendar_C = React.createClass({
       // Clear temporaries
       temp = [];
       temp2 = [];
-      item = -1;
+      item = [];
+      validDay = false;
     }
-
     return <div> <table> <tbody> {comp} </tbody> </table></div>
   }
 })

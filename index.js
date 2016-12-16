@@ -3,8 +3,8 @@ var stripeApiKeyTesting = "sk_test_qJDADwvdjliJBbkP1Ng0epVR";
 
 // Because randomly adds a whitespace
 var trimmedKey = stripeApiKeyTesting.trim(" ");
-console.log("KEY FOR TESTING IS" + stripeApiKeyTesting + "[ENDS HERE]..hopefully");
-console.log("KEY FOR TESTING IS" + trimmedKey + "[ENDS HERE]..hopefully");
+// console.log("KEY FOR TESTING IS" + stripeApiKeyTesting + "[ENDS HERE]..hopefully");
+// console.log("KEY FOR TESTING IS" + trimmedKey + "[ENDS HERE]..hopefully");
 
 
 
