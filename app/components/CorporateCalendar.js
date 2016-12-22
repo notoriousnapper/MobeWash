@@ -11,6 +11,7 @@ var ReactRouter = require('react-router');
 var Hover = require('../components/custom/Hover');
 var Calendar = require('../../public/js/Calendar.js');
 // Data
+const MAXCALENDARS = 2;
 var companyData =
 [
   {
@@ -27,15 +28,11 @@ var companyData =
   },
 ]
 
-/* React */
-// Somehow this code doesn't translate past - etc.
-// cal.generateHTML();
-// var html = cal.getHTML();
-// var html = document.write(cal.getHTML());
-// Initial Calendar Object
-var cal = new Calendar(11,2016);
+var cal = new Calendar(11,2016); // This is actually December
+
+
+
 // Initializations
-var temp = [], temp2 = [], comp = [], calHTML, day = 1, item = [];
 
 var CorporateCalendar = React.createClass({
   getInitialState: function(){
@@ -47,19 +44,13 @@ var CorporateCalendar = React.createClass({
   nextCalendar: function(){
     console.log("previous calendar" + JSON.stringify(this.state.cal1, null, 4));
     if(!(this.state.counter > MAXCALENDARS)){
-      var newCal = this.state.cal1;
-      if(newCal.month != 12) newCal.month = this.state.cal1.month + 1; // Update Calendar
-      else {  // New Year, update year and month
-        newCal.month = 1;
-        newCal.year = this.state.cal1.year +1;
-      }
-      // Make calculations for leap year
-      this.setState({
+      this.state.cal1.nextMonth();
+      this.setState({  // Need to call function for a rerender
         counter: this.state.counter++,
-        cal1: newCal
+        cal1: this.state.cal1
       })
     }
-    console.log("previous calendar" + JSON.stringify(this.state.cal1, null, 4));
+    console.log("new calendar" + JSON.stringify(this.state.cal1, null, 4));
   },
   prevCalendar: function(){
 
@@ -96,13 +87,14 @@ var CorporateCalendar = React.createClass({
       var startingDay = this.state.cal1.startingDay;
       var monthLength = this.state.cal1.monthLength;
 
-
       var day = 1;
       var weekday = 6;           // Weekday counter -- set depending on first weekday label on calendar
       var validDay = false;
 
+      var temp = [], temp2 = [], comp = [], calHTML, day = 1, item = [];
+
       function decorateCell(companyData, day, validDay, weekday){
-        console.log(day);
+        // console.log("day is " + day);
         var days     = companyData.map(function(c){
           return c.day
         })
@@ -126,16 +118,15 @@ var CorporateCalendar = React.createClass({
               break;
             }
           }
-          console.log("weekday" + weekday);
-          console.log("corporate" + days[k]);
+          // console.log("weekday" + weekday);
+          // console.log("corporate" + days[k]);
         }
         else{
           day = null;
         }
         return <th style={rowStyle} ><div style={{height:'40px', width:'100px'}}> {content} </div></th>
       }
-
-      comp.push(<tr> <th style={{textAlign:"center"}} colSpan="7"> {cal_months_labels[this.state.cal1.month]}</th></tr>);
+      comp.push(<tr> <th style={{textAlign:"center"}} colSpan="7"> {this.state.cal1.monthString}</th></tr>);
       // Week Day Labels
       for(var i = 0; i <= 6; i++ ){
         temp = <th style={headStyle}>{cal_days_labels[i]} <br/>{}</th>;
@@ -144,6 +135,7 @@ var CorporateCalendar = React.createClass({
       comp.push(<tr> {temp2} </tr>);
       temp = [];
       temp2 = [];
+
 
       for (var i = 0; i < 5; i++) {  // this loop is for is weeks (rows)
         for (var j = 0; j <= 6; j++) {  // this loop is for weekdays (cells)

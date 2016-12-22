@@ -21,7 +21,6 @@ var BookingFrame = React.createClass({
                   <LabelCarousel checked={this.state.checked}/>
                     <div style={{width:"100%", backgroundColor:"blue", height:"400px", width: "100%"}}>
                     <CorporateCalendar />
-
                     <button onClick={this.callmagic}> Test </button>
                     </div>
     				</div>
