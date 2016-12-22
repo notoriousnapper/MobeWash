@@ -93,7 +93,7 @@ var CorporateCalendar = React.createClass({
 
       var temp = [], temp2 = [], comp = [], calHTML, day = 1, item = [];
 
-      function decorateCell(companyData, day, validDay, weekday){
+      function decorateCell(companyData, inputday, validDay, weekday){
         // console.log("day is " + day);
         var days     = companyData.map(function(c){
           return c.day
@@ -113,7 +113,7 @@ var CorporateCalendar = React.createClass({
               // rowStyle = chosenStyle;
               rowStyle = hoverStyle;
               company  = companyData[k];
-              content  = <Hover><div style={{textAlign:'right'}}>{day}</div> {company.name}  <br/>  {company.range} </Hover>;
+              content  = <Hover><div style={{textAlign:'right'}}>{inputday}</div> {company.name}  <br/>  {company.range} </Hover>;
               // clicker  = self.selectDate;
               break;
             }
@@ -122,7 +122,8 @@ var CorporateCalendar = React.createClass({
           // console.log("corporate" + days[k]);
         }
         else{
-          day = null;
+          console.log("hrm");
+          day = null; // Counts as 0, essentially, so when updated becomes 1
         }
         return <th style={rowStyle} ><div style={{height:'40px', width:'100px'}}> {content} </div></th>
       }
@@ -136,16 +137,20 @@ var CorporateCalendar = React.createClass({
       temp = [];
       temp2 = [];
 
-
+      // Important - because day was set to null for padding of first few days
+      // day = 1;
+      day = null; // KEY --> Because it resets to 1 instead of 0(null)
       for (var i = 0; i < 5; i++) {  // this loop is for is weeks (rows)
         for (var j = 0; j <= 6; j++) {  // this loop is for weekdays (cells)
           if (day <= monthLength && (i > 0 || j >= startingDay)) {  // Sets up for starting day
+            console.log("first day here!" + day);
             item = day;
             day++;
             validDay = true;
-            console.log(day);
+            // console.log(item);
           }
           // temp = <th style={defaultStyle}>{item} <br/>{}</th>;
+            console.log(day);
           temp = decorateCell(companyData, day, validDay, weekday);
           temp2.push(temp);
           if(weekday<6) weekday++;  else { weekday = 0; } // Update weekday
