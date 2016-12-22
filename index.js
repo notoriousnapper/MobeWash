@@ -116,6 +116,34 @@ app.post('/booking', function(req, res){
     });
 });
 
+
+app.get('/acuity', function (request, response) {
+  console.log("Getting Data");
+  var body = request.body;
+  console.log(JSON.stringify(body,null, 4));
+
+  var appointmentTypeID = 2048071; // Corporate // 1800725;  // MobePlus
+  var daybreakCalID = 874123;
+
+  var options = {
+    method: 'GET',
+    body: {
+      appointmentTypeID: appointmentTypeID,
+      calendarType: daybreakCalID
+      // cartype:          'toyota white gmc',
+      // license:          '123dearme'
+      // Calendar for daybreak:  874123
+    }
+  };
+  return acuity.request('/appointments', options, function (err, res, appointment) {
+    // res.sendFile(path.join(__dirname + '/index.html'));
+    if (err) return console.error(err);
+  console.log(appointment);
+
+});
+
+});
+
 app.post('/acuity', function (request, response) {
   console.log("A Reservation is in the process of being made");
 /*
@@ -186,8 +214,8 @@ app.post('/acuity', function (request, response) {
   */
   var time  = "2016-11-15T09:00:00-0700";
   var time2 = "2016-11-15T09:00:00-0800";
-  var appointmentTypeID = 2048071; // Corporate
-                          // 1800725;  // MobePlus
+  var appointmentTypeID = 2048071; // Corporate // 1800725;  // MobePlus
+  var daybreakCalID = 874123;
   // var body = {};
   // body['firstName'] = "Jesse";
   // body['lastName']  = "Ren";
@@ -222,6 +250,7 @@ app.post('/acuity', function (request, response) {
        ]
       // cartype:          'toyota white gmc',
       // license:          '123dearme'
+      // Calendar for daybreak:  874123
     }
   };
   return acuity.request('/appointments', options, function (err, res, appointment) {

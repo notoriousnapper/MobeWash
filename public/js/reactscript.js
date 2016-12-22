@@ -1,8 +1,3 @@
-
-
-
-
-
 var Hover = React.createClass({
   getInitialState: function(){
     return { hover: false}
@@ -21,13 +16,13 @@ var Hover = React.createClass({
   },
   render: function(){
     var outer = {
-    height: '100%', width: '100%', margin: '0px', backgroundColor: 'transparent',
+    height: '100%', width: '100%', margin: '0px',
     cursor: 'pointer', position: 'relative'
 }
 
     var normal = {
     position: 'absolute', top: 0, bottom: 0, left: 0, right: 0,
-    backgroundColor: '#C32025', opacity: 0
+    backgroundColor: '#7A7A7A', opacity:100
 }
 
     var hover = {
@@ -48,7 +43,7 @@ var Hover = React.createClass({
             </div>
   }
 
-})
+});
 
 // these are labels for the days of the week
 cal_days_labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
@@ -68,10 +63,7 @@ function Calendar(month, year) {
   this.year  = (isNaN(year) || year == null) ? cal_current_date.getFullYear() : year;
   this.html = '';
   }
-
 /* React */
-
-
     // Somehow this code doesn't translate past - etc.
     // var cal = new Calendar(11,2016);
     // cal.generateHTML();
@@ -117,9 +109,9 @@ var Calendar_C = React.createClass({
       borderColor:"black", color: '#ADADAB', padding: "0", margin: "0"
     };
     var defaultStyle={
-      height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
+      height: '40px', width: '100px', textAlign: 'right', verticalAlign: 'top',
       paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: 'white',
-      borderColor:"black", color: '#ADADAB'
+      borderColor:"black", color: '#ADADAB' , padding: '0', margin: '0'
     };
 
     var companyData =
@@ -127,11 +119,13 @@ var Calendar_C = React.createClass({
       {
         name: "DayBreak Games",
         day: 3,
+        location: "2222 San Francisco",
         range: "11:00am-5pm" // Should be changed to time objects -- Later iteration
       },
       {
         name: "Illumina",
         day: 4,
+        location: "2222 San Francisco",
         range: "11:00am-5pm" // Should be changed to time objects -- Later iteration
       },
     ]
@@ -149,8 +143,7 @@ var Calendar_C = React.createClass({
     if((this.state.year % 4 == 0 && this.state.year % 100 != 0) || this.state.year % 400 == 0){
       monthLength = 29;
     }
-  }
-
+    }
 
   function decorateCell(companyData, day, validDay, weekday){
     var days     = companyData.map(function(c){
@@ -164,6 +157,8 @@ var Calendar_C = React.createClass({
 
     // Company Options
     if(validDay){
+      // Default
+      content = <div style={{}}>{day}</div>
       for(var k = 0; k <days.length; k++){
         if(weekday == days[k]){
           // rowStyle = chosenStyle;
@@ -180,11 +175,7 @@ var Calendar_C = React.createClass({
     else{
     day = null;
     }
-
-
-
-
-    return <th style={rowStyle} >{content}</th>
+    return <th style={rowStyle} ><div style={{height:'40px', width:'100px'}}> {content} </div></th>
   }
 
     comp.push(<tr> <th style={{textAlign:"center"}} colSpan="7"> {cal_months_labels[this.state.month]}</th></tr>);
