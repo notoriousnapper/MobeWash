@@ -35,25 +35,20 @@ var LabelCarousel = React.createClass({
     },
     render: function(){
       if(this.props.checked) this.switchLabel();  // Parent notifies to switch label
-
+        // <button className="next active" onClick={this.switchLabel}>
       return(
         <div className="carouselbox">
-        <div className="active buttons">
-        <button className="next active" onClick={this.switchLabel}>
-        <span className="offscreen">Next</span> ▶
-        </button>
-        </div>
-        <ol className="content active">
-        <li className="current" >
-        {"Stage 1"}
-        </li>
-        <li >
-        {"Stage 2"}
-        </li>
-        <li >
-        {"Stage 3"}
-        </li>
-        </ol>
+          <ol className="content active">
+            <li className="current" >
+            {"Select Time"}
+            </li>
+            <li >
+            {"Enter Details"}
+            </li>
+            <li >
+            {"Book & Pay"}
+            </li>
+          </ol>
         </div>
       )
     }

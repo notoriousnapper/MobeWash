@@ -5,11 +5,10 @@
 * @ Jesse Ren 2016
 */
 
-
 var React = require('react');
 var ReactRouter = require('react-router');
-var Hover = require('../components/custom/Hover');
-var Calendar = require('../../public/js/Calendar.js');
+var Hover = require('../../components/custom/Hover');
+var Calendar = require('../../../public/js/Calendar.js');
 // Data
 const MAXCALENDARS = 2;
 var companyData =
@@ -29,9 +28,6 @@ var companyData =
 ]
 
 var cal = new Calendar(11,2016); // This is actually December
-
-
-
 // Initializations
 
 var CorporateCalendar = React.createClass({
@@ -53,6 +49,15 @@ var CorporateCalendar = React.createClass({
     console.log("new calendar" + JSON.stringify(this.state.cal1, null, 4));
   },
   prevCalendar: function(){
+    console.log("previous calendar" + JSON.stringify(this.state.cal1, null, 4));
+    if(!(this.state.counter > MAXCALENDARS)){
+      this.state.cal1.prevMonth();
+      this.setState({  // Need to call function for a rerender
+        counter: this.state.counter++,
+        cal1: this.state.cal1
+      })
+    }
+    console.log("new calendar" + JSON.stringify(this.state.cal1, null, 4));
 
   },
   render: function(){
@@ -102,7 +107,8 @@ var CorporateCalendar = React.createClass({
         var company        = null;
         var rowStyle = defaultStyle;
         var content     = <div></div>
-        var clicker  = ()=>{};
+        var clicker  = function(){};
+        // ()=>{};
 
         // Company Options
         if(validDay){
@@ -169,7 +175,7 @@ var CorporateCalendar = React.createClass({
       }
       calHTML = comp;
       comp = [];
-      return <div>
+      return <div style={{margin: "auto", display:"block"}}>
       <button onClick={this.prevCalendar}> Prev </button>
       <button onClick={this.nextCalendar}> Next </button>
       <table> <tbody> {calHTML} </tbody> </table></div>

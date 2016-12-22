@@ -128,14 +128,14 @@ app.get('/acuity', function (request, response) {
   var options = {
     method: 'GET',
     body: {
-      appointmentTypeID: appointmentTypeID,
+      appointmentTypeID: 2048071,
       calendarType: daybreakCalID
       // cartype:          'toyota white gmc',
       // license:          '123dearme'
       // Calendar for daybreak:  874123
     }
   };
-  return acuity.request('/appointments', options, function (err, res, appointment) {
+  return acuity.request('/availability/times', options, function (err, res, appointment) {
     // res.sendFile(path.join(__dirname + '/index.html'));
     if (err) return console.error(err);
   console.log(appointment);

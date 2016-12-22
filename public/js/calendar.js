@@ -65,6 +65,16 @@ Calendar.prototype.nextMonth = function(){
 
 Calendar.prototype.prevMonth = function() {
   console.log("prevMonth");
+  if(this.month === 0){
+    this.month = 11;
+    this.year--; // Its a new year!
+    this.initialize();
+  }
+  else{
+    this.month--;
+    this.initialize();
+    this.printFields();
+  }
 };
 
 
