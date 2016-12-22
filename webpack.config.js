@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 // In webpack.config.js
+
 /* Inject header into dist index file */
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -7,7 +8,6 @@ var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   filename: 'index.html',
   inject: 'body'
 });
-
 module.exports = {
     entry: [
       'webpack/hot/only-dev-server',
@@ -19,6 +19,7 @@ module.exports = {
     module: {
       loaders: [
          {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
+
         // {test: /\.coffee$/, exclude: /node_modules/, loader: "coffee-loader"},
         // { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
         // { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
@@ -35,6 +36,9 @@ module.exports = {
     plugins: [
       // new webpack.NoErrorsPlugin()
       HTMLWebpackPluginConfig
-    ]
+    ],
+    node: {
+      fs: "empty"
+    }
 
 };
