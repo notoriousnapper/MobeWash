@@ -11,6 +11,13 @@ var Hover = require('../../../components/custom/Hover');
 var Calendar = require('../../../../public/js/Calendar.js');
 // Data
 const MAXCALENDARS = 2;
+var cal_days_labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; // Days of Week Label
+var cal_months_labels = ['January', 'February', 'March', 'April',        // Month Label
+                     'May', 'June', 'July', 'August', 'September',
+                     'October', 'November', 'December'];
+var cal_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // End dates for months
+
+
 var companyData =
 [
   {
@@ -181,8 +188,6 @@ var CorporateCalendar = React.createClass({
       calHTML = comp;
       comp = [];
 
-
-      this.props.checked = true;
 
       return <div style={{padding: "10px 20px 10px 20px"}}>
       <table style={{width:"100%"}}>

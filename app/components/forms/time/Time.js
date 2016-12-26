@@ -16,9 +16,9 @@ var Time = React.createClass({
   },
   render: function(){
     // Try to pass selected date, and checked information to Time Parent
-    return <div className="form_one" > <CorporateCalendar checked={this.props.checked} />
+    return <div className="form_one" >
+      <CorporateCalendar checked={this.props.checked} />
       <TimeSlot className="timeslot"/>
-      <button onClick={this.reveal}> "Test" </button>
     </div>
   }
 })

@@ -20,11 +20,11 @@ function Calendar(month, year) {
 // Initializations
 /* Initializes peripheral variables, such as firstDay, startingDay, etc. */
 Calendar.prototype.initialize = function(){
-cal_days_labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; // Days of Week Label
-cal_months_labels = ['January', 'February', 'March', 'April',        // Month Label
+var cal_days_labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; // Days of Week Label
+var cal_months_labels = ['January', 'February', 'March', 'April',        // Month Label
                      'May', 'June', 'July', 'August', 'September',
                      'October', 'November', 'December'];
-cal_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // End dates for months
+var cal_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // End dates for months
   this.monthString = cal_months_labels[this.month]; // By arrays start at 1, offset//
   this.firstDay    = new Date(this.year, this.month, 1);
   this.startingDay = this.firstDay.getDay();
