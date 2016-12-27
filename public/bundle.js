@@ -21500,6 +21500,12 @@
 
 	'use strict';
 
+	var _stringify = __webpack_require__(332);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var React = __webpack_require__(2);
 	var ReactRouter = __webpack_require__(181);
 	var LabelCarousel = __webpack_require__(236);
@@ -21515,19 +21521,37 @@
 	      checked: false,
 	      form: 1,
 	      bookingData: {
-	        location: "",
-	        date: "",
-	        firstName: "",
-	        lastName: "",
-	        email: "",
-	        phone: "",
-	        car: {
-	          type: "white gmc sonoma", // type: "gmc sonoma"
-	          license: 123456 // first 6 digits
-	        }
-	        // Later needs calendar id/ etc.
+	        time: { date: "" },
+	        acuity: {
+	          location: "", date: "", firstName: "", lastName: "", email: "", phone: "",
+	          cartype: "white gmc sonoma", license: "123456" // first 6 digit
+	        },
+	        payment: {}
 	      }
 	    };
+	    // Later needs calendar id/ etc.
+	  },
+	  updateBookingData: function updateBookingData(type, data) {
+	    var bkdata = this.state.bookingData;
+	    switch (type) {
+	      case 1:
+	        // Update date
+	        bkdata.time = data;
+	        this.setState({
+	          bookingData: bkdata
+	        });
+	        break;
+
+	      case 2:
+	        // Update with acuity form
+	        break;
+	      case 3:
+	        break;
+
+	      default:
+	        break;
+	    }
+	    alert("Updated Data: " + (0, _stringify2.default)(this.state.bookingData, null, 4));
 	  },
 	  revealCal: function revealCal() {
 	    if (this.state.form == 1) {
@@ -21553,14 +21577,10 @@
 	        bookingData: this.state.bookingData
 	      });
 	    } else {}
-	    // p.style.display = "none";
 	  },
 	  callmagic: function callmagic() {
-	    // this.setState({checked: true});
 	    this.revealCal();
-	    // this.setState({checked: false});
 	    console.log("checked");
-	    // alert("Hello");
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -21573,7 +21593,7 @@
 	        React.createElement(
 	          'div',
 	          { style: { display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center", padding: "20px" } },
-	          React.createElement(Time, null),
+	          React.createElement(Time, { update: this.updateBookingData }),
 	          React.createElement(Details, null),
 	          React.createElement(Payment, null),
 	          React.createElement(
@@ -28642,16 +28662,21 @@
 	var Time = React.createClass({
 	  displayName: 'Time',
 
-	  reveal: function reveal() {
+	  getInitialState: function getInitialState() {
+	    return { checked: false
+	    };
+	  },
+	  reveal: function reveal(data) {
 	    var m = document.getElementsByClassName("timeslot")[0];
 	    m.style.display = "block";
+	    this.props.update(1, data); // Calling parent passed in function
 	  },
 	  render: function render() {
 	    // Try to pass selected date, and checked information to Time Parent
 	    return React.createElement(
 	      'div',
 	      { className: 'form_one' },
-	      React.createElement(CorporateCalendar, { checked: this.props.checked }),
+	      React.createElement(CorporateCalendar, { checked: this.state.checked, parentFn: this.reveal }),
 	      React.createElement(TimeSlot, { className: 'timeslot' })
 	    );
 	  }
@@ -28855,6 +28880,13 @@
 	      cal1: cal
 	    };
 	  },
+	  selectDate: function selectDate(day) {
+	    console.log("Work");
+
+	    var str = day + this.state.cal1.monthString;
+	    this.props.parentFn(str);
+	    alert("Day is: " + day + " & month is: " + this.state.cal1.monthString);
+	  },
 	  nextCalendar: function nextCalendar() {
 	    if (this.state.counter < 2) {
 	      // Book two months in advance
@@ -28925,8 +28957,11 @@
 	        day = 1,
 	        item = [];
 
+	    var self = this;
+	    // this.selectDate();
+
 	    function decorateCell(companyData, inputday, validDay, weekday) {
-	      // console.log("day is " + day);
+	      // THIS.selectDate();
 	      var days = companyData.map(function (c) {
 	        return c.day;
 	      });
@@ -28934,9 +28969,8 @@
 	      var company = null;
 	      var rowStyle = defaultStyle;
 	      var content = React.createElement('div', null);
-	      var clicker = function clicker() {};
-	      // ()=>{};
-
+	      var clicker = function clicker() {// Dummy function
+	      };
 	      // Company Options
 	      if (validDay) {
 	        // Default
@@ -28966,7 +29000,9 @@
 	              company.range,
 	              ' '
 	            );
-	            // clicker  = self.selectDate;
+	            clicker = function clicker() {
+	              self.selectDate(inputday); // Signal to parentFn
+	            };
 	            break;
 	          }
 	        }
@@ -28978,7 +29014,7 @@
 	      }
 	      return React.createElement(
 	        'th',
-	        { style: rowStyle },
+	        { onClick: clicker, style: rowStyle },
 	        React.createElement(
 	          'div',
 	          { style: { height: '40px', width: '100px' } },
@@ -29079,6 +29115,11 @@
 	              { style: { float: "right", width: "100px", padding: "10px 20px 10px 20px" },
 	                onClick: this.nextCalendar },
 	              ' Next '
+	            ),
+	            React.createElement(
+	              'button',
+	              { onClick: this.selectDate },
+	              ' '
 	            )
 	          )
 	        ),

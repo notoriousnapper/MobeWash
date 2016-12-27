@@ -44,6 +44,13 @@ var CorporateCalendar = React.createClass({
       cal1 : cal
     }
   },
+  selectDate: function(day){
+    console.log("Work");
+
+    var str = day + this.state.cal1.monthString;
+    this.props.parentFn(str);
+    alert("Day is: " + day + " & month is: " + this.state.cal1.monthString);
+  },
   nextCalendar: function(){
     if(this.state.counter < 2){ // Book two months in advance
     console.log("previous calendar" + JSON.stringify(this.state.cal1, null, 4));
@@ -110,8 +117,12 @@ var CorporateCalendar = React.createClass({
 
       var temp = [], temp2 = [], comp = [], calHTML, day = 1, item = [];
 
+
+      var self = this;
+      // this.selectDate();
+
       function decorateCell(companyData, inputday, validDay, weekday){
-        // console.log("day is " + day);
+      // THIS.selectDate();
         var days     = companyData.map(function(c){
           return c.day
         })
@@ -119,9 +130,8 @@ var CorporateCalendar = React.createClass({
         var company        = null;
         var rowStyle = defaultStyle;
         var content     = <div></div>
-        var clicker  = function(){};
-        // ()=>{};
-
+        var clicker  = function(){ // Dummy function
+        };
         // Company Options
         if(validDay){
           // Default
@@ -131,8 +141,9 @@ var CorporateCalendar = React.createClass({
               // rowStyle = chosenStyle;
               rowStyle = hoverStyle;
               company  = companyData[k];
-              content  = <Hover><div style={{textAlign:'right'}}>{inputday}</div> {company.name}  <br/>  {company.range} </Hover>;
-              // clicker  = self.selectDate;
+              content  = <Hover ><div style={{textAlign:'right'}}>{inputday}</div> {company.name}  <br/>  {company.range} </Hover>;
+              clicker  = function(){  self.selectDate(inputday); // Signal to parentFn
+               }
               break;
             }
           }
@@ -143,7 +154,7 @@ var CorporateCalendar = React.createClass({
           console.log("hrm");
           day = null; // Counts as 0, essentially, so when updated becomes 1
         }
-        return <th style={rowStyle} ><div style={{height:'40px', width:'100px'}}> {content} </div></th>
+        return <th onClick={clicker}style={rowStyle} ><div  style={{height:'40px', width:'100px'}}> {content} </div></th>
       }
       comp.push();
       // Week Day Labels
@@ -198,6 +209,7 @@ var CorporateCalendar = React.createClass({
           {this.state.cal1.monthString + " " + this.state.cal1.year}
           <button style={{float:"right", width: "100px", padding: "10px 20px 10px 20px"}}
            onClick={this.nextCalendar}> Next </button>
+           <button onClick={this.selectDate}> </button>
         </th></tr>
       <tbody> {calHTML} </tbody> </table></div>
     }

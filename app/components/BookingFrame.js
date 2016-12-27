@@ -11,19 +11,34 @@ var BookingFrame = React.createClass({
             checked: false,
             form: 1,
             bookingData: {
-              location: "",
-              date: "",
-              firstName: "",
-              lastName: "",
-              email: "",
-              phone: "",
-              car: {
-                type: "white gmc sonoma", // type: "gmc sonoma"
-                license: 123456 // first 6 digits
+                          time: {date: ""},
+                          acuity: {
+                           location: "", date: "", firstName: "", lastName: "", email: "", phone: "",
+                           cartype: "white gmc sonoma", license: "123456" // first 6 digit
+                        },
+                          payment: {}
+                       }
               }
               // Later needs calendar id/ etc.
-            }
-           }
+        },
+        updateBookingData: function(type, data){
+          const bkdata = this.state.bookingData;
+          switch(type){
+            case 1:  // Update date
+            bkdata.time = data;
+            this.setState({
+              bookingData: bkdata
+            })
+            break;
+
+            case 2: // Update with acuity form
+            break;
+            case 3:
+            break;
+
+            default: break;
+          }
+          alert("Updated Data: " + JSON.stringify(this.state.bookingData, null, 4));
         },
         revealCal: function(){
           if (this.state.form==1){
@@ -52,14 +67,10 @@ var BookingFrame = React.createClass({
             });
           }
           else {}
-          // p.style.display = "none";
         },
         callmagic: function(){
-          // this.setState({checked: true});
           this.revealCal();
-          // this.setState({checked: false});
           console.log("checked");
-          // alert("Hello");
         },
         render: function(){
         return(
@@ -67,7 +78,7 @@ var BookingFrame = React.createClass({
                     <div style={{display: "block", margin: "auto", backgroundColor:"white", height:"400px", width: "100%", padding: "0px"}}>
                       <LabelCarousel checked={this.state.checked}/>
                       <div style={{display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center", padding: "20px"}} >
-                      <Time />
+                      <Time update={this.updateBookingData}/>
                       <Details />
                       <Payment />
                           <button style={{display: "block", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",

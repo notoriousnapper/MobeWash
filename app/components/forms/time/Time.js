@@ -10,15 +10,20 @@ var TimeSlot = require('./TimeSlot');
 var CorporateCalendar = require('./CorporateCalendar');
 
 var Time = React.createClass({
-  reveal: function(){
+  getInitialState: function(){
+    return { checked: false,
+     }
+  },
+  reveal: function(data){
       var m = document.getElementsByClassName("timeslot")[0];
       m.style.display = "block";
+      this.props.update(1, data); // Calling parent passed in function
   },
   render: function(){
     // Try to pass selected date, and checked information to Time Parent
     return <div className="form_one" >
-      <CorporateCalendar checked={this.props.checked} />
-      <TimeSlot className="timeslot"/>
+      <CorporateCalendar checked={this.state.checked} parentFn={this.reveal} />
+      <TimeSlot className="timeslot" />
     </div>
   }
 })
