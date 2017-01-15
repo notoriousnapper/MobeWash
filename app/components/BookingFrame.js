@@ -74,18 +74,19 @@ var BookingFrame = React.createClass({
         },
         render: function(){
         return(
-        		<div style={{padding:"100px", margin: "0 auto", width: "80%", height: "700px"}}>
+        		<div style={{padding:"100px", margin: "0 auto", width: "90%",minWidth: "1000px", height: "700px"}}>
                     <div style={{display: "block", margin: "auto", backgroundColor:"white", height:"400px", width: "100%", padding: "0px"}}>
                       <LabelCarousel checked={this.state.checked}/>
-                      <div style={{display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center", padding: "20px"}} >
-                      <Time update={this.updateBookingData}/>
-                      <Details />
-                      <Payment />
-                          <button style={{display: "block", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
-                          padding: "10px 20px 10px 20px", borderRadius:"10px",
-                          borderStyle: "none"}}
-                           onClick={this.callmagic}> Submit </button>
+                      <div style={{display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center"}} >
+                        <Time update={this.updateBookingData}/>
+                        <Details />
+                        <Payment />
+                            <button style={{display: "block", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
+                            padding: "10px 20px 10px 20px", borderRadius:"10px",
+                            borderStyle: "none"}}
+                             onClick={this.callmagic}> {'Continue >'} </button>
                     </div>
+
                     </div>
     				</div>
               )

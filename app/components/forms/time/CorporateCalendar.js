@@ -11,7 +11,7 @@ var Hover = require('../../../components/custom/Hover');
 var Calendar = require('../../../../public/js/Calendar.js');
 // Data
 const MAXCALENDARS = 2;
-var cal_days_labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; // Days of Week Label
+var cal_days_labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S']; // Days of Week Label
 var cal_months_labels = ['January', 'February', 'March', 'April',        // Month Label
                      'May', 'June', 'July', 'August', 'September',
                      'October', 'November', 'December'];
@@ -24,13 +24,13 @@ var companyData =
     name: "DayBreak Games",
     day: 3,
     location: "2222 San Francisco",
-    range: "11:00am-5pm" // Should be changed to time objects -- Later iteration
+    range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
   },
   {
     name: "Illumina",
     day: 4,
     location: "0000 San Francisco",
-    range: "11:00am-5pm" // Should be changed to time objects -- Later iteration
+    range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
   },
 ]
 
@@ -85,11 +85,11 @@ var CorporateCalendar = React.createClass({
     };
     var headStyle={
       height: '30px', width: '100px', textAlign: 'center', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#444444',
-      borderColor:"black", color: '#ADADAB' };
+      paddingLeft: '4px', paddingRight: '4px', paddingBottom: "10px", fontFamily: 'Helvetica', fontWeight: '200px', fontSize: '14px', backgroundColor: '#444444',
+      borderColor:"black", color: "white"};
       var chosenStyle={
         height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: '#7A7A7A',
+        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica',  fontSize: '12px', backgroundColor: '#7A7A7A',
         borderColor:"black", color: '#ADADAB'
       };
       var hoverStyle={
@@ -154,7 +154,7 @@ var CorporateCalendar = React.createClass({
           console.log("hrm");
           day = null; // Counts as 0, essentially, so when updated becomes 1
         }
-        return <th onClick={clicker}style={rowStyle} ><div  style={{height:'40px', width:'100px'}}> {content} </div></th>
+        return <th onClick={clicker}style={rowStyle} ><div  style={{height:'70px',minHeight: '50px', width:'100px'}}> {content} </div></th>
       }
       comp.push();
       // Week Day Labels
@@ -200,18 +200,22 @@ var CorporateCalendar = React.createClass({
       comp = [];
 
 
-      return <div style={{padding: "10px 20px 10px 20px"}}>
-      <table style={{width:"100%"}}>
-        <tr> <th style={{textAlign:"center", backgroundColor:"#5EA6E5", color: "white", fontFamily: "Helvetica", fontSize: "14px"}}
+      return (<div style={{padding: "10px 20px 10px 20px", backgroundColor:"#FBFDFF"}}>
+      <table className="corp-calendar" style={{width:"100%", borderWidth: "0 1px 1px 1px", borderColor: "black"}}>
+        <tr> <th style={{minWidth: "20px", padding:"20px 10px", borderColor:"black", borderTopWidth:"0", textAlign:"center",
+        backgroundColor:"#5EA6E5", color: "white", fontSize: "14px"}}
           colSpan="7">
           <button style={{float:"left", width: "100px", padding: "10px 20px 10px 20px"}}
-           onClick={this.prevCalendar}> Prev </button>
+           onClick={this.prevCalendar}> Previous
+            </button>
           {this.state.cal1.monthString + " " + this.state.cal1.year}
           <button style={{float:"right", width: "100px", padding: "10px 20px 10px 20px"}}
-           onClick={this.nextCalendar}> Next </button>
+           onClick={this.nextCalendar}> Next
+           </button>
            <button onClick={this.selectDate}> </button>
         </th></tr>
       <tbody> {calHTML} </tbody> </table></div>
+    );
     }
   })
 

@@ -1,7 +1,8 @@
 module.exports = {
   entry: [
     './app/index.js',
-    './public/css/style.css'
+    './public/css/style.css',
+    './public/css/form.css'
   ],
 
   output: {

@@ -1,0 +1,98 @@
+.half{
+  width: 50% !important;
+  border-width: 0;
+  /*border-right-width: 1px;*/
+  border-width: 0px 1px 0px 0px !important;
+  border-color: #E0E0E0 !important;
+  border-style: solid !important;
+}
+.full{
+  width: 100% !important;
+  border-right-width: 1px;
+}
+
+.fire input{
+  border: none;
+  padding-left: 30px;
+  border-width: 1px;
+  border-width: 1px;
+  /*border-color: #7CAADD !important;*/
+  height: 45px !important;
+  /*border-style: solid;*/
+}
+.fire input active{
+  /*background-color:red;*/
+  border: none;
+  border-style: solid;
+  border-color: #7CAADD !important;
+  -moz-box-shadow:    0px 0px 15px 16px #7CAADD;
+  -webkit-box-shadow: 0px 0px 15px 16px #7CAADD;
+  box-shadow:         0px 0px 15px 16px #7CAADD;
+}
+
+.backgroundForm{
+  background-color: blue;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+#form_container{
+  padding: 2px 1px;
+  border-color: #DFDFDF!important;
+  border-width: 1px !important;
+  border-radius: 10px !important;
+  border-style: solid;
+  width: 400px;
+  /*height: 1400px;*/
+  background-color: white;
+  overflow: hidden;
+}
+
+#input_container {
+  position:relative; padding:0; margin:0;
+  /*border-bottom-color: grey;
+  border-bottom-width: 0.1em;*/
+
+  border-color: #E0E0E0;
+  border-style: solid;
+  border-bottom-width: 1px;
+
+  /*-moz-box-shadow: 0 0 5px 5px #888;
+  -webkit-box-shadow: 0 0 5px 5px#888;
+  box-shadow: 0 0 5px 5px #888;*/
+}
+
+#input {
+  height:20px; margin:0; padding-left: 60px !important;
+  /*box-sizing: border-box;*/
+ }
+
+/* Font Awesome Items are just fonts, so font styles apply */
+#input_img { position:absolute;
+  bottom:8px;
+  left:10px;
+  width:10px;
+  font-size: 20px;
+ }
+#input_img_half { position:absolute;
+  bottom:8px;
+  left: 52%;
+  width:10px;
+ }
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  /*color: pink;*/
+  padding-left: 0px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  /*color: pink;*/
+  padding-left: 0px;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  /*color: pink;*/
+  padding-left: 0px;
+}
+:-moz-placeholder { /* Firefox 18- */
+  /*color: pink;*/
+  padding-left: 0px;
+}
