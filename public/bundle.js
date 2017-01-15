@@ -21483,8 +21483,8 @@
 
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(33);
-	var BookingFrame = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \".custom/BookingFrame.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	// var PrettyForm = require('./PrettyForm.js');
+	var BookingFrame = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \".BookingFrame.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	// var PrettyForm = require('./custom/PrettyForm.js');
 
 	var Main = React.createClass({
 	  displayName: 'Main',
