@@ -6,6 +6,7 @@
 */
 var React = require('react');
 var ReactRouter = require('react-router');
+var $ = require('jquery');
 
 
 var TimeSlot = React.createClass({

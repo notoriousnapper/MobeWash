@@ -5,9 +5,6 @@ var stripeApiKeyTesting = "sk_test_qJDADwvdjliJBbkP1Ng0epVR";
 var trimmedKey = stripeApiKeyTesting.trim(" ");
 // console.log("KEY FOR TESTING IS" + stripeApiKeyTesting + "[ENDS HERE]..hopefully");
 // console.log("KEY FOR TESTING IS" + trimmedKey + "[ENDS HERE]..hopefully");
-
-
-
 var stripe = require('stripe')(stripeApiKey);
 
 var express = require('express');
@@ -73,6 +70,27 @@ app.post('/test', function(request, response) {
   // var res = res.body;
   console.log(JSON.stringify(body,null, 4));
   // console.log(res);
+});
+
+
+app.post('/checkout', function(req, res){
+  var stripe = require("stripe")(
+      stripeApiKey
+  );
+  var amt = 1;
+  stripe.charges.create({
+    amount: amt * 100 ,
+    currency: "usd",
+    source: req.body.token,
+    description: req.body.checkoutType
+  }), function(err, charge){
+    if(err){
+      req.flash('error', err.message);
+      return res.redirect('/checkout');
+    }
+    req.flash('success', 'Successfully bought product!');
+    // res.redirect('/'); // Redirects to index page
+  }
 });
 
 

@@ -86,7 +86,13 @@ app.post('/test', function(request, response) {
 app.post('/booking', function(req, res){
   // Set your secret key: remember to change this to your live secret key in production
   //Initializations
-   var amount = 100;
+   var amount = 100; // 1 dollar
+
+   
+
+
+
+
    var stripeToken = req.body.stripeToken;
    console.log("Stripe Token is: " + stripeToken);
 
@@ -150,6 +156,7 @@ app.get('/acuity', function (request, response) {
 });
 
 });
+
 
 app.post('/acuity', function (request, response) {
   console.log("A Reservation is in the process of being made");

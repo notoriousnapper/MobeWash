@@ -16,6 +16,10 @@ var PrettyForm = React.createClass({
               <input className="half" type="text" id="input" placeholder="Last"  />
               <FontAwesome id="input_img" name='user' size="2x" />
             </div>
+
+
+
+
             <div id="input_container">
               <input className="full" type="text" id="input" placeholder="Phone Number"  />
               <FontAwesome id="input_img" name='phone' size="2x" />
