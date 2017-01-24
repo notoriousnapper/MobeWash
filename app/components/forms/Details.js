@@ -43,7 +43,8 @@ return (
                 <FontAwesome id="input_img" name='envelope' size="2x" />
               </div>
               <div id="input_container">
-                <input className="full" type="text" id="input" placeholder="Car Make & Model" name="cartype"/>
+                <input className="half" type="text" id="input" placeholder="Car Make & Model" name="cartype"/>
+                <input className="half" type="text" id="input" placeholder="Car Color" name="carcolor"/>
                 <FontAwesome id="input_img" name='car' size="2x" />
               </div>
               <div id="input_container">

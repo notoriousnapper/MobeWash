@@ -11,7 +11,8 @@ var BookingFrame = React.createClass({
             checked: false,
             form: 1,
             bookingData: {
-                          time: {date: ""},
+                          date: "",
+                          hour: "",
                           acuity: {
                            location: "", date: "", firstName: "", lastName: "", email: "", phone: "",
                            cartype: "white gmc sonoma", license: "123456" // first 6 digit
@@ -24,14 +25,19 @@ var BookingFrame = React.createClass({
         updateBookingData: function(type, data){
           const bkdata = this.state.bookingData;
           switch(type){
-            case 1:  // Update date
-            bkdata.time = data;
+            case 1:  // Update date first portion
+            // SPECIFICALLY -->
+            bkdata.date = data;
             this.setState({
               bookingData: bkdata
             })
             break;
 
-            case 2: // Update with acuity form
+            case 2: // Update date hour portion
+            bkdata.hour = data;
+            this.setState({
+              bookingData: bkdata
+            })
             break;
             case 3:
             break;
@@ -75,11 +81,12 @@ var BookingFrame = React.createClass({
         render: function(){
         return(
         		<div style={{padding:"100px", margin: "0 auto", width: "90%",minWidth: "1000px", height: "700px"}}>
+            {this.state.bookingData.date + this.state.bookingData.hour  }
                     <div style={{display: "block", margin: "auto", backgroundColor:"white", height:"400px", width: "100%", padding: "0px"}}>
                       <LabelCarousel checked={this.state.checked}/>
                       <div style={{display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center"}} >
                         <Time update={this.updateBookingData}/>
-                        <Details time={this.state.bookingData.time.date}/>
+                        <Details time={this.state.bookingData.date + this.state.bookingData.hour }/>
                         <Payment />
                             <button style={{display: "block", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
                             padding: "10px 20px 10px 20px", borderRadius:"10px",

@@ -14,16 +14,21 @@ var Time = React.createClass({
     return { checked: false,
      }
   },
-  reveal: function(data){
+  updateDateYear: function(data){
       var m = document.getElementsByClassName("timeslot")[0];
       m.style.display = "block";
       this.props.update(1, data); // Calling parent passed in function
   },
+  updateHour: function(data){
+      var m = document.getElementsByClassName("timeslot")[0];
+      m.style.display = "block";
+      this.props.update(2, data); // Calling parent passed in function
+  },
   render: function(){
     // Try to pass selected date, and checked information to Time Parent
     return <div className="form form_one" >
-      <CorporateCalendar checked={this.state.checked} parentFn={this.reveal} />
-      <TimeSlot className="timeslot" />
+      <CorporateCalendar checked={this.state.checked} parentFn={this.updateDateYear} />
+      <TimeSlot className="timeslot" parentFn={this.updateHour} />
     </div>
   }
 })

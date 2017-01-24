@@ -1,5 +1,11 @@
+IMPORTANT -
+-- in CorporateCalendar JS function, it will increment the
+everything.
 
-
+-- If you're having trouble finding fieldIDs, use
+https://developers.acuityscheduling.com/reference#get-appointments-id
+----> in the input, the field is actually "id": (fieldId value)
+THEY ARE SO STUPID
 
 
 

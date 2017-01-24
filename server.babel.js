@@ -162,8 +162,8 @@ app.post('/acuity', function (request, response) {
   console.log("A Reservation is in the process of being made");
   console.log("Body is");
  console.log(JSON.stringify(request.body, null, 4));
-  console.log("Query is");
- console.log(request);
+ //  console.log("Query is");
+ // console.log(request);
 /*
   var body = request.body;
   var acuity = Acuity.basic(config);
@@ -234,6 +234,7 @@ app.post('/acuity', function (request, response) {
   var time2 = "2016-11-15T09:00:00-0800";
   var appointmentTypeID = 2048071; // Corporate // 1800725;  // MobePlus
   var daybreakCalID = 874123;
+
   // var body = {};
   // body['firstName'] = "Jesse";
   // body['lastName']  = "Ren";
@@ -250,28 +251,41 @@ app.post('/acuity', function (request, response) {
   //           740794
   //       ]
   // Create appointment:
+  var extra = "";
   var options = {
     method: 'POST',
     body: {
-      appointmentTypeID: appointmentTypeID,
+      calendarType: daybreakCalID,
+      appointmentTypeID: 2407455,
+      // appointmentTypeID,
       datetime:          body.time,
       firstName:         body.firstname,
       lastName:          body.lastname,
       email:             body.email,
       phone:             body.phone,
       fields: [
-         {"id": 2242840, "value": body.cartype},
-         {"id": 2242842, "value": body.license},
-         {"id": 2242851, "value": body.extrainfo}
+         { "id":2242842, "value": body.license, "name": "Last 4 Digits of License Plate" },
+         { "id":2371519, "value": body.cartype, "name": "Car Make &amp; Model (e.g. Toyota Camry)"},
+         { "id":2371528, "value": body.carcolor, "name": "Car Color" }
        ]
-      // cartype:          'toyota white gmc',
-      // license:          '123dearme'
-      // Calendar for daybreak:  874123
     }
   };
   return acuity.request('/appointments', options, function (err, res, appointment) {
     // res.sendFile(path.join(__dirname + '/index.html'));
     if (err) return console.error(err);
   console.log(appointment);
+  console.log(options);
   });
 });
+        //  {"id":2242842, "formID":549637, "value": "111", "name":"Last 4 Digits of License Plate"}
+        //  {"id": 2242851, "value": extra}
+        //  { "id": 208390875, "fieldID": 2242842, "value": body.license, "name": "Last 4 Digits of License Plate" },
+        //  { "id": 208390878, "fieldID": 2371519, "value": body.cartype, "name": "Car Make &amp; Model (e.g. Toyota Camry)"},
+        //  { "id": 208390881, "fieldID": 2371528, "value": body.carcolor, "name": "Car Color" }
+
+        //  { "id": 208390875, "value": "111111"},
+        //  { "id": 208390878, "fieldID": 2371519, "value": "111","name": "Car Make &amp; Model (e.g. Toyota Camry)"},
+        //  { "id": 208390881, "fieldID": 2371528, "value": "111", "name": "Car Color" }
+      // cartype:          'toyota white gmc',
+      // license:          '123dearme'
+      // Calendar for daybreak:  874123

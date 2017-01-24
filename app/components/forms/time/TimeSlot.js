@@ -17,26 +17,38 @@ var TimeSlot = React.createClass({
     }
   },
   revealInfoBox: function(e){
-    var t1 = "2016-11";
+    // var t1 = "2016-11";
     // var time = "2016-11-15T09:00:00-0800";
-    var l = $('.bookform')[0][0];
+    // var l = $('.bookform')[0][0];
     // document.getElementsByClassName("hideaway")[0];
-    var m = document.getElementsByClassName("bookform")[0];
-    var n = document.getElementsByClassName("timeslot")[0];
+    // var m = document.getElementsByClassName("bookform")[0];
+    // var n = document.getElementsByClassName("timeslot")[0];
     var hour = ($(e.target).parent().children('.test2').text()).split(" ")[0];
-    var time = t1 + "-" + this.state.day + "T" + hour + ":00-0800";
-    console.log('before: ' + l.value);
-    l.value = time;  // The part that changes the value we need
+    var ampm = ($(e.target).parent().children('.test2').text()).split(" ")[1];
+    if(hour.length == 4){ // If hour is single digits, prepend a 0 in front
+      hour = "0" + hour;
+    }
+    if(ampm=="pm"){
+      if(hour == "12"){ hour == "0"} // for 12pm
+      hour = (parseInt(hour) + 12).toString();
+    }
+    var time = "T" + hour + ":00";
 
-    console.log("l is " + JSON.stringify(l,null,4));
-    console.log("n is " + JSON.stringify(n,null,4));
-    console.log(l.value);
+    this.props.parentFn(time);
+    // console.log('before: ' + l.value);
+    // l.value = time;  // The part that changes the value we need
+    console.log("time is : ");
+    console.log(time);
+
+    // console.log("l is " + JSON.stringify(l,null,4));
+    // console.log("n is " + JSON.stringify(n,null,4));
+    // console.log(l.value);
     console.log("button inside is: " + hour);
-    m.style.display = "block";
+    // m.style.display = "block";
     // document.getElementById('masterform').scrollIntoView();
-    $('html, body').animate({
-        scrollTop: $("#masterform").offset().top
-    }, 700);
+    // $('html, body').animate({
+    //     scrollTop: $("#masterform").offset().top
+    // }, 700);
     // n.style.display = "none";
   },
   render: function() {

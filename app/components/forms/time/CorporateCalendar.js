@@ -34,7 +34,13 @@ var companyData =
   },
 ]
 
-var cal = new Calendar(11,2016); // This is actually December
+// So you don't mess up the year or month
+//
+var dt = new Date();
+var y = dt.getFullYear();
+var m = dt.getMonth();
+console.log("month: "+ m); // Where 0 is January
+var cal = new Calendar(m , y); // This is actually December
 // Initializations
 
 var CorporateCalendar = React.createClass({
@@ -47,7 +53,22 @@ var CorporateCalendar = React.createClass({
   selectDate: function(day){
     console.log("Work");
 
-    var str = day + this.state.cal1.monthString;
+    var dayStr = parseInt(day);
+    if(day%10 == day){
+      dayStr = "0" + dayStr;
+    }
+    var monthStr = "";
+    var month = this.state.cal1.month + 1;
+    // ^ Above is important, because calendar schedules under 00 for Januaray
+    if(month%10 ==  month){
+      monthStr = "0" + month;
+    }
+    else{
+      monthStr = month.toString();
+    }
+
+
+    var str = this.state.cal1.year + "-" +  monthStr + "-" + dayStr;
     this.props.parentFn(str);
     alert("Day is: " + day + " & month is: " + this.state.cal1.monthString);
   },
