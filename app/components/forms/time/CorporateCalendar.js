@@ -43,6 +43,25 @@ console.log("month: "+ m); // Where 0 is January
 var cal = new Calendar(m , y); // This is actually December
 // Initializations
 
+
+/* Functions for valid day */
+function daysInMonth(m, y) { // m is 0 indexed: 0-11
+    switch (m) {
+        case 1 :
+            return (y % 4 == 0 && y % 100) || y % 400 == 0 ? 29 : 28;
+        case 8 : case 3 : case 5 : case 10 :
+            return 30;
+        default :
+            return 31
+    }
+}
+
+function isValid(d, m, y) {
+    return m >= 0 && m < 12 && d > 0 && d <= daysInMonth(m, y);
+}
+
+
+
 var CorporateCalendar = React.createClass({
   getInitialState: function(){
     return {
@@ -70,7 +89,7 @@ var CorporateCalendar = React.createClass({
 
     var str = this.state.cal1.year + "-" +  monthStr + "-" + dayStr;
     this.props.parentFn(str);
-    alert("Day is: " + day + " & month is: " + this.state.cal1.monthString);
+    // alert("Day is: " + day + " & month is: " + this.state.cal1.monthString);
   },
   nextCalendar: function(){
     if(this.state.counter < 2){ // Book two months in advance
@@ -142,7 +161,7 @@ var CorporateCalendar = React.createClass({
       var self = this;
       // this.selectDate();
 
-      function decorateCell(companyData, inputday, validDay, weekday){
+      function decorateCell(companyData, inputDay, validDay, weekday){
       // THIS.selectDate();
         var days     = companyData.map(function(c){
           return c.day
@@ -162,8 +181,8 @@ var CorporateCalendar = React.createClass({
               // rowStyle = chosenStyle;
               rowStyle = hoverStyle;
               company  = companyData[k];
-              content  = <Hover ><div style={{textAlign:'right'}}>{inputday}</div> {company.name}  <br/>  {company.range} </Hover>;
-              clicker  = function(){  self.selectDate(inputday); // Signal to parentFn
+              content  = <Hover ><div style={{textAlign:'right'}}>{inputDay}</div> {company.name}  <br/>  {company.range} </Hover>;
+              clicker  = function(){  self.selectDate(inputDay); // Signal to parentFn
                }
               break;
             }
@@ -171,9 +190,13 @@ var CorporateCalendar = React.createClass({
           // console.log("weekday" + weekday);
           // console.log("corporate" + days[k]);
         }
-        else{
+        else if(inputDay>20){ // Specific Case
+          day = 1; // Counts as 0, essentially, so when updated becomes 1
+          content = <div style={{}}>{day}</div>;
+        }
+        else {
           console.log("hrm");
-          day = null; // Counts as 0, essentially, so when updated becomes 1
+          day = 0; // Counts as 0, essentially, so when updated becomes 1
         }
         return <th onClick={clicker}style={rowStyle} ><div  style={{height:'70px',minHeight: '50px', width:'100px'}}> {content} </div></th>
       }
@@ -196,8 +219,17 @@ var CorporateCalendar = React.createClass({
             console.log("first day here!" + day);
             item = day;
             day++;
-            validDay = true;
+            if(day == monthLength + 1){ // Important so it resets
+              // day++;
+              validDay = false;
+            }
+            else{
+              validDay = true;
+            }
             // console.log(item);
+          }
+          else{ // For days after month end
+            validDay = false;
           }
           // temp = <th style={defaultStyle}>{item} <br/>{}</th>;
             console.log(day);
@@ -242,3 +274,6 @@ var CorporateCalendar = React.createClass({
 
 
   module.exports = CorporateCalendar;
+
+
+  // Useful Alert on line 73

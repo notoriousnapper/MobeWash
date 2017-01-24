@@ -95,12 +95,14 @@ var TimeSlot = React.createClass({
     //   // console.log(JSON.stringify(item, null, 4));
     // })
     return <div className="timeslot" style={{display:"none", height: "500px"}}>
-    <div style={{backgroundColor:"white"}}> Please Select a TimeSlot </div>
-    <table style={{ border:"1px solid black", borderColor:"black", width:"500px"}}>
-      <tbody>
-      {list}
-      </tbody>
-      </table>
+    <div style={{backgroundColor:"white", display:"flex"}}> Please Select a TimeSlot </div>
+      <table style={{ border:"1px solid black", borderColor:"black", width:"500px"}}>
+        <tbody>
+        {list}
+        </tbody>
+        </table>
+      <div style={{flex:"1"}}></div>
+
     </div>;
   }
 });

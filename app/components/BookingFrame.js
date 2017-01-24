@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var LabelCarousel = require('../components/custom/LabelCarousel');
+var ServiceInfo = require('../components/custom/ServiceInfo');
 var Details = require('../components/forms/Details');
 var Time = require('../components/forms/time/Time');
 var Payment = require('../components/forms/Payment');
@@ -44,7 +45,7 @@ var BookingFrame = React.createClass({
 
             default: break;
           }
-          alert("Updated Data: " + JSON.stringify(this.state.bookingData, null, 4));
+          // alert("Updated Data: " + JSON.stringify(this.state.bookingData, null, 4));
         },
         revealCal: function(){
           if (this.state.form==1){
@@ -80,9 +81,9 @@ var BookingFrame = React.createClass({
         },
         render: function(){
         return(
-        		<div style={{padding:"100px", margin: "0 auto", width: "90%",minWidth: "1000px", height: "700px"}}>
-            {this.state.bookingData.date + this.state.bookingData.hour  }
                     <div style={{display: "block", margin: "auto", backgroundColor:"white", height:"400px", width: "100%", padding: "0px"}}>
+                		<div style={{padding:"100px", margin: "0 auto", width: "90%",minWidth: "1000px", height: "700px"}}>
+                       <ServiceInfo />
                       <LabelCarousel checked={this.state.checked}/>
                       <div style={{display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center"}} >
                         <Time update={this.updateBookingData}/>
@@ -100,3 +101,5 @@ var BookingFrame = React.createClass({
                 }
 });
 module.exports = BookingFrame;
+            // {this.state.bookingData.date + this.state.bookingData.hour  }
+            // Line 48, useful alert for JSON

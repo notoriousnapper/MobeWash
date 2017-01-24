@@ -1,6 +1,8 @@
 IMPORTANT -
 -- in CorporateCalendar JS function, it will increment the
 everything.
+-- Also, Calendar -> To reset to next month values, has an else if clause >20
+(case 1: February 28 month end, case 2: Any other Month = 31) so it'll reset to 1
 
 -- If you're having trouble finding fieldIDs, use
 https://developers.acuityscheduling.com/reference#get-appointments-id
