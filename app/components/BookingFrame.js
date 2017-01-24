@@ -79,7 +79,7 @@ var BookingFrame = React.createClass({
                       <LabelCarousel checked={this.state.checked}/>
                       <div style={{display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center"}} >
                         <Time update={this.updateBookingData}/>
-                        <Details />
+                        <Details time={this.state.bookingData.time.date}/>
                         <Payment />
                             <button style={{display: "block", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
                             padding: "10px 20px 10px 20px", borderRadius:"10px",

@@ -21512,7 +21512,7 @@
 	var ReactRouter = __webpack_require__(184);
 	var LabelCarousel = __webpack_require__(239);
 	var Details = __webpack_require__(240);
-	var Time = __webpack_require__(334);
+	var Time = __webpack_require__(335);
 	var Payment = __webpack_require__(340);
 
 	var BookingFrame = React.createClass({
@@ -21596,7 +21596,7 @@
 	          'div',
 	          { style: { display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center" } },
 	          React.createElement(Time, { update: this.updateBookingData }),
-	          React.createElement(Details, null),
+	          React.createElement(Details, { time: this.state.bookingData.time.date }),
 	          React.createElement(Payment, null),
 	          React.createElement(
 	            'button',
@@ -26625,6 +26625,7 @@
 	var Bootstrap = __webpack_require__(241);
 	// var Glyphicon = require('react-bootstrap/lib/Glyphicon');
 	var FontAwesome = __webpack_require__(332);
+	var $ = __webpack_require__(334);
 
 	// var TransparentButton = require('../components/custom/TransparentButton');
 
@@ -26633,6 +26634,16 @@
 
 
 	  // having form with className form two works well, but not in design
+	  componentDidMount: function componentDidMount() {
+	    console.log('Payment form loaded');
+	    var $form = $('#form-two');
+	    console.log($form);
+	    // No Resubmits after success
+	    $form.submit(function (e) {
+	      e.preventDefault();
+	      // alert()  ;
+	    });
+	  },
 	  render: function render() {
 	    return React.createElement(
 	      'form',
@@ -26641,39 +26652,44 @@
 	      React.createElement(
 	        'div',
 	        { style: { padding: "20px 20px", backgroundColor: "#FBFDFF", margin: "0 auto" } },
-	        React.createElement('input', { className: 'hideaway', id: 'hiddenTime', type: 'hidden', name: 'time', value: 'sth' }),
+	        React.createElement('input', { className: 'hideaway', id: 'hiddenTime', type: 'hidden', name: 'time', value: this.props.time }),
 	        React.createElement(
 	          'div',
 	          { className: 'fire', id: 'form_container' },
 	          React.createElement(
 	            'div',
 	            { id: 'input_container' },
-	            React.createElement('input', { className: 'half', type: 'text', id: 'input', placeholder: 'First' }),
-	            React.createElement('input', { className: 'half', type: 'text', id: 'input', placeholder: 'Last' }),
+	            React.createElement('input', { className: 'half', type: 'text', id: 'input', placeholder: 'First', name: 'firstname' }),
+	            React.createElement('input', { className: 'half', type: 'text', id: 'input', placeholder: 'Last', name: 'lastname' }),
 	            React.createElement(FontAwesome, { id: 'input_img', name: 'user', size: '2x' })
 	          ),
 	          React.createElement(
 	            'div',
 	            { id: 'input_container' },
-	            React.createElement('input', { className: 'full', type: 'text', id: 'input', placeholder: 'Phone Number' }),
+	            React.createElement('input', { className: 'full', type: 'text', id: 'input', placeholder: 'Phone Number', name: 'phone' }),
 	            React.createElement(FontAwesome, { id: 'input_img', name: 'phone', size: '2x' })
 	          ),
 	          React.createElement(
 	            'div',
 	            { id: 'input_container' },
-	            React.createElement('input', { className: 'full', type: 'text', id: 'input', placeholder: 'Email' }),
+	            React.createElement('input', { className: 'full', type: 'text', id: 'input', placeholder: 'Email', name: 'email' }),
 	            React.createElement(FontAwesome, { id: 'input_img', name: 'envelope', size: '2x' })
 	          ),
 	          React.createElement(
 	            'div',
 	            { id: 'input_container' },
-	            React.createElement('input', { className: 'full', type: 'text', id: 'input', placeholder: 'Car Make & Model' }),
+	            React.createElement('input', { className: 'full', type: 'text', id: 'input', placeholder: 'Car Make & Model', name: 'cartype' }),
 	            React.createElement(FontAwesome, { id: 'input_img', name: 'car', size: '2x' })
 	          ),
 	          React.createElement(
 	            'div',
 	            { id: 'input_container' },
-	            React.createElement('input', { className: 'full', type: 'text', id: 'input', placeholder: 'Last 4 Digits of License Plate' })
+	            React.createElement('input', { className: 'full', type: 'text', id: 'input', placeholder: 'Last 4 Digits of License Plate', name: 'license' })
+	          ),
+	          React.createElement(
+	            'div',
+	            { id: 'input_container' },
+	            React.createElement('input', { className: 'full', type: 'submit', id: 'input', placeholder: 'Submit' })
 	          )
 	        )
 	      )
@@ -28807,174 +28823,6 @@
 
 /***/ },
 /* 334 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	/*
-	* Time form that completes selecting date & time for booking
-	* First form out of three
-	*
-	* @ Jesse Ren 2016
-	*/
-	var React = __webpack_require__(2);
-	var ReactRouter = __webpack_require__(184);
-	var TimeSlot = __webpack_require__(335);
-	var CorporateCalendar = __webpack_require__(337);
-
-	var Time = React.createClass({
-	  displayName: 'Time',
-
-	  getInitialState: function getInitialState() {
-	    return { checked: false
-	    };
-	  },
-	  reveal: function reveal(data) {
-	    var m = document.getElementsByClassName("timeslot")[0];
-	    m.style.display = "block";
-	    this.props.update(1, data); // Calling parent passed in function
-	  },
-	  render: function render() {
-	    // Try to pass selected date, and checked information to Time Parent
-	    return React.createElement(
-	      'div',
-	      { className: 'form form_one' },
-	      React.createElement(CorporateCalendar, { checked: this.state.checked, parentFn: this.reveal }),
-	      React.createElement(TimeSlot, { className: 'timeslot' })
-	    );
-	  }
-	});
-
-	module.exports = Time;
-
-/***/ },
-/* 335 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _stringify = __webpack_require__(181);
-
-	var _stringify2 = _interopRequireDefault(_stringify);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	/*
-	* Timeslot generated by available timeslot data
-	* Available timeslots are non-interactive.
-	*
-	* @ Jesse Ren 2016
-	*/
-	var React = __webpack_require__(2);
-	var ReactRouter = __webpack_require__(184);
-	var $ = __webpack_require__(336);
-
-	var TimeSlot = React.createClass({
-	  displayName: 'TimeSlot',
-
-	  getInitialState: function getInitialState() {
-	    return {
-	      day: "15",
-	      hour: "9:00"
-	    };
-	  },
-	  revealInfoBox: function revealInfoBox(e) {
-	    var t1 = "2016-11";
-	    // var time = "2016-11-15T09:00:00-0800";
-	    var l = $('.bookform')[0][0];
-	    // document.getElementsByClassName("hideaway")[0];
-	    var m = document.getElementsByClassName("bookform")[0];
-	    var n = document.getElementsByClassName("timeslot")[0];
-	    var hour = $(e.target).parent().children('.test2').text().split(" ")[0];
-	    var time = t1 + "-" + this.state.day + "T" + hour + ":00-0800";
-	    console.log('before: ' + l.value);
-	    l.value = time; // The part that changes the value we need
-
-	    console.log("l is " + (0, _stringify2.default)(l, null, 4));
-	    console.log("n is " + (0, _stringify2.default)(n, null, 4));
-	    console.log(l.value);
-	    console.log("button inside is: " + hour);
-	    m.style.display = "block";
-	    // document.getElementById('masterform').scrollIntoView();
-	    $('html, body').animate({
-	      scrollTop: $("#masterform").offset().top
-	    }, 700);
-	    // n.style.display = "none";
-	  },
-	  render: function render() {
-	    var rowStyle = {
-	      padding: "10px",
-	      paddingLeft: "20px",
-	      backgroundColor: "#F9F9F9",
-	      height: "50px"
-	    };
-	    var buttonStyle = {
-	      margin: "auto",
-	      backgroundColor: "#5CB85C",
-	      borderColor: "#5CB85C",
-	      borderStyle: "solid",
-	      borderRadius: "5px",
-	      height: "30px",
-	      width: "300px"
-	    };
-	    var times = ["9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm"];
-	    var self = this.revealInfoBox;
-	    var i = 0;
-	    var list = times.map(function (item) {
-	      i++;
-	      return React.createElement(
-	        'tr',
-	        { style: rowStyle },
-	        React.createElement(
-	          'td',
-	          null,
-	          React.createElement(
-	            'div',
-	            { style: rowStyle },
-	            React.createElement(
-	              'div',
-	              { className: 'test2', style: { width: "100px", display: "inline-block" } },
-	              item,
-	              ' '
-	            ),
-	            React.createElement(
-	              'button',
-	              { className: 'test', style: buttonStyle, key: i, onClick: self },
-	              ' Open '
-	            )
-	          )
-	        )
-	      );
-	    });
-	    // console.log('list is: ' + JSON.stringify(list, null, 4));
-	    // list.map(function(item){
-	    //   // console.log(JSON.stringify(item, null, 4));
-	    // })
-	    return React.createElement(
-	      'div',
-	      { className: 'timeslot', style: { display: "none", height: "500px" } },
-	      React.createElement(
-	        'div',
-	        { style: { backgroundColor: "white" } },
-	        ' Please Select a TimeSlot '
-	      ),
-	      React.createElement(
-	        'table',
-	        { style: { border: "1px solid black", borderColor: "black", width: "500px" } },
-	        React.createElement(
-	          'tbody',
-	          null,
-	          list
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = TimeSlot;
-
-/***/ },
-/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -39200,6 +39048,174 @@
 
 
 /***/ },
+/* 335 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	/*
+	* Time form that completes selecting date & time for booking
+	* First form out of three
+	*
+	* @ Jesse Ren 2016
+	*/
+	var React = __webpack_require__(2);
+	var ReactRouter = __webpack_require__(184);
+	var TimeSlot = __webpack_require__(336);
+	var CorporateCalendar = __webpack_require__(337);
+
+	var Time = React.createClass({
+	  displayName: 'Time',
+
+	  getInitialState: function getInitialState() {
+	    return { checked: false
+	    };
+	  },
+	  reveal: function reveal(data) {
+	    var m = document.getElementsByClassName("timeslot")[0];
+	    m.style.display = "block";
+	    this.props.update(1, data); // Calling parent passed in function
+	  },
+	  render: function render() {
+	    // Try to pass selected date, and checked information to Time Parent
+	    return React.createElement(
+	      'div',
+	      { className: 'form form_one' },
+	      React.createElement(CorporateCalendar, { checked: this.state.checked, parentFn: this.reveal }),
+	      React.createElement(TimeSlot, { className: 'timeslot' })
+	    );
+	  }
+	});
+
+	module.exports = Time;
+
+/***/ },
+/* 336 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _stringify = __webpack_require__(181);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*
+	* Timeslot generated by available timeslot data
+	* Available timeslots are non-interactive.
+	*
+	* @ Jesse Ren 2016
+	*/
+	var React = __webpack_require__(2);
+	var ReactRouter = __webpack_require__(184);
+	var $ = __webpack_require__(334);
+
+	var TimeSlot = React.createClass({
+	  displayName: 'TimeSlot',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      day: "15",
+	      hour: "9:00"
+	    };
+	  },
+	  revealInfoBox: function revealInfoBox(e) {
+	    var t1 = "2016-11";
+	    // var time = "2016-11-15T09:00:00-0800";
+	    var l = $('.bookform')[0][0];
+	    // document.getElementsByClassName("hideaway")[0];
+	    var m = document.getElementsByClassName("bookform")[0];
+	    var n = document.getElementsByClassName("timeslot")[0];
+	    var hour = $(e.target).parent().children('.test2').text().split(" ")[0];
+	    var time = t1 + "-" + this.state.day + "T" + hour + ":00-0800";
+	    console.log('before: ' + l.value);
+	    l.value = time; // The part that changes the value we need
+
+	    console.log("l is " + (0, _stringify2.default)(l, null, 4));
+	    console.log("n is " + (0, _stringify2.default)(n, null, 4));
+	    console.log(l.value);
+	    console.log("button inside is: " + hour);
+	    m.style.display = "block";
+	    // document.getElementById('masterform').scrollIntoView();
+	    $('html, body').animate({
+	      scrollTop: $("#masterform").offset().top
+	    }, 700);
+	    // n.style.display = "none";
+	  },
+	  render: function render() {
+	    var rowStyle = {
+	      padding: "10px",
+	      paddingLeft: "20px",
+	      backgroundColor: "#F9F9F9",
+	      height: "50px"
+	    };
+	    var buttonStyle = {
+	      margin: "auto",
+	      backgroundColor: "#5CB85C",
+	      borderColor: "#5CB85C",
+	      borderStyle: "solid",
+	      borderRadius: "5px",
+	      height: "30px",
+	      width: "300px"
+	    };
+	    var times = ["9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm"];
+	    var self = this.revealInfoBox;
+	    var i = 0;
+	    var list = times.map(function (item) {
+	      i++;
+	      return React.createElement(
+	        'tr',
+	        { style: rowStyle },
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'div',
+	            { style: rowStyle },
+	            React.createElement(
+	              'div',
+	              { className: 'test2', style: { width: "100px", display: "inline-block" } },
+	              item,
+	              ' '
+	            ),
+	            React.createElement(
+	              'button',
+	              { className: 'test', style: buttonStyle, key: i, onClick: self },
+	              ' Open '
+	            )
+	          )
+	        )
+	      );
+	    });
+	    // console.log('list is: ' + JSON.stringify(list, null, 4));
+	    // list.map(function(item){
+	    //   // console.log(JSON.stringify(item, null, 4));
+	    // })
+	    return React.createElement(
+	      'div',
+	      { className: 'timeslot', style: { display: "none", height: "500px" } },
+	      React.createElement(
+	        'div',
+	        { style: { backgroundColor: "white" } },
+	        ' Please Select a TimeSlot '
+	      ),
+	      React.createElement(
+	        'table',
+	        { style: { border: "1px solid black", borderColor: "black", width: "500px" } },
+	        React.createElement(
+	          'tbody',
+	          null,
+	          list
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = TimeSlot;
+
+/***/ },
 /* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -39685,7 +39701,7 @@
 	var React = __webpack_require__(2);
 	var ReactScriptLoaderMixin = __webpack_require__(341).ReactScriptLoaderMixin;
 	var FontAwesome = __webpack_require__(332);
-	var $ = __webpack_require__(336);
+	var $ = __webpack_require__(334);
 
 	var monthExp = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
@@ -39694,7 +39710,7 @@
 	  var arr = [];
 	  var temp;
 	  for (var i = 0; i < 25; i++) {
-	    currentYear += i;
+	    currentYear += 1;
 	    temp = currentYear.toString().substr(2, 3);
 	    arr.push(temp);
 	  }
@@ -39713,20 +39729,39 @@
 	    return {
 	      stripeLoading: true,
 	      stripeLoadingError: false,
-	      month: 0,
-	      date: 2017
+	      month: "01",
+	      year: "01",
+	      monthVal: 0,
+	      yearVal: 2017
 	    };
 	  },
 
 	  selectMonth: function selectMonth(event) {
+	    var str = event.target.value;
+	    var val = 0;
+	    if (str[0] === "0") {
+	      val = parseInt(str[1]);
+	    } else {
+	      val = parseInt(str);
+	    }
 	    this.setState({
-	      month: event.target.value
+	      month: event.target.value,
+	      monthVal: val
 	    });
 	  },
 	  selectYear: function selectYear(event) {
+	    var str = event.target.value;
+	    var val = 0;
+	    if (str[0] === "0") {
+	      val = 2000 + parseInt(str[1]);
+	    } else {
+	      val = parseInt(str);
+	    }
 	    this.setState({
-	      year: event.target.value
+	      year: event.target.value,
+	      yearVal: val
 	    });
+	    console.log("year selected: " + val);
 	  },
 
 	  getScriptURL: function getScriptURL() {
@@ -39758,7 +39793,7 @@
 	    // No Resubmits after success
 	    $form.submit(function (e) {
 	      // Redefining the submit
-	      e.stopImmediatePropagation();
+	      // e.stopImmediatePropagation();
 	      // e.preventDefault(e);
 	      // alert("Stop!");
 	      // alert(JSON.stringify($form.find('button'), null, 4));
@@ -39770,9 +39805,9 @@
 	      Stripe.card.createToken({
 	        number: $('.card-number').val(),
 	        cvc: $('.card-cvc').val(),
-	        exp_month: this.state.month,
-	        exp_year: 2000 + this.state.year,
-	        address_zip: $('.address_zip').val()
+	        exp_month: this.state.monthVal,
+	        exp_year: this.state.yearVal
+	        // address_zip: $('.address_zip').val()
 	      }, stripeResponseHandler);
 	      return false;
 
@@ -39822,7 +39857,7 @@
 	      React.createElement('div', { id: 'charge-error' }),
 	      React.createElement(
 	        'form',
-	        { id: 'checkout-form', className: 'form form_three', style: { backgroundColor: "white", display: "none", margin: "auto", fontFamily: "Helvetica",
+	        { id: 'checkout-form', className: 'form form_three', style: { backgroundColor: "#D4E1E7", display: "none", margin: "auto", fontFamily: "Helvetica",
 	            height: "400px", padding: "10px 20% 10px 20%" }, method: 'POST', action: '/booking' },
 	        React.createElement(
 	          'div',
@@ -39836,24 +39871,52 @@
 	          React.createElement(
 	            'div',
 	            { id: 'input_container' },
+	            React.createElement('input', { className: 'half', type: 'text', id: 'input', placeholder: 'CardHolder Address' }),
+	            React.createElement(FontAwesome, { id: 'input_img', name: 'location-arrow', size: '2x' }),
+	            React.createElement('input', { className: 'half', type: 'text', id: 'input', placeholder: 'CVC' }),
+	            React.createElement(FontAwesome, { id: 'input_img_half', name: 'lock', size: '2x' })
+	          ),
+	          React.createElement(
+	            'div',
+	            { id: 'input_container' },
 	            React.createElement(
 	              'div',
-	              { className: 'half', type: 'text', id: 'input', style: { width: "100px" } },
+	              { type: 'text', id: 'input', style: { backgroundColor: "white", width: "100%", height: "45px", display: "flex", padding: "5px 25px", fontWeight: "bold", fontSize: "20px" } },
 	              React.createElement(
-	                'select',
-	                { name: 'expireMM', id: 'expireMM', value: this.state.month, onChange: this.selectMonth },
-	                monthOptions
+	                'div',
+	                { className: 'styled-select slate', style: { flex: "1", backgroundColor: "white" } },
+	                React.createElement(
+	                  'select',
+	                  { name: 'expireMM', id: 'expireMM', value: this.state.month, onChange: this.selectMonth },
+	                  monthOptions
+	                )
 	              ),
 	              ' / ',
 	              React.createElement(
-	                'select',
-	                { name: 'expireYY', id: 'expireYY', value: this.state.year, onChange: this.selectYear },
-	                yearOptions
+	                'div',
+	                { className: 'styled-select slate', style: { flex: "1", backgroundColor: "white" } },
+	                React.createElement(
+	                  'select',
+	                  { name: 'expireYY', id: 'expireYY', value: this.state.year, onChange: this.selectYear },
+	                  yearOptions
+	                )
 	              )
 	            ),
-	            React.createElement(FontAwesome, { id: 'input_img', name: 'calendar-check-o', size: '2x' }),
-	            React.createElement('input', { className: 'half', type: 'text', id: 'input', placeholder: 'CVC' }),
-	            React.createElement(FontAwesome, { id: 'input_img_half', name: 'lock', size: '2x' })
+	            React.createElement(FontAwesome, { id: 'input_img', name: 'calendar-check-o', size: '2x' })
+	          ),
+	          React.createElement(
+	            'div',
+	            { id: 'input_container', style: { height: "20px", display: "flex", padding: "0", margin: "0", paddingLeft: "30px" } },
+	            React.createElement(
+	              'h1',
+	              { className: 'date-label' },
+	              ' Month '
+	            ),
+	            React.createElement(
+	              'h1',
+	              { className: 'date-label' },
+	              ' Year '
+	            )
 	          ),
 	          React.createElement('input', { type: 'submit', style: { centerAlign: "center" }, value: 'Submit' })
 	        )
@@ -40373,7 +40436,7 @@
 
 
 	// module
-	exports.push([module.id, ".half{\n  width: 50% !important;\n  border-width: 0;\n  /*border-right-width: 1px;*/\n  border-width: 0px 1px 0px 0px !important;\n  border-color: #E0E0E0 !important;\n  border-style: solid !important;\n}\n.full{\n  width: 100% !important;\n  border-right-width: 1px;\n}\n\n.fire input{\n  border: none;\n  padding-left: 30px;\n  border-width: 1px;\n  border-width: 1px;\n  /*border-color: #7CAADD !important;*/\n  height: 45px !important;\n  /*border-style: solid;*/\n}\n.fire input active{\n  /*background-color:red;*/\n  border: none;\n  border-style: solid;\n  border-color: #7CAADD !important;\n  -moz-box-shadow:    0px 0px 15px 16px #7CAADD;\n  -webkit-box-shadow: 0px 0px 15px 16px #7CAADD;\n  box-shadow:         0px 0px 15px 16px #7CAADD;\n}\n\n.backgroundForm{\n  background-color: blue;\n  width: 1000px;\n  margin: 0 auto;\n}\n\n#form_container{\n  padding: 2px 1px;\n  border-color: #DFDFDF!important;\n  border-width: 1px !important;\n  border-radius: 10px !important;\n  border-style: solid;\n  width: 400px;\n  /*height: 1400px;*/\n  background-color: white;\n  overflow: hidden;\n}\n\n#input_container {\n  position:relative; padding:0; margin:0;\n  /*border-bottom-color: grey;\n  border-bottom-width: 0.1em;*/\n\n  border-color: #E0E0E0;\n  border-style: solid;\n  border-bottom-width: 1px;\n\n  /*-moz-box-shadow: 0 0 5px 5px #888;\n  -webkit-box-shadow: 0 0 5px 5px#888;\n  box-shadow: 0 0 5px 5px #888;*/\n}\n\n#input {\n  height:20px; margin:0; padding-left: 60px !important;\n  /*box-sizing: border-box;*/\n }\n\n/* Font Awesome Items are just fonts, so font styles apply */\n#input_img { position:absolute;\n  bottom:8px;\n  left:10px;\n  width:10px;\n  font-size: 20px;\n }\n#input_img_half { position:absolute;\n  bottom:8px;\n  left: 52%;\n  width:10px;\n }\n\n::-webkit-input-placeholder { /* Chrome/Opera/Safari */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n::-moz-placeholder { /* Firefox 19+ */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n:-ms-input-placeholder { /* IE 10+ */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n:-moz-placeholder { /* Firefox 18- */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n", ""]);
+	exports.push([module.id, ".half{\n  width: 50% !important;\n  border-width: 0;\n  /*border-right-width: 1px;*/\n  border-width: 0px 1px 0px 0px !important;\n  border-color: #E0E0E0 !important;\n  border-style: solid !important;\n}\n.full{\n  width: 100% !important;\n  border-right-width: 1px;\n}\n\n.fire input{\n  border: none;\n  padding-left: 30px;\n  border-width: 1px;\n  border-width: 1px;\n  /*border-color: #7CAADD !important;*/\n  height: 45px !important;\n  /*border-style: solid;*/\n}\n.fire input active{\n  /*background-color:red;*/\n  border: none;\n  border-style: solid;\n  border-color: #7CAADD !important;\n  -moz-box-shadow:    0px 0px 15px 16px #7CAADD;\n  -webkit-box-shadow: 0px 0px 15px 16px #7CAADD;\n  box-shadow:         0px 0px 15px 16px #7CAADD;\n}\n\n.backgroundForm{\n  background-color: blue;\n  width: 1000px;\n  margin: 0 auto;\n}\n\n#form_container{\n  padding: 2px 1px;\n  border-color: #DFDFDF!important;\n  border-width: 1px !important;\n  border-radius: 10px !important;\n  border-style: solid;\n  width: 400px;\n  /*height: 1400px;*/\n  background-color: white;\n  overflow: hidden;\n}\n\n#input_container {\n  position:relative; padding:0; margin:0;\n  border-color: #E0E0E0;\n  border-style: solid;\n  border-bottom-width: 1px;\n}\n\n#input {\n  height:20px; margin:0; padding-left: 60px !important;\n  /*box-sizing: border-box;*/\n }\n\n/* Font Awesome Items are just fonts, so font styles apply */\n#input_img { position:absolute;\n  bottom:8px;\n  left:10px;\n  width:10px;\n  font-size: 20px;\n }\n#input_img_half { position:absolute;\n  bottom:8px;\n  left: 52%;\n  width:10px;\n }\n\n::-webkit-input-placeholder { /* Chrome/Opera/Safari */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n::-moz-placeholder { /* Firefox 19+ */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n:-ms-input-placeholder { /* IE 10+ */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n:-moz-placeholder { /* Firefox 18- */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n\n\n/* Dropdown CSS */\n/* -------------------- Page Styles (not required) */\n\n/* -------------------- Select Box Styles: bavotasan.com Method (with special adaptations by ericrasch.com) */\n/* -------------------- Source: http://bavotasan.com/2011/style-select-box-using-only-css/ */\n.styled-select {\n  /*margin: 20px;*/\n   /*background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;*/\n   height: 29px;\n   overflow: hidden;\n   /*width: 100px !important;*/\n   background: white;\n}\n\n.styled-select select {\n   background: white;\n   border: none;\n   font-size: 14px;\n   height: 29px;\n   /*padding: 5px; /* If you add too much padding here, the options won't show in IE */*/\n   width: 40%;\n}\n\n.styled-select.slate {\n   /*background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;*/\n   height: 34px;\n   width: 40%;\n}\n\n.styled-select.slate select {\n   border: 1px solid #ccc;\n   font-size: 16px;\n   height: 34px;\n   /*width: 268px;*/\n   width: 40%;\n}\n\n/* -------------------- Rounded Corners */\n.rounded {\n   -webkit-border-radius: 20px;\n   -moz-border-radius: 20px;\n   border-radius: 20px;\n}\n\n.semi-square {\n   -webkit-border-radius: 5px;\n   -moz-border-radius: 5px;\n   border-radius: 5px;\n}\n\n/* -------------------- Colors: Background */\n.slate   { background-color: #ddd; }\n.green   { background-color: #779126; }\n.blue    { background-color: #3b8ec2; }\n.yellow  { background-color: #eec111; }\n.black   { background-color: #000; }\n\n/* -------------------- Colors: Text */\n.slate select   { color: #000; }\n.green select   { color: #fff; }\n.blue select    { color: #fff; }\n.yellow select  { color: #000; }\n.black select   { color: #fff; }\n\n\n/* -------------------- Select Box Styles: danielneumann.com Method */\n/* -------------------- Source: http://danielneumann.com/blog/how-to-style-dropdown-with-css-only/ */\n#mainselection select {\n   border: 0;\n   color: #EEE;\n   background: transparent;\n   font-size: 20px;\n   font-weight: bold;\n   padding: 2px 10px;\n   width: 378px;\n   *width: 350px;\n   *background: #58B14C;\n   -webkit-appearance: none;\n}\n\n#mainselection {\n   overflow:hidden;\n   width:350px;\n   -moz-border-radius: 9px 9px 9px 9px;\n   -webkit-border-radius: 9px 9px 9px 9px;\n   border-radius: 9px 9px 9px 9px;\n   box-shadow: 1px 1px 11px #330033;\n   background: #58B14C url(\"http://i62.tinypic.com/15xvbd5.png\") no-repeat scroll 319px center;\n}\n\n\n/* -------------------- Select Box Styles: stackoverflow.com Method */\n/* -------------------- Source: http://stackoverflow.com/a/5809186 */\nselect#soflow, select#soflow-color {\n   -webkit-appearance: button;\n   -webkit-border-radius: 2px;\n   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);\n   -webkit-padding-end: 20px;\n   -webkit-padding-start: 2px;\n   -webkit-user-select: none;\n   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);\n   background-position: 97% center;\n   background-repeat: no-repeat;\n   border: 1px solid #AAA;\n   color: #555;\n   font-size: inherit;\n   margin: 20px;\n   overflow: hidden;\n   padding: 5px 10px;\n   text-overflow: ellipsis;\n   white-space: nowrap;\n   width: 300px;\n}\n\nselect#soflow-color {\n   color: #fff;\n   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);\n   background-color: #779126;\n   -webkit-border-radius: 20px;\n   -moz-border-radius: 20px;\n   border-radius: 20px;\n   padding-left: 15px;\n}\n\n\n.date-label{\n  color:#B4A9A9!important;\n  vertical-align: middle;\n   flex:1;\n   font-size:10px;\n   height:18px !important;\n   /*position: absolute;*/\n   /*background-color:black;*/\n   margin: 0;\n   padding: 0;\n}\n", ""]);
 
 	// exports
 

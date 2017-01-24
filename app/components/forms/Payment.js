@@ -13,7 +13,7 @@ function genYears(){
   var arr = [];
   var temp;
   for(var i = 0; i < 25; i++){
-    currentYear+= i;
+    currentYear+= 1;
     temp = currentYear.toString().substr(2,3);
     arr.push(temp);
   }
@@ -32,21 +32,42 @@ var Payment = React.createClass({
     return {
       stripeLoading: true,
       stripeLoadingError: false,
-      month: 0,
-      date: 2017
+      month: "01",
+      year: "01",
+      monthVal: 0,
+      yearVal: 2017
     };
   },
 
 
   selectMonth: function(event){
+    var str = event.target.value;
+    var val = 0;
+    if(str[0]==="0"){
+      val = parseInt(str[1]);
+    }
+    else{
+      val = parseInt(str);
+    }
     this.setState({
-      month: event.target.value
+      month: event.target.value,
+      monthVal: val
     });
   },
   selectYear: function(event){
+    var str = event.target.value;
+    var val = 0;
+    if(str[0]==="0"){
+      val = 2000 + parseInt(str[1]);
+    }
+    else{
+      val = parseInt(str);
+    }
     this.setState({
-      year: event.target.value
+      year: event.target.value,
+      yearVal: val
     });
+    console.log("year selected: " + val);
   },
 
 
@@ -79,7 +100,7 @@ componentDidMount: function(){
 
   // No Resubmits after success
   $form.submit(function(e){ // Redefining the submit
-    e.stopImmediatePropagation();
+    // e.stopImmediatePropagation();
     // e.preventDefault(e);
     // alert("Stop!");
     // alert(JSON.stringify($form.find('button'), null, 4));
@@ -91,9 +112,9 @@ componentDidMount: function(){
     Stripe.card.createToken({
       number: $('.card-number').val(),
       cvc: $('.card-cvc').val(),
-      exp_month: this.state.month,
-      exp_year:  2000 + this.state.year,
-      address_zip: $('.address_zip').val()
+      exp_month: this.state.monthVal,
+      exp_year:  this.state.yearVal
+      // address_zip: $('.address_zip').val()
     }, stripeResponseHandler);
     return false;
 
@@ -136,7 +157,7 @@ return (
   <div>
   <div id="charge-error"></div>
 
-  <form  id="checkout-form" className="form form_three" style={{backgroundColor: "white", display:"none", margin: "auto", fontFamily: "Helvetica",
+  <form  id="checkout-form" className="form form_three" style={{backgroundColor: "#D4E1E7", display:"none", margin: "auto", fontFamily: "Helvetica",
    height: "400px", padding: "10px 20% 10px 20%"}} method="POST" action="/booking">
           <div className="fire" id="form_container">
             <div id="input_container">
@@ -144,21 +165,38 @@ return (
               <FontAwesome id="input_img" name='credit-card' size="2x" />
             </div>
             <div id="input_container">
-              <div className="half" type="text" id="input" style={{width: "100px"}} >
-                  <select name='expireMM' id='expireMM' value={this.state.month} onChange={this.selectMonth}>
-                  {monthOptions}
-                </select>
-                {' / '}
-                <select name='expireYY' id='expireYY' value={this.state.year} onChange={this.selectYear}>
-                  {yearOptions}
-                </select>
-              </div>
 
-
-              <FontAwesome id="input_img" name='calendar-check-o' size="2x" />
+              <input className="half" type="text" id="input" placeholder="CardHolder Address"  />
+              <FontAwesome id="input_img" name='location-arrow' size="2x" />
               <input className="half" type="text" id="input" placeholder="CVC"  />
               <FontAwesome id="input_img_half" name='lock' size="2x" />
             </div>
+
+            <div id="input_container">
+              <div type="text" id="input" style={{backgroundColor:"white", width: "100%", height: "45px", display:"flex", padding: "5px 25px", fontWeight:"bold", fontSize:"20px"}} >
+              <div className="styled-select slate" style={{flex:"1", backgroundColor:"white"}}>
+                  <select name='expireMM' id='expireMM' value={this.state.month} onChange={this.selectMonth}>
+                    {monthOptions}
+                  </select>
+                </div>
+
+
+                {' / '}
+              <div className="styled-select slate" style={{flex:"1", backgroundColor:"white"}}>
+                <select name='expireYY' id='expireYY' value={this.state.year} onChange={this.selectYear}>
+                  {yearOptions}
+                </select>
+                </div>
+
+              </div>
+              <FontAwesome id="input_img" name='calendar-check-o' size="2x"  />
+            </div>
+            <div id="input_container" style={{height:"20px", display:"flex", padding:"0", margin:"0",paddingLeft:"30px"}}>
+                  <h1 className="date-label"> Month </h1>
+                  <h1 className="date-label"> Year </h1>
+            </div>
+
+
   <input type="submit" style={{centerAlign: "center"}} value="Submit"/>
 
             </div>

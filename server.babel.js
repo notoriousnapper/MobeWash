@@ -88,7 +88,7 @@ app.post('/booking', function(req, res){
   //Initializations
    var amount = 100; // 1 dollar
 
-   
+
 
 
 
@@ -160,6 +160,10 @@ app.get('/acuity', function (request, response) {
 
 app.post('/acuity', function (request, response) {
   console.log("A Reservation is in the process of being made");
+  console.log("Body is");
+ console.log(JSON.stringify(request.body, null, 4));
+  console.log("Query is");
+ console.log(request);
 /*
   var body = request.body;
   var acuity = Acuity.basic(config);
