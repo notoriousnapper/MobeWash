@@ -21592,7 +21592,6 @@
 	      React.createElement(
 	        'div',
 	        { style: { padding: "100px", margin: "0 auto", width: "90%", minWidth: "1000px", height: "700px" } },
-	        React.createElement(ServiceInfo, null),
 	        React.createElement(LabelCarousel, { checked: this.state.checked }),
 	        React.createElement(
 	          'div',
@@ -21618,6 +21617,7 @@
 	module.exports = BookingFrame;
 	// {this.state.bookingData.date + this.state.bookingData.hour  }
 	// Line 48, useful alert for JSON
+	//  <ServiceInfo />
 
 /***/ },
 /* 181 */
@@ -26607,7 +26607,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      "div",
-	      { style: { width: "100%", height: "200px" } },
+	      { style: { display: "block", margin: "0 auto", padding: "10px 20px", width: "50%", height: "120px", borderStyle: "solid", borderColor: "grey", borderWidth: "5px" } },
 	      React.createElement(
 	        "div",
 	        { style: { borderColor: "grey" } },
@@ -26616,7 +26616,7 @@
 	          { style: { fontWeight: "bold", fontSize: "20", padding: "0", margin: "0" } },
 	          " MobePlus(Corporate) "
 	        ),
-	        "55 Minutes",
+	        "55 Minutes @ $24",
 	        React.createElement("br", null),
 	        "The Full Exterior Car Wash Service",
 	        React.createElement("br", null),
@@ -39109,7 +39109,7 @@
 	    // Try to pass selected date, and checked information to Time Parent
 	    return React.createElement(
 	      'div',
-	      { className: 'form form_one' },
+	      { className: 'form form_one', style: { margin: "0 auto" } },
 	      React.createElement(CorporateCalendar, { checked: this.state.checked, parentFn: this.updateDateYear }),
 	      React.createElement(TimeSlot, { className: 'timeslot', parentFn: this.updateHour })
 	    );
@@ -39195,7 +39195,7 @@
 	      borderStyle: "solid",
 	      borderRadius: "5px",
 	      height: "30px",
-	      width: "300px"
+	      width: "100px"
 	    };
 	    var times = ["9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm"];
 	    var self = this.revealInfoBox;
@@ -39240,7 +39240,7 @@
 	      ),
 	      React.createElement(
 	        'table',
-	        { style: { border: "1px solid black", borderColor: "black", width: "500px" } },
+	        { style: { border: "1px solid black", borderColor: "black", width: "300px" } },
 	        React.createElement(
 	          'tbody',
 	          null,
@@ -39392,17 +39392,17 @@
 	      borderColor: "black", color: "white" };
 	    var chosenStyle = {
 	      height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-	      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: '#7A7A7A',
+	      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#7A7A7A',
 	      borderColor: "black", color: '#ADADAB'
 	    };
 	    var hoverStyle = {
 	      height: '40px', width: '100px', textAlign: 'center',
-	      paddingLeft: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: '#7A7A7A',
+	      paddingLeft: '4px', fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#7A7A7A',
 	      borderColor: "black", color: '#ADADAB', padding: "0", margin: "0"
 	    };
 	    var defaultStyle = {
 	      height: '40px', width: '100px', textAlign: 'right', verticalAlign: 'top',
-	      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: 'white',
+	      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '18px', backgroundColor: 'white',
 	      borderColor: "black", color: '#ADADAB', padding: '0', margin: '0'
 	    };
 
@@ -39585,7 +39585,7 @@
 	          React.createElement(
 	            'th',
 	            { style: { minWidth: "20px", padding: "20px 10px", borderColor: "black", borderTopWidth: "0", textAlign: "center",
-	                backgroundColor: "#5EA6E5", color: "white", fontSize: "14px" },
+	                backgroundColor: "#5EA6E5", color: "white", fontSize: "16px" },
 	              colSpan: '7' },
 	            React.createElement(
 	              'button',
@@ -39825,7 +39825,7 @@
 	    temp = currentYear.toString().substr(2, 3);
 	    arr.push(temp);
 	  }
-	  alert(arr);
+	  // alert(arr);
 	  return arr;
 	}
 	var yearExp = genYears();

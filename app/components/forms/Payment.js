@@ -17,7 +17,7 @@ function genYears(){
     temp = currentYear.toString().substr(2,3);
     arr.push(temp);
   }
-  alert(arr);
+  // alert(arr);
   return arr;
 }
 var yearExp = genYears();

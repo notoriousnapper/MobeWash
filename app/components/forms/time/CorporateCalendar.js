@@ -129,17 +129,17 @@ var CorporateCalendar = React.createClass({
       borderColor:"black", color: "white"};
       var chosenStyle={
         height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica',  fontSize: '12px', backgroundColor: '#7A7A7A',
+        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica',  fontSize: '14px', backgroundColor: '#7A7A7A',
         borderColor:"black", color: '#ADADAB'
       };
       var hoverStyle={
         height: '40px', width: '100px', textAlign: 'center',
-        paddingLeft: '4px',  fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: '#7A7A7A',
+        paddingLeft: '4px',  fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#7A7A7A',
         borderColor:"black", color: '#ADADAB', padding: "0", margin: "0"
       };
       var defaultStyle={
         height: '40px', width: '100px', textAlign: 'right', verticalAlign: 'top',
-        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: 'white',
+        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '18px', backgroundColor: 'white',
         borderColor:"black", color: '#ADADAB' , padding: '0', margin: '0'
       };
 
@@ -256,7 +256,7 @@ var CorporateCalendar = React.createClass({
       return (<div style={{padding: "10px 20px 10px 20px", backgroundColor:"#FBFDFF"}}>
       <table className="corp-calendar" style={{width:"100%", borderWidth: "0 1px 1px 1px", borderColor: "black"}}>
         <tr> <th style={{minWidth: "20px", padding:"20px 10px", borderColor:"black", borderTopWidth:"0", textAlign:"center",
-        backgroundColor:"#5EA6E5", color: "white", fontSize: "14px"}}
+        backgroundColor:"#5EA6E5", color: "white", fontSize: "16px"}}
           colSpan="7">
           <button style={{float:"left", width: "100px", padding: "10px 20px 10px 20px"}}
            onClick={this.prevCalendar}> Previous

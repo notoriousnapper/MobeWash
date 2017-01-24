@@ -83,7 +83,6 @@ var BookingFrame = React.createClass({
         return(
                     <div style={{display: "block", margin: "auto", backgroundColor:"white", height:"400px", width: "100%", padding: "0px"}}>
                 		<div style={{padding:"100px", margin: "0 auto", width: "90%",minWidth: "1000px", height: "700px"}}>
-                       <ServiceInfo />
                       <LabelCarousel checked={this.state.checked}/>
                       <div style={{display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center"}} >
                         <Time update={this.updateBookingData}/>
@@ -103,3 +102,4 @@ var BookingFrame = React.createClass({
 module.exports = BookingFrame;
             // {this.state.bookingData.date + this.state.bookingData.hour  }
             // Line 48, useful alert for JSON
+                        //  <ServiceInfo />
