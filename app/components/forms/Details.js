@@ -51,6 +51,9 @@ return (
                 <input className="full" type="text" id="input" placeholder="Last 4 Digits of License Plate" name="license"/>
               </div>
               <div id="input_container">
+                <input className="full" type="text" id="input" placeholder="Extra location information i.e. parking level" name="extrainfo"/>
+              </div>
+              <div id="input_container">
                 <input className="full" type="submit" id="input" placeholder="Submit" />
               </div>
           </div>

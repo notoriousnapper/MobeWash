@@ -60,8 +60,8 @@ var TimeSlot = React.createClass({
     };
     var buttonStyle = {
       margin: "auto",
-      backgroundColor:"#5CB85C",
-      borderColor:"#5CB85C",
+      backgroundColor:"#00B2EE",
+      borderColor:"#00B2EE",
       borderStyle: "solid",
       borderRadius:"5px",
       height: "30px",
