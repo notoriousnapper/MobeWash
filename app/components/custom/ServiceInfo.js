@@ -3,18 +3,27 @@ var Hover = require('../custom/Hover');
 var $ = require('jquery');
 var FontAwesome = require('react-fontawesome');
 var ServiceInfo = React.createClass({
+  getInitialState: function(){
+    return {
+      ctr: 0
+    };
+  },
+  revealOnce: function(){
+    if(this.state.ctr==0) this.props.magic();
+    this.setState({ctr: this.state.ctr + 1});
+  },
   optionClick1: function(){
     $('.option1').addClass('selected');
     $('.option2').removeClass('selected');
     $('.masteropt').css("height", "100%");
-    this.props.magic();
+    this.revealOnce();
   },
   optionClick2: function(){
     $('.option2').addClass('selected');
     $('.option1').removeClass('selected');
     $('.masteropt').css("height", "100%");
-    this.props.magic();
-    this.props.priceChange(3000); 
+    this.props.priceChange(3000);
+    this.revealOnce();
   },
   render:function(){
     return (

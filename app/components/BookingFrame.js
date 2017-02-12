@@ -25,7 +25,7 @@ var BookingFrame = React.createClass({
         },
         updatePrice: function(newPrice){
           this.setState({
-            checked: this.state.checked,
+            checked: false,
             form: this.state.form,
             price: newPrice,
             bookingData: this.state.bookingData
