@@ -52,7 +52,7 @@ var Payment = React.createClass({
       console.log("Invalid code entered");
     }
     // alert($('#finalPrice').val());
-    alert(this.state.finalPrice);
+    // alert(this.state.finalPrice);
   },
   revealCoupon: function(){
     $('#couponLine').show();
@@ -162,7 +162,7 @@ componentDidMount: function(){
       else{
         var token = res.id;
         $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-        alert(token);
+        // alert(token);
         //Submit the form;
         $form.get(0).submit();
       }
@@ -175,7 +175,7 @@ componentDidMount: function(){
 },
 
 render: function(){
-    alert(this.state.price);
+    // alert(this.state.price);
 
   // Generating expiration months
   var monthOptions = monthExp.map(function(item){

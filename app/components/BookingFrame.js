@@ -91,7 +91,7 @@ var BookingFrame = React.createClass({
         callmagic: function(){
           this.reveal();
           console.log("checked");
-          alert(JSON.stringify(this.state, null, 4));
+          // alert(JSON.stringify(this.state, null, 4));
         },
         render: function(){
         return(
