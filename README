@@ -10,6 +10,10 @@ https://developers.acuityscheduling.com/reference#get-appointments-id
 THEY ARE SO STUPID
 
 
+4. Changing the price is in ServiceInfo.js -- for the truck/ SUV option.
+   It is currently manually set to 3000, or 30 dollars
+
+
 
 Stripe API Keys
 -- is for
@@ -19,3 +23,7 @@ Layout:
 
 
   Packages - ReactScriptLoader - helps so things that only appear on one page, loads there.
+
+
+API's
+/booking - Stripe Call

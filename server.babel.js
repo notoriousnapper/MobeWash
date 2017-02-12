@@ -134,10 +134,9 @@ app.get('/acuity', function (request, response) {
   console.log("Getting Data");
   var body = request.body;
   console.log(JSON.stringify(body,null, 4));
-
+  
   var appointmentTypeID = 2048071; // Corporate // 1800725;  // MobePlus
   var daybreakCalID = 874123;
-
   var options = {
     method: 'GET',
     body: {

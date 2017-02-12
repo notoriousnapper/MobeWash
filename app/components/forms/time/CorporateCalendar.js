@@ -181,7 +181,7 @@ var CorporateCalendar = React.createClass({
               // rowStyle = chosenStyle;
               rowStyle = hoverStyle;
               company  = companyData[k];
-              content  = <Hover ><div style={{textAlign:'right'}}>{inputDay}</div> {company.name}  <br/>  {company.range} </Hover>;
+              content  = <Hover ><div style={{textAlign:'right', marginRight: "10px"}}>{inputDay}</div> {company.name}  <br/>  {company.range} </Hover>;
               clicker  = function(){  self.selectDate(inputDay); // Signal to parentFn
                }
               break;
@@ -198,7 +198,7 @@ var CorporateCalendar = React.createClass({
           console.log("hrm");
           day = 0; // Counts as 0, essentially, so when updated becomes 1
         }
-        return <th onClick={clicker}style={rowStyle} ><div  style={{height:'70px',minHeight: '50px', width:'100px'}}> {content} </div></th>
+        return <th onClick={clicker}style={rowStyle} ><div  style={{height:'70px',minHeight: '50px', width:'100%'}}> {content} </div></th>
       }
       comp.push();
       // Week Day Labels

@@ -6,17 +6,19 @@ var ServiceInfo = React.createClass({
   optionClick1: function(){
     $('.option1').addClass('selected');
     $('.option2').removeClass('selected');
-    $('form1').css("display", "block");
-
+    $('.masteropt').css("height", "100%");
+    this.props.magic();
   },
   optionClick2: function(){
     $('.option2').addClass('selected');
     $('.option1').removeClass('selected');
+    $('.masteropt').css("height", "100%");
     this.props.magic();
+    this.props.priceChange(3000); 
   },
   render:function(){
     return (
-                <div className="form" style={{padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor:"#FBFDFF"}} >
+                <div className="form masteropt" style={{padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor:"#FBFDFF"}} >
 
 
                 <div> I would Like to schedule... </div>

@@ -35,11 +35,29 @@ var Payment = React.createClass({
       month: "01",
       year: "01",
       monthVal: 0,
-      yearVal: 2017
+      yearVal: 2017,
+      price: 0,
+      finalPrice: 0
     };
   },
-
-
+  verifyCoupon: function(){
+    if($('#couponCode').val()=="MobeWelcome"){
+      console.log("Correct coupon entered");
+      var temp = this.state.price / 2;
+      this.setState({
+        finalPrice: temp
+      });
+    }
+    else{
+      console.log("Invalid code entered");
+    }
+    // alert($('#finalPrice').val());
+    alert(this.state.finalPrice);
+  },
+  revealCoupon: function(){
+    $('#couponLine').show();
+    $('#couponButton').hide();
+  },
   selectMonth: function(event){
     var str = event.target.value;
     var val = 0;
@@ -94,6 +112,23 @@ var Payment = React.createClass({
 
 // having form with className form two works well, but not in design
 componentDidMount: function(){
+  this.setState(
+    {
+      price: this.props.price,
+      finalPrice: this.props.price
+    }
+  );
+  $("#couponLine").hide();
+  $("#checkout-form").keypress(function(e){
+    if (e.which == 13) {
+       var tagName = e.target.tagName.toLowerCase();
+       if (tagName !== "textarea") {
+           return false;
+           }
+       }
+  });
+
+
   console.log('Payment form loaded');
   var $form = $('#checkout-form');
   console.log($form);
@@ -140,6 +175,7 @@ componentDidMount: function(){
 },
 
 render: function(){
+    alert(this.state.price);
 
   // Generating expiration months
   var monthOptions = monthExp.map(function(item){
@@ -157,8 +193,20 @@ return (
   <div>
   <div id="charge-error"></div>
 
+
   <form  id="checkout-form" className="form form_three" style={{backgroundColor: "#D4E1E7", display:"none", margin: "auto", fontFamily: "Helvetica",
    height: "400px", padding: "10px 20% 10px 20%"}} method="POST" action="/booking">
+          <div>
+            <button id="couponButton" type="button" onClick={this.revealCoupon} style={{backgroundColor:"#5CA6E8", color:"white", borderRadius:"5px",
+            borderColor:"#4E8DC6", padding: "3px 20px"}}> Redeem Coupon </button>
+            <div id="couponLine">
+              <div> Coupon </div>
+              <input  id="couponCode" text="really"/>
+              <button id="applyButton" type="button" onClick={this.verifyCoupon}> Apply </button>
+            </div>
+          </div>
+
+
           <div className="fire" id="form_container">
             <div id="input_container">
               <input className="card-number full" type="text" id="input" placeholder="Card number"  />
@@ -195,10 +243,8 @@ return (
                   <h1 className="date-label"> Month </h1>
                   <h1 className="date-label"> Year </h1>
             </div>
-
-
   <input type="submit" style={{centerAlign: "center"}} value="Submit"/>
-
+  <input id="#finalPrice" type="hidden" value={this.state.finalPrice} />
             </div>
   </form>
   </div>
