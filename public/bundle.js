@@ -39982,7 +39982,6 @@
 	    } else {
 	      val = parseInt(str);
 	    }
-	    alert(val + 1);
 	    this.setState({
 	      month: event.target.value,
 	      monthVal: val
@@ -40038,16 +40037,22 @@
 	        }
 	      }
 	    });
+	  },
 
+	  formSubmit: function formSubmit() {
 	    console.log('Payment form loaded');
 	    var $form = $('#checkout-form');
 	    console.log($form);
-
 	    // No Resubmits after success
 	    var month = this.state.monthVal;
 	    var year = this.state.yearVal;
+	    // alert($form);
+
+
 	    $form.submit(function (e) {
 	      // Redefining the submit
+	      // alert(month);
+	      // alert(year);
 	      // e.stopImmediatePropagation();
 	      // e.preventDefault(e);
 	      // alert("Stop!");
@@ -40078,9 +40083,14 @@
 	        }
 	      }
 	    });
+
+	    $form.submit();
 	  },
 
 	  render: function render() {
+
+	    var buttonStyle = { backgroundColor: "#5CA6E9", color: "white", borderRadius: "5px",
+	      borderColor: "#4E8DC6", padding: "3px 20px", marginBottom: "20px" };
 	    // alert(this.state.price);
 
 	    // Generating expiration months
@@ -40118,8 +40128,7 @@
 	          null,
 	          React.createElement(
 	            'button',
-	            { id: 'couponButton', type: 'button', onClick: this.revealCoupon, style: { backgroundColor: "#5CA6E8", color: "white", borderRadius: "5px",
-	                borderColor: "#4E8DC6", padding: "3px 20px" } },
+	            { id: 'couponButton', style: buttonStyle, type: 'button', onClick: this.revealCoupon },
 	            ' Redeem Coupon '
 	          ),
 	          React.createElement(
@@ -40133,7 +40142,7 @@
 	            React.createElement('input', { id: 'couponCode', text: 'really' }),
 	            React.createElement(
 	              'button',
-	              { id: 'applyButton', type: 'button', onClick: this.verifyCoupon },
+	              { id: 'applyButton', style: buttonStyle, type: 'button', onClick: this.verifyCoupon },
 	              ' Apply '
 	            )
 	          )
@@ -40197,7 +40206,7 @@
 	              ' Year '
 	            )
 	          ),
-	          React.createElement('input', { type: 'submit', style: { centerAlign: "center" }, value: 'Submit' }),
+	          React.createElement('input', { type: 'button', onClick: this.formSubmit, style: { centerAlign: "center" }, value: 'Submit' }),
 	          React.createElement('input', { id: '#finalPrice', type: 'hidden', name: 'price', value: this.state.finalPrice })
 	        )
 	      )
