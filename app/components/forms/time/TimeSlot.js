@@ -65,7 +65,7 @@ var TimeSlot = React.createClass({
       borderStyle: "solid",
       borderRadius:"5px",
       height: "30px",
-      width: "100px"
+      width: "60%"
     };
     var times = [
       "9:00 am",
@@ -94,9 +94,9 @@ var TimeSlot = React.createClass({
     // list.map(function(item){
     //   // console.log(JSON.stringify(item, null, 4));
     // })
-    return <div className="timeslot" style={{display:"none", height: "500px"}}>
+    return <div className="timeslot" style={{display:"none", height: "500px", width:"500px", margin: "0 auto"}}>
     <div style={{backgroundColor:"white", display:"flex"}}> Please Select a TimeSlot </div>
-      <table style={{ border:"1px solid black", borderColor:"black", width:"300px"}}>
+      <table style={{ border:"1px solid black", borderColor:"black", width:"100%"}}>
         <tbody>
         {list}
         </tbody>

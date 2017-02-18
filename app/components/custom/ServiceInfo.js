@@ -3,9 +3,15 @@ var Hover = require('../custom/Hover');
 var $ = require('jquery');
 var FontAwesome = require('react-fontawesome');
 var ServiceInfo = React.createClass({
+  componentWillReceiveProps: function (nextProps) {
+    this.setState({
+      currentForm: nextProps
+    });
+  },
   getInitialState: function(){
     return {
-      ctr: 0
+      ctr: 0,
+      currentForm: this.props.currentForm
     };
   },
   revealOnce: function(){
@@ -13,17 +19,22 @@ var ServiceInfo = React.createClass({
     this.setState({ctr: this.state.ctr + 1});
   },
   optionClick1: function(){
+    if(this.props.currentForm== 1){
     $('.option1').addClass('selected');
     $('.option2').removeClass('selected');
     $('.masteropt').css("height", "100%");
+    this.props.priceChange(2400);
     this.revealOnce();
+    }
   },
   optionClick2: function(){
+    if(this.props.currentForm== 1){
     $('.option2').addClass('selected');
     $('.option1').removeClass('selected');
     $('.masteropt').css("height", "100%");
     this.props.priceChange(3000);
     this.revealOnce();
+    }
   },
   render:function(){
     return (

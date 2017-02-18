@@ -99,7 +99,7 @@ var BookingFrame = React.createClass({
                 		<div style={{padding:"100px", margin: "0 auto", width: "90%",minWidth: "1000px", height: "700px"}}>
                       <LabelCarousel checked={this.state.checked}/>
                       <div style={{display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center"}} >
-                        <ServiceInfo magic={this.revealCal} priceChange={this.updatePrice} />
+                        <ServiceInfo magic={this.revealCal} priceChange={this.updatePrice} currentForm={this.state.form} />
                         <Time update={this.updateBookingData}/>
                         <Details time={this.state.bookingData.date + this.state.bookingData.hour }/>
                         <Payment price={this.state.price} />

@@ -40,10 +40,16 @@ var Payment = React.createClass({
       finalPrice: 0
     };
   },
+  componentWillReceiveProps: function (nextProps) {
+    this.setState({
+      price: nextProps.price,
+      finalPrice: nextProps.price
+    });
+},
   verifyCoupon: function(){
     if($('#couponCode').val()=="MobeWelcome"){
       console.log("Correct coupon entered");
-      var temp = this.state.price / 2;
+      var temp = this.state.price / 2; // Prevents from continuous halving
       this.setState({
         finalPrice: temp
       });
