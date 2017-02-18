@@ -94,6 +94,8 @@ app.post('/booking', function(req, res){
 
 
    var stripeToken = req.body.stripeToken;
+   console.log("A Booking Process is in the works");
+   console.log("Amount Charged: " + JSON.stringify(req.body, null, 4));
    console.log("Stripe Token is: " + stripeToken);
 
   /*
@@ -114,7 +116,11 @@ app.post('/booking', function(req, res){
      }
    });
    */
-   // Charging as well
+   // Charging Action Is Here
+   /*
+
+
+
     var charge = stripe.charges.create({
         card: stripeToken,
         currency: 'usd',
@@ -127,6 +133,7 @@ app.post('/booking', function(req, res){
             res.send(204);
         }
     });
+    */
 });
 
 
@@ -134,7 +141,7 @@ app.get('/acuity', function (request, response) {
   console.log("Getting Data");
   var body = request.body;
   console.log(JSON.stringify(body,null, 4));
-  
+
   var appointmentTypeID = 2048071; // Corporate // 1800725;  // MobePlus
   var daybreakCalID = 874123;
   var options = {

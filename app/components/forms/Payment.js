@@ -73,6 +73,7 @@ var Payment = React.createClass({
     else{
       val = parseInt(str);
     }
+    alert(val + 1);
     this.setState({
       month: event.target.value,
       monthVal: val
@@ -140,22 +141,22 @@ componentDidMount: function(){
   console.log($form);
 
   // No Resubmits after success
+  var month = this.state.monthVal;
+  var year = this.state.yearVal;
   $form.submit(function(e){ // Redefining the submit
     // e.stopImmediatePropagation();
     // e.preventDefault(e);
     // alert("Stop!");
     // alert(JSON.stringify($form.find('button'), null, 4));
     // $form.find('button').prop('disabled', true);
-
-
     console.log("Payment Processing");
     $form.find('button').prop('disabled', true);
     Stripe.card.createToken({
       number: $('.card-number').val(),
       cvc: $('.card-cvc').val(),
-      exp_month: this.state.monthVal,
-      exp_year:  this.state.yearVal
-      // address_zip: $('.address_zip').val()
+      exp_month: month,
+      exp_year: year,
+      address_zip: $('.address_zip').val()
     }, stripeResponseHandler);
     return false;
 
@@ -168,7 +169,7 @@ componentDidMount: function(){
       else{
         var token = res.id;
         $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-        // alert(token);
+        alert(token);
         //Submit the form;
         $form.get(0).submit();
       }
@@ -250,7 +251,7 @@ return (
                   <h1 className="date-label"> Year </h1>
             </div>
   <input type="submit" style={{centerAlign: "center"}} value="Submit"/>
-  <input id="#finalPrice" type="hidden" value={this.state.finalPrice} />
+  <input id="#finalPrice" type="hidden" name="price" value={this.state.finalPrice} />
             </div>
   </form>
   </div>

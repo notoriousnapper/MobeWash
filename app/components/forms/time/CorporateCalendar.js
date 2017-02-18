@@ -33,7 +33,6 @@ var companyData =
     range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
   },
 ]
-
 // So you don't mess up the year or month
 //
 var dt = new Date();

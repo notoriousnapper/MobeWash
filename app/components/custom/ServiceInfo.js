@@ -6,6 +6,7 @@ var ServiceInfo = React.createClass({
   componentWillReceiveProps: function (nextProps) {
     this.setState({
       currentForm: nextProps
+
     });
   },
   getInitialState: function(){
@@ -25,6 +26,7 @@ var ServiceInfo = React.createClass({
     $('.masteropt').css("height", "100%");
     this.props.priceChange(2400);
     this.revealOnce();
+    // $('body').scrollTo('#componentTime'); // Scroll screen to target element
     }
   },
   optionClick2: function(){
@@ -33,6 +35,7 @@ var ServiceInfo = React.createClass({
     $('.option1').removeClass('selected');
     $('.masteropt').css("height", "100%");
     this.props.priceChange(3000);
+    // $('body').scrollTo('#componentTime'); // Scroll screen to target element
     this.revealOnce();
     }
   },

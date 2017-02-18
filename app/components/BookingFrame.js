@@ -5,6 +5,7 @@ var ServiceInfo = require('../components/custom/ServiceInfo');
 var Details = require('../components/forms/Details');
 var Time = require('../components/forms/time/Time');
 var Payment = require('../components/forms/Payment');
+var $ = require('jquery');
 
 var BookingFrame = React.createClass({
         getInitialState: function(){
@@ -50,7 +51,6 @@ var BookingFrame = React.createClass({
             break;
             case 3:
             break;
-
             default: break;
           }
           // alert("Updated Data: " + JSON.stringify(this.state.bookingData, null, 4));
@@ -59,6 +59,9 @@ var BookingFrame = React.createClass({
             var m = document.getElementsByClassName("form_one")[0]; // Works because named class within component
             console.log("first form is" + m);
           m.style.display = "block";
+      $('html, body').animate({
+        scrollTop: $('#componentTime').offset().top
+      }, 1000); // Change Responsiveness
         },
         reveal: function(){
           if (this.state.form==1){
@@ -88,7 +91,7 @@ var BookingFrame = React.createClass({
           }
           else {}
         },
-        callmagic: function(){
+        callMagic: function(){
           this.reveal();
           console.log("checked");
           // alert(JSON.stringify(this.state, null, 4));
@@ -100,13 +103,15 @@ var BookingFrame = React.createClass({
                       <LabelCarousel checked={this.state.checked}/>
                       <div style={{display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center"}} >
                         <ServiceInfo magic={this.revealCal} priceChange={this.updatePrice} currentForm={this.state.form} />
-                        <Time update={this.updateBookingData}/>
-                        <Details time={this.state.bookingData.date + this.state.bookingData.hour }/>
-                        <Payment price={this.state.price} />
+                        <Time update={this.updateBookingData} nextForm={this.callMagic}/>
+                        <Details time={this.state.bookingData.date + this.state.bookingData.hour }
+                          nextForm={this.callMagic}/>
+                        <Payment price={this.state.price}
+                          nextForm={this.callMagic}/>
                             <button style={{display: "block", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
                             padding: "10px 20px 10px 20px", borderRadius:"10px",
                             borderStyle: "none"}}
-                             onClick={this.callmagic}> {'Continue >'} </button>
+                             onClick={this.callMagic}> {'Continue >'} </button>
                     </div>
 
                     </div>

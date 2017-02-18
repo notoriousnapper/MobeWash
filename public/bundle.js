@@ -21509,6 +21509,7 @@
 	var Details = __webpack_require__(242);
 	var Time = __webpack_require__(335);
 	var Payment = __webpack_require__(341);
+	var $ = __webpack_require__(239);
 
 	var BookingFrame = React.createClass({
 	  displayName: 'BookingFrame',
@@ -21558,7 +21559,6 @@
 	        break;
 	      case 3:
 	        break;
-
 	      default:
 	        break;
 	    }
@@ -21568,6 +21568,9 @@
 	    var m = document.getElementsByClassName("form_one")[0]; // Works because named class within component
 	    console.log("first form is" + m);
 	    m.style.display = "block";
+	    $('html, body').animate({
+	      scrollTop: $('#componentTime').offset().top
+	    }, 1000); // Change Responsiveness
 	  },
 	  reveal: function reveal() {
 	    if (this.state.form == 1) {
@@ -21594,7 +21597,7 @@
 	      });
 	    } else {}
 	  },
-	  callmagic: function callmagic() {
+	  callMagic: function callMagic() {
 	    this.reveal();
 	    console.log("checked");
 	    // alert(JSON.stringify(this.state, null, 4));
@@ -21611,15 +21614,17 @@
 	          'div',
 	          { style: { display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center" } },
 	          React.createElement(ServiceInfo, { magic: this.revealCal, priceChange: this.updatePrice, currentForm: this.state.form }),
-	          React.createElement(Time, { update: this.updateBookingData }),
-	          React.createElement(Details, { time: this.state.bookingData.date + this.state.bookingData.hour }),
-	          React.createElement(Payment, { price: this.state.price }),
+	          React.createElement(Time, { update: this.updateBookingData, nextForm: this.callMagic }),
+	          React.createElement(Details, { time: this.state.bookingData.date + this.state.bookingData.hour,
+	            nextForm: this.callMagic }),
+	          React.createElement(Payment, { price: this.state.price,
+	            nextForm: this.callMagic }),
 	          React.createElement(
 	            'button',
 	            { style: { display: "block", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin: "0 auto",
 	                padding: "10px 20px 10px 20px", borderRadius: "10px",
 	                borderStyle: "none" },
-	              onClick: this.callmagic },
+	              onClick: this.callMagic },
 	            ' ',
 	            'Continue >',
 	            ' '
@@ -26624,6 +26629,7 @@
 	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 	    this.setState({
 	      currentForm: nextProps
+
 	    });
 	  },
 	  getInitialState: function getInitialState() {
@@ -26643,6 +26649,7 @@
 	      $('.masteropt').css("height", "100%");
 	      this.props.priceChange(2400);
 	      this.revealOnce();
+	      // $('body').scrollTo('#componentTime'); // Scroll screen to target element
 	    }
 	  },
 	  optionClick2: function optionClick2() {
@@ -26651,6 +26658,7 @@
 	      $('.option1').removeClass('selected');
 	      $('.masteropt').css("height", "100%");
 	      this.props.priceChange(3000);
+	      // $('body').scrollTo('#componentTime'); // Scroll screen to target element
 	      this.revealOnce();
 	    }
 	  },
@@ -37182,11 +37190,11 @@
 	  render: function render() {
 	    return React.createElement(
 	      'form',
-	      { className: 'form form_two', style: { backgroundColor: "white", display: "none", margin: "auto", fontFamily: "Helvetica",
-	          height: "400px", padding: "10px 20% 10px 20%" }, method: 'post', action: '/acuity' },
+	      { className: 'form form_two', style: { backgroundColor: "white", display: "none", margin: "0 auto", fontFamily: "Helvetica",
+	          height: "400px", width: "100%", padding: "10px 20% 10px 20%" }, method: 'post', action: '/acuity' },
 	      React.createElement(
 	        'div',
-	        { style: { padding: "20px 20px", backgroundColor: "#FBFDFF", margin: "0 auto" } },
+	        { style: { padding: "20px 20px", width: "100%", backgroundColor: "#FBFDFF", margin: "0 auto" } },
 	        React.createElement('input', { className: 'hideaway', id: 'hiddenTime', type: 'hidden', name: 'time', value: this.props.time }),
 	        React.createElement(
 	          'div',
@@ -39243,6 +39251,7 @@
 	var ReactRouter = __webpack_require__(181);
 	var TimeSlot = __webpack_require__(336);
 	var CorporateCalendar = __webpack_require__(337);
+	var $ = __webpack_require__(239);
 
 	var Time = React.createClass({
 	  displayName: 'Time',
@@ -39254,6 +39263,9 @@
 	  updateDateYear: function updateDateYear(data) {
 	    var m = document.getElementsByClassName("timeslot")[0];
 	    m.style.display = "block";
+	    $('html, body').animate({
+	      scrollTop: $('.timeslot').offset().top
+	    }, 1000); // Change Responsiveness
 	    this.props.update(1, data); // Calling parent passed in function
 	  },
 	  updateHour: function updateHour(data) {
@@ -39265,9 +39277,9 @@
 	    // Try to pass selected date, and checked information to Time Parent
 	    return React.createElement(
 	      'div',
-	      { id: 'time', className: 'form form_one', style: { margin: "0 auto", display: "none" } },
-	      React.createElement(CorporateCalendar, { checked: this.state.checked, parentFn: this.updateDateYear }),
-	      React.createElement(TimeSlot, { className: 'timeslot', parentFn: this.updateHour })
+	      { id: 'componentTime', className: 'form form_one', style: { margin: "0 auto", display: "none" } },
+	      React.createElement(CorporateCalendar, { id: 'componentCalendar', className: 'calendar', checked: this.state.checked, parentFn: this.updateDateYear }),
+	      React.createElement(TimeSlot, { nextForm: this.props.nextForm, id: 'componentTimeSlot', className: 'timeslot', parentFn: this.updateHour })
 	    );
 	  }
 	});
@@ -39452,7 +39464,6 @@
 	  location: "0000 San Francisco",
 	  range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
 	}];
-
 	// So you don't mess up the year or month
 	//
 	var dt = new Date();
@@ -39971,6 +39982,7 @@
 	    } else {
 	      val = parseInt(str);
 	    }
+	    alert(val + 1);
 	    this.setState({
 	      month: event.target.value,
 	      monthVal: val
@@ -40032,6 +40044,8 @@
 	    console.log($form);
 
 	    // No Resubmits after success
+	    var month = this.state.monthVal;
+	    var year = this.state.yearVal;
 	    $form.submit(function (e) {
 	      // Redefining the submit
 	      // e.stopImmediatePropagation();
@@ -40039,16 +40053,14 @@
 	      // alert("Stop!");
 	      // alert(JSON.stringify($form.find('button'), null, 4));
 	      // $form.find('button').prop('disabled', true);
-
-
 	      console.log("Payment Processing");
 	      $form.find('button').prop('disabled', true);
 	      Stripe.card.createToken({
 	        number: $('.card-number').val(),
 	        cvc: $('.card-cvc').val(),
-	        exp_month: this.state.monthVal,
-	        exp_year: this.state.yearVal
-	        // address_zip: $('.address_zip').val()
+	        exp_month: month,
+	        exp_year: year,
+	        address_zip: $('.address_zip').val()
 	      }, stripeResponseHandler);
 	      return false;
 
@@ -40060,7 +40072,7 @@
 	        } else {
 	          var token = res.id;
 	          $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-	          // alert(token);
+	          alert(token);
 	          //Submit the form;
 	          $form.get(0).submit();
 	        }
@@ -40186,7 +40198,7 @@
 	            )
 	          ),
 	          React.createElement('input', { type: 'submit', style: { centerAlign: "center" }, value: 'Submit' }),
-	          React.createElement('input', { id: '#finalPrice', type: 'hidden', value: this.state.finalPrice })
+	          React.createElement('input', { id: '#finalPrice', type: 'hidden', name: 'price', value: this.state.finalPrice })
 	        )
 	      )
 	    );
@@ -40704,7 +40716,7 @@
 
 
 	// module
-	exports.push([module.id, ".half{\n  width: 50% !important;\n  border-width: 0;\n  /*border-right-width: 1px;*/\n  border-width: 0px 1px 0px 0px !important;\n  border-color: #E0E0E0 !important;\n  border-style: solid !important;\n}\n.full{\n  width: 100% !important;\n  border-right-width: 1px;\n}\n\n.fire input{\n  border: none;\n  padding-left: 30px;\n  border-width: 1px;\n  border-width: 1px;\n  /*border-color: #7CAADD !important;*/\n  height: 45px !important;\n  /*border-style: solid;*/\n}\n.fire input active{\n  /*background-color:red;*/\n  border: none;\n  border-style: solid;\n  border-color: #7CAADD !important;\n  -moz-box-shadow:    0px 0px 15px 16px #7CAADD;\n  -webkit-box-shadow: 0px 0px 15px 16px #7CAADD;\n  box-shadow:         0px 0px 15px 16px #7CAADD;\n}\n\n.backgroundForm{\n  background-color: blue;\n  width: 1000px;\n  margin: 0 auto;\n}\n\n#form_container{\n  padding: 2px 1px;\n  border-color: #DFDFDF!important;\n  border-width: 1px !important;\n  border-radius: 10px !important;\n  border-style: solid;\n  width: 400px;\n  /*height: 1400px;*/\n  background-color: white;\n  overflow: hidden;\n}\n\n#input_container {\n  position:relative; padding:0; margin:0;\n  border-color: #E0E0E0;\n  border-style: solid;\n  border-bottom-width: 1px;\n}\n\n#input {\n  height:20px; margin:0; padding-left: 60px !important;\n  /*box-sizing: border-box;*/\n }\n\n/* Font Awesome Items are just fonts, so font styles apply */\n#input_img { position:absolute;\n  bottom:8px;\n  left:10px;\n  width:10px;\n  font-size: 20px;\n }\n#input_img_half { position:absolute;\n  bottom:8px;\n  left: 52%;\n  width:10px;\n }\n\n::-webkit-input-placeholder { /* Chrome/Opera/Safari */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n::-moz-placeholder { /* Firefox 19+ */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n:-ms-input-placeholder { /* IE 10+ */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n:-moz-placeholder { /* Firefox 18- */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n\n\n/* Dropdown CSS */\n/* -------------------- Page Styles (not required) */\n\n/* -------------------- Select Box Styles: bavotasan.com Method (with special adaptations by ericrasch.com) */\n/* -------------------- Source: http://bavotasan.com/2011/style-select-box-using-only-css/ */\n.styled-select {\n  /*margin: 20px;*/\n   /*background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;*/\n   height: 29px;\n   overflow: hidden;\n   /*width: 100px !important;*/\n   background: white;\n}\n\n.styled-select select {\n   background: white;\n   border: none;\n   font-size: 14px;\n   height: 29px;\n   /*padding: 5px; /* If you add too much padding here, the options won't show in IE */*/\n   width: 40%;\n}\n\n.styled-select.slate {\n   /*background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;*/\n   height: 34px;\n   width: 40%;\n}\n\n.styled-select.slate select {\n   border: 1px solid #ccc;\n   font-size: 16px;\n   height: 34px;\n   /*width: 268px;*/\n   width: 40%;\n}\n\n/* -------------------- Rounded Corners */\n.rounded {\n   -webkit-border-radius: 20px;\n   -moz-border-radius: 20px;\n   border-radius: 20px;\n}\n\n.semi-square {\n   -webkit-border-radius: 5px;\n   -moz-border-radius: 5px;\n   border-radius: 5px;\n}\n\n/* -------------------- Colors: Background */\n.slate   { background-color: #ddd; }\n.green   { background-color: #779126; }\n.blue    { background-color: #3b8ec2; }\n.yellow  { background-color: #eec111; }\n.black   { background-color: #000; }\n\n/* -------------------- Colors: Text */\n.slate select   { color: #000; }\n.green select   { color: #fff; }\n.blue select    { color: #fff; }\n.yellow select  { color: #000; }\n.black select   { color: #fff; }\n\n\n/* -------------------- Select Box Styles: danielneumann.com Method */\n/* -------------------- Source: http://danielneumann.com/blog/how-to-style-dropdown-with-css-only/ */\n#mainselection select {\n   border: 0;\n   color: #EEE;\n   background: transparent;\n   font-size: 20px;\n   font-weight: bold;\n   padding: 2px 10px;\n   width: 378px;\n   *width: 350px;\n   *background: #58B14C;\n   -webkit-appearance: none;\n}\n\n#mainselection {\n   overflow:hidden;\n   width:350px;\n   -moz-border-radius: 9px 9px 9px 9px;\n   -webkit-border-radius: 9px 9px 9px 9px;\n   border-radius: 9px 9px 9px 9px;\n   box-shadow: 1px 1px 11px #330033;\n   background: #58B14C url(\"http://i62.tinypic.com/15xvbd5.png\") no-repeat scroll 319px center;\n}\n\n\n/* -------------------- Select Box Styles: stackoverflow.com Method */\n/* -------------------- Source: http://stackoverflow.com/a/5809186 */\nselect#soflow, select#soflow-color {\n   -webkit-appearance: button;\n   -webkit-border-radius: 2px;\n   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);\n   -webkit-padding-end: 20px;\n   -webkit-padding-start: 2px;\n   -webkit-user-select: none;\n   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);\n   background-position: 97% center;\n   background-repeat: no-repeat;\n   border: 1px solid #AAA;\n   color: #555;\n   font-size: inherit;\n   margin: 20px;\n   overflow: hidden;\n   padding: 5px 10px;\n   text-overflow: ellipsis;\n   white-space: nowrap;\n   width: 300px;\n}\n\nselect#soflow-color {\n   color: #fff;\n   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);\n   background-color: #779126;\n   -webkit-border-radius: 20px;\n   -moz-border-radius: 20px;\n   border-radius: 20px;\n   padding-left: 15px;\n}\n\n\n.date-label{\n  color:#B4A9A9!important;\n  vertical-align: middle;\n   flex:1;\n   font-size:10px;\n   height:18px !important;\n   /*position: absolute;*/\n   /*background-color:black;*/\n   margin: 0;\n   padding: 0;\n}\n", ""]);
+	exports.push([module.id, ".half{\n  width: 50% !important;\n  border-width: 0;\n  /*border-right-width: 1px;*/\n  border-width: 0px 1px 0px 0px !important;\n  border-color: #E0E0E0 !important;\n  border-style: solid !important;\n}\n.full{\n  width: 100% !important;\n  border-right-width: 1px;\n}\n\n.fire input{\n  border: none;\n  padding-left: 30px;\n  border-width: 1px;\n  border-width: 1px;\n  /*border-color: #7CAADD !important;*/\n  height: 45px !important;\n  /*border-style: solid;*/\n}\n.fire input active{\n  /*background-color:red;*/\n  border: none;\n  border-style: solid;\n  border-color: #7CAADD !important;\n  -moz-box-shadow:    0px 0px 15px 16px #7CAADD;\n  -webkit-box-shadow: 0px 0px 15px 16px #7CAADD;\n  box-shadow:         0px 0px 15px 16px #7CAADD;\n}\n\n.backgroundForm{\n  background-color: blue;\n  width: 1000px;\n  margin: 0 auto;\n}\n\n#form_container{\n  padding: 2px 1px;\n  border-color: #DFDFDF!important;\n  border-width: 1px !important;\n  border-radius: 10px !important;\n  border-style: solid;\n  width: 100%;\n  /*height: 1400px;*/\n  background-color: white;\n  overflow: hidden;\n}\n\n#input_container {\n  position:relative; padding:0; margin:0;\n  border-color: #E0E0E0;\n  border-style: solid;\n  border-bottom-width: 1px;\n}\n\n#input {\n  height:20px; margin:0; padding-left: 60px !important;\n  /*box-sizing: border-box;*/\n }\n\n/* Font Awesome Items are just fonts, so font styles apply */\n#input_img { position:absolute;\n  bottom:8px;\n  left:10px;\n  width:10px;\n  font-size: 20px;\n }\n#input_img_half { position:absolute;\n  bottom:8px;\n  left: 52%;\n  width:10px;\n }\n\n::-webkit-input-placeholder { /* Chrome/Opera/Safari */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n::-moz-placeholder { /* Firefox 19+ */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n:-ms-input-placeholder { /* IE 10+ */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n:-moz-placeholder { /* Firefox 18- */\n  /*color: pink;*/\n  padding-left: 0px;\n}\n\n\n/* Dropdown CSS */\n/* -------------------- Page Styles (not required) */\n\n/* -------------------- Select Box Styles: bavotasan.com Method (with special adaptations by ericrasch.com) */\n/* -------------------- Source: http://bavotasan.com/2011/style-select-box-using-only-css/ */\n.styled-select {\n  /*margin: 20px;*/\n   /*background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;*/\n   height: 29px;\n   overflow: hidden;\n   /*width: 100px !important;*/\n   background: white;\n}\n\n.styled-select select {\n   background: white;\n   border: none;\n   font-size: 14px;\n   height: 29px;\n   /*padding: 5px; /* If you add too much padding here, the options won't show in IE */*/\n   width: 40%;\n}\n\n.styled-select.slate {\n   /*background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;*/\n   height: 34px;\n   width: 40%;\n}\n\n.styled-select.slate select {\n   border: 1px solid #ccc;\n   font-size: 16px;\n   height: 34px;\n   /*width: 268px;*/\n   width: 40%;\n}\n\n/* -------------------- Rounded Corners */\n.rounded {\n   -webkit-border-radius: 20px;\n   -moz-border-radius: 20px;\n   border-radius: 20px;\n}\n\n.semi-square {\n   -webkit-border-radius: 5px;\n   -moz-border-radius: 5px;\n   border-radius: 5px;\n}\n\n/* -------------------- Colors: Background */\n.slate   { background-color: #ddd; }\n.green   { background-color: #779126; }\n.blue    { background-color: #3b8ec2; }\n.yellow  { background-color: #eec111; }\n.black   { background-color: #000; }\n\n/* -------------------- Colors: Text */\n.slate select   { color: #000; }\n.green select   { color: #fff; }\n.blue select    { color: #fff; }\n.yellow select  { color: #000; }\n.black select   { color: #fff; }\n\n\n/* -------------------- Select Box Styles: danielneumann.com Method */\n/* -------------------- Source: http://danielneumann.com/blog/how-to-style-dropdown-with-css-only/ */\n#mainselection select {\n   border: 0;\n   color: #EEE;\n   background: transparent;\n   font-size: 20px;\n   font-weight: bold;\n   padding: 2px 10px;\n   width: 378px;\n   *width: 350px;\n   *background: #58B14C;\n   -webkit-appearance: none;\n}\n\n#mainselection {\n   overflow:hidden;\n   width:350px;\n   -moz-border-radius: 9px 9px 9px 9px;\n   -webkit-border-radius: 9px 9px 9px 9px;\n   border-radius: 9px 9px 9px 9px;\n   box-shadow: 1px 1px 11px #330033;\n   background: #58B14C url(\"http://i62.tinypic.com/15xvbd5.png\") no-repeat scroll 319px center;\n}\n\n\n/* -------------------- Select Box Styles: stackoverflow.com Method */\n/* -------------------- Source: http://stackoverflow.com/a/5809186 */\nselect#soflow, select#soflow-color {\n   -webkit-appearance: button;\n   -webkit-border-radius: 2px;\n   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);\n   -webkit-padding-end: 20px;\n   -webkit-padding-start: 2px;\n   -webkit-user-select: none;\n   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);\n   background-position: 97% center;\n   background-repeat: no-repeat;\n   border: 1px solid #AAA;\n   color: #555;\n   font-size: inherit;\n   margin: 20px;\n   overflow: hidden;\n   padding: 5px 10px;\n   text-overflow: ellipsis;\n   white-space: nowrap;\n   width: 300px;\n}\n\nselect#soflow-color {\n   color: #fff;\n   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);\n   background-color: #779126;\n   -webkit-border-radius: 20px;\n   -moz-border-radius: 20px;\n   border-radius: 20px;\n   padding-left: 15px;\n}\n\n\n.date-label{\n  color:#B4A9A9!important;\n  vertical-align: middle;\n   flex:1;\n   font-size:10px;\n   height:18px !important;\n   /*position: absolute;*/\n   /*background-color:black;*/\n   margin: 0;\n   padding: 0;\n}\n", ""]);
 
 	// exports
 

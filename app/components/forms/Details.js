@@ -23,10 +23,10 @@ componentDidMount: function(){
 },
 render: function(){
 return (
-  <form  className="form form_two" style={{backgroundColor: "white", display:"none", margin: "auto", fontFamily: "Helvetica",
-   height: "400px", padding: "10px 20% 10px 20%"}} method="post" action="/acuity">
+  <form  className="form form_two" style={{backgroundColor: "white", display:"none", margin: "0 auto", fontFamily: "Helvetica",
+   height: "400px", width: "100%", padding: "10px 20% 10px 20%"  }} method="post" action="/acuity">
 
-    <div style={{padding: "20px 20px", backgroundColor:"#FBFDFF", margin: "0 auto"}}>
+    <div style={{padding: "20px 20px", width:"100%", backgroundColor:"#FBFDFF", margin: "0 auto"}}>
         <input className="hideaway" id="hiddenTime" type="hidden" name="time" value={this.props.time}/>
             <div className="fire" id="form_container">
               <div id="input_container">
