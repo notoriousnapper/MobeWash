@@ -6,35 +6,93 @@ var ServiceInfo = React.createClass({
   componentWillReceiveProps: function (nextProps) {
     this.setState({
       currentForm: nextProps
-
     });
   },
   getInitialState: function(){
     return {
       ctr: 0,
-      currentForm: this.props.currentForm
+      currentForm: this.props.currentForm,
+      mobeSelected: true,
+      plusSelected: false,
+      mobePrice: 2400,
+      mobeAdditional: 600,
+      plusPrice: 3500,
+      plusAdditional: 1000,
+      indicatorMessage:  'I would Like to schedule...', // Lets you know which option selected
+      checked:  false  //
     };
   },
   revealOnce: function(){
     if(this.state.ctr==0) this.props.magic();
     this.setState({ctr: this.state.ctr + 1});
   },
+  /*
+   * Function changes state of checked at end
+   */
+  priceIncrease:function(){
+    if(this.props.currentForm== 1){
+      if(!this.state.checked){ //If unchecked, a run through of this will make tru  e
+          var newMobe = this.state.mobePrice + this.state.mobeAdditional;
+          var newPlus = this.state.plusPrice + this.state.plusAdditional;
+          this.setState({
+            mobePrice: newMobe,
+            plusPrice: newPlus
+          });
+          // Propagates prices up
+          if(this.state.mobeSelected){ // Changing price overall
+            this.props.priceChange(newMobe);  // Because state isn't updated when this calls
+          } else {
+            this.props.priceChange(newPlus);
+          }
+      }
+      else{
+          // Changes prices back
+          var newMobe = this.state.mobePrice - this.state.mobeAdditional;
+          var newPlus = this.state.plusPrice - this.state.plusAdditional;
+          this.setState({
+            mobePrice: newMobe,
+            plusPrice: newPlus
+          });
+
+          // Propagates changed prices up
+          if(this.state.mobeSelected){
+          this.props.priceChange(newMobe);
+          } else {
+          this.props.priceChange(newPlus);
+          }
+
+        }
+    }
+
+    /* At the end, change state */
+          this.setState({
+            checked: !this.state.checked
+          });
+
+  },
   optionClick1: function(){
     if(this.props.currentForm== 1){
+      this.setState({mobeSelected: true,
+        plusSelected: false,
+        indicatorMessage: 'Mobe selected!' });
     $('.option1').addClass('selected');
     $('.option2').removeClass('selected');
     $('.masteropt').css("height", "100%");
-    this.props.priceChange(2400);
+    this.props.priceChange(this.state.mobePrice);
     this.revealOnce();
     // $('body').scrollTo('#componentTime'); // Scroll screen to target element
     }
   },
   optionClick2: function(){
     if(this.props.currentForm== 1){
+      this.setState({mobeSelected: false,
+        plusSelected: true,
+        indicatorMessage: 'MobePlus selected!' });
+
     $('.option2').addClass('selected');
     $('.option1').removeClass('selected');
     $('.masteropt').css("height", "100%");
-    this.props.priceChange(3000);
+    this.props.priceChange(this.state.plusPrice);
     // $('body').scrollTo('#componentTime'); // Scroll screen to target element
     this.revealOnce();
     }
@@ -54,11 +112,12 @@ var ServiceInfo = React.createClass({
         flex:"1", display:"block", margin:"10", padding:"10px 20px", width:"45%", height:"150px",
         textAlign: "left", borderStyle:"solid", borderColor:"#E2E2E2", borderWidth:"1px"
     };
+    var boxStyle2= { ...boxStyle, ...{width:"100%"} };
     return (
                 <div className="form masteropt" style={{padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor:"#FBFDFF"}} >
 
 
-                <div> I would Like to schedule... </div>
+                <div> {this.state.indicatorMessage} </div>
 
                   <div  style={{display:"flex"}}>
 
@@ -94,6 +153,9 @@ var ServiceInfo = React.createClass({
                        </div>
 
                      </div>
+                     <div className="opt option2" style={boxStyle2}>
+                       <input type="checkbox" name="additional" value="Is Your Car a Truck, SUV, or Van?" checked={this.state.checked} onChange={this.priceIncrease} />
+                    </div>
 
                    </div>
     )
