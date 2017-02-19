@@ -129,12 +129,12 @@ var CorporateCalendar = React.createClass({
 
       var hoverStyle={
         height: '40px', width: '100px', textAlign: 'center',
-        paddingLeft: '4px',  fontFamily: 'Helvetica', fontSize: '1.1vw', backgroundColor: 'white',
+        paddingLeft: '4px',  fontFamily: 'Helvetica', fontSize: '1.4vw', backgroundColor: 'white',
         borderColor:"black", color: '#444444', padding: "0", margin: "0"
       };
       var defaultStyle={
         height: '40px', width: '100px', textAlign: 'right', verticalAlign: 'top',
-        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '1.0vw', backgroundColor: 'white',
+        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '1.3vw', backgroundColor: 'white',
         borderColor:"black", color: '#ADADAB' ,  margin: '0'
       };
 
