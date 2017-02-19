@@ -46,7 +46,7 @@ var ServiceInfo = React.createClass({
         font: 'Arial'
     };
     var titleStyle= {
-        fontWeight:" bold", fontSize:"16", color:"#444343", padding:"0", margin:"0", marginBottom:"4px",
+        fontWeight:" bold", fontSize:"14", color:"#444343", padding:"0", margin:"0", marginBottom:"4px",
         font: 'Helvetica Neue'
     };
 
