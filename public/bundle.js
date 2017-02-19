@@ -26781,7 +26781,7 @@
 
 	    var hover = {
 	      position: 'absolute', top: 0, bottom: 0, left: 0, right: 0,
-	      backgroundColor: '#C32025', opacity: 1
+	      backgroundColor: '#797979', opacity: 1
 	    };
 	    /* Magic code */
 	    var inner = normal;
@@ -39580,7 +39580,7 @@
 	    var hoverStyle = {
 	      height: '40px', width: '100px', textAlign: 'center',
 	      paddingLeft: '4px', fontFamily: 'Helvetica', fontSize: '1.4vw', backgroundColor: 'white',
-	      borderColor: "black", color: '#444444', padding: "0", margin: "0"
+	      borderColor: "black", color: '#CBCBCB', padding: "0", margin: "0"
 	    };
 	    var defaultStyle = {
 	      height: '40px', width: '100px', textAlign: 'right', verticalAlign: 'top',

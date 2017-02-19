@@ -130,7 +130,7 @@ var CorporateCalendar = React.createClass({
       var hoverStyle={
         height: '40px', width: '100px', textAlign: 'center',
         paddingLeft: '4px',  fontFamily: 'Helvetica', fontSize: '1.4vw', backgroundColor: 'white',
-        borderColor:"black", color: '#444444', padding: "0", margin: "0"
+        borderColor:"black", color: '#CBCBCB', padding: "0", margin: "0"
       };
       var defaultStyle={
         height: '40px', width: '100px', textAlign: 'right', verticalAlign: 'top',
