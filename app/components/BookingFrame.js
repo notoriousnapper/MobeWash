@@ -108,10 +108,16 @@ var BookingFrame = React.createClass({
                           nextForm={this.callMagic}/>
                         <Payment price={this.state.price}
                           nextForm={this.callMagic}/>
+
                             <button style={{display: "block", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
                             padding: "10px 20px 10px 20px", borderRadius:"10px",
                             borderStyle: "none"}}
                              onClick={this.callMagic}> {'Continue >'} </button>
+
+                             <br/>
+                             <br/>
+                             <br/>
+                             <br/>
                     </div>
 
                     </div>

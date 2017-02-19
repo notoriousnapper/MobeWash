@@ -21628,7 +21628,11 @@
 	            ' ',
 	            'Continue >',
 	            ' '
-	          )
+	          ),
+	          React.createElement('br', null),
+	          React.createElement('br', null),
+	          React.createElement('br', null),
+	          React.createElement('br', null)
 	        )
 	      )
 	    );
@@ -26697,7 +26701,7 @@
 	            React.createElement(
 	              'h1',
 	              { style: titleStyle },
-	              ' MobePlus '
+	              ' Mobe'
 	            ),
 	            '55 Minutes @ $24',
 	            React.createElement('br', null),
@@ -26717,7 +26721,7 @@
 	              { style: titleStyle },
 	              ' MobePlus '
 	            ),
-	            '75 Minutes @ $35',
+	            '1 hour 30 minutes @ $35',
 	            React.createElement('br', null),
 	            'The Full Exterior and Interior Car Wash Service',
 	            React.createElement('br', null),
@@ -40135,7 +40139,7 @@
 	      React.createElement('div', { id: 'charge-error' }),
 	      React.createElement(
 	        'form',
-	        { id: 'checkout-form', className: 'form form_three', style: { backgroundColor: "#D4E1E7", display: "none", margin: "auto", fontFamily: "Helvetica",
+	        { id: 'checkout-form', className: 'form form_three', style: { backgroundColor: "white", display: "none", margin: "auto", fontFamily: "Helvetica",
 	            height: "400px", padding: "10px 20% 10px 20%" }, method: 'POST', action: '/booking' },
 	        React.createElement(
 	          'div',

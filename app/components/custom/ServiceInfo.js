@@ -64,7 +64,7 @@ var ServiceInfo = React.createClass({
 
                     <div className="opt option1" onClick={this.optionClick1} style={boxStyle}>
                         <div style={innerStyle}>
-                          <h1 style={titleStyle}> MobePlus </h1>
+                          <h1 style={titleStyle}> Mobe</h1>
 
                           55 Minutes @ $24
                           <br />
@@ -78,7 +78,7 @@ var ServiceInfo = React.createClass({
                       <div className="opt option2" onClick={this.optionClick2}style={boxStyle}>
                           <div style={innerStyle}>
                             <h1 style={titleStyle}> MobePlus </h1>
-                            75 Minutes @ $35
+                            1 hour 30 minutes @ $35
                             <br />
                             The Full Exterior and Interior Car Wash Service
                             <br />

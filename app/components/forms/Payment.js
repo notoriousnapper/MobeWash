@@ -208,7 +208,7 @@ return (
   <div id="charge-error"></div>
 
 
-  <form  id="checkout-form" className="form form_three" style={{backgroundColor: "#D4E1E7", display:"none", margin: "auto", fontFamily: "Helvetica",
+  <form  id="checkout-form" className="form form_three" style={{backgroundColor: "white", display:"none", margin: "auto", fontFamily: "Helvetica",
    height: "400px", padding: "10px 20% 10px 20%"}} method="POST" action="/booking">
           <div>
             <button id="couponButton" style={buttonStyle} type="button" onClick={this.revealCoupon} > Redeem Coupon </button>
