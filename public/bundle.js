@@ -21608,7 +21608,7 @@
 	      { style: { display: "block", margin: "auto", backgroundColor: "white", height: "400px", width: "100%", padding: "0px" } },
 	      React.createElement(
 	        'div',
-	        { style: { padding: "100px", margin: "0 auto", width: "90%", minWidth: "1000px", height: "700px" } },
+	        { style: { padding: "0px", margin: "0 auto", width: "100%", height: "700px" } },
 	        React.createElement(LabelCarousel, { checked: this.state.checked }),
 	        React.createElement(
 	          'div',
