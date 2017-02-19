@@ -26587,7 +26587,7 @@
 	    // <button className="next active" onClick={this.switchLabel}>
 	    return React.createElement(
 	      'div',
-	      { className: 'carouselbox', style: { fontFamily: 'Arial' } },
+	      { className: 'carouselbox', style: { fontFamily: 'Helvetica Neue, Arial' } },
 	      React.createElement(
 	        'ol',
 	        { className: 'content active' },
@@ -26670,7 +26670,7 @@
 	    };
 	    var titleStyle = {
 	      fontWeight: " bold", fontSize: "16", color: "#444343", padding: "0", margin: "0", marginBottom: "4px",
-	      font: 'Arial'
+	      font: 'Helvetica Neue'
 	    };
 
 	    var boxStyle = {
