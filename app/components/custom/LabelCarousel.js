@@ -37,7 +37,7 @@ var LabelCarousel = React.createClass({
       if(this.props.checked) this.switchLabel();  // Parent notifies to switch label
         // <button className="next active" onClick={this.switchLabel}>
       return(
-        <div className="carouselbox">
+        <div className="carouselbox" style={{fontFamily: 'Arial'}}>
           <ol className="content active">
             <li className="current" >
             {"Select Time"}

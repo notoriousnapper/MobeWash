@@ -25,13 +25,13 @@ var companyData =
     day: 3,
     location: "2222 San Francisco",
     range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
-  },
-  {
-    name: "Illumina",
-    day: 4,
-    location: "0000 San Francisco",
-    range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
-  },
+  }
+  // , {
+  //   name: "Illumina",
+  //   day: 4,
+  //   location: "0000 San Francisco",
+  //   range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
+  // },
 ]
 // So you don't mess up the year or month
 //
@@ -126,20 +126,15 @@ var CorporateCalendar = React.createClass({
       height: '30px', width: '100px', textAlign: 'center', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
       paddingLeft: '4px', paddingRight: '4px', paddingBottom: "10px", fontFamily: 'Helvetica', fontWeight: '200px', fontSize: '14px', backgroundColor: '#444444',
       borderColor:"black", color: "white"};
-      
-      var chosenStyle={
-        height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica',  fontSize: '14vw', backgroundColor: '#BEBEBE',
-        borderColor:"black", color: '#ADADAB'
-      };
+
       var hoverStyle={
         height: '40px', width: '100px', textAlign: 'center',
-        paddingLeft: '4px',  fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#7A7A7A',
-        borderColor:"black", color: '#ADADAB', padding: "0", margin: "0"
+        paddingLeft: '4px',  fontFamily: 'Helvetica', fontSize: '1.1vw', backgroundColor: 'white',
+        borderColor:"black", color: '#444444', padding: "0", margin: "0"
       };
       var defaultStyle={
         height: '40px', width: '100px', textAlign: 'right', verticalAlign: 'top',
-        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: 'white',
+        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '1.0vw', backgroundColor: 'white',
         borderColor:"black", color: '#ADADAB' ,  margin: '0'
       };
 
@@ -178,7 +173,6 @@ var CorporateCalendar = React.createClass({
           content = <div style={{}}>{day}</div>
           for(var k = 0; k <days.length; k++){
             if(weekday == days[k]){
-              // rowStyle = chosenStyle;
               rowStyle = hoverStyle;
               company  = companyData[k];
               content  = <Hover ><div style={{textAlign:'right', marginRight: "10px"}}>{inputDay}</div> {company.name}  <br/>  {company.range} </Hover>;

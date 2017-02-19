@@ -25,7 +25,7 @@ var Hover = React.createClass({
 
     var normal = {
     position: 'absolute', top: 0, bottom: 0, left: 0, right: 0,
-    backgroundColor: '#7A7A7A', opacity: 100
+    backgroundColor: '#C7C7C7', opacity: 100
 }
 
     var hover = {

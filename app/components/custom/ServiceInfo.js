@@ -50,7 +50,10 @@ var ServiceInfo = React.createClass({
         font: 'Arial'
     };
 
-
+    var boxStyle= {
+        flex:"1", display:"block", margin:"10", padding:"10px 20px", width:"45%", height:"150px",
+        textAlign: "left", borderStyle:"solid", borderColor:"#E2E2E2", borderWidth:"1px"
+    };
     return (
                 <div className="form masteropt" style={{padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor:"#FBFDFF"}} >
 
@@ -59,30 +62,33 @@ var ServiceInfo = React.createClass({
 
                   <div  style={{display:"flex"}}>
 
-                    <div className="opt option1" onClick={this.optionClick1} style={{flex:"1", display:"block", margin:"10", padding:"10px 20px", width:"45%", height:"120px",
-                    textAlign: "left", borderStyle:"solid", borderColor:"#E2E2E2", borderWidth:"1px"}}>
+                    <div className="opt option1" onClick={this.optionClick1} style={boxStyle}>
                         <div style={innerStyle}>
                           <h1 style={titleStyle}> MobePlus </h1>
 
                           55 Minutes @ $24
                           <br />
-                          Full Exterior Car Wash Service
+                          The Full Exterior Car Wash Service
                           <br />
                           Quality Hand Wash with Wheel & Tire Shine
-                          <br />
                         </div>
                      </div>
 
 
-                      <div className="opt option2" onClick={this.optionClick2}style={{flex:"1", display:"block", margin:"10", padding:"10px 20px", width:"45%", height:"120px",
-                      textAlign: "left", borderStyle:"solid", borderColor:"#E2E2E2", borderWidth:"1px"}}>
+                      <div className="opt option2" onClick={this.optionClick2}style={boxStyle}>
                           <div style={innerStyle}>
-                            <h1 style={titleStyle}> MobePlus for Trucks, Vans, or SUVs</h1>
-                            75 Minutes @ $30
+                            <h1 style={titleStyle}> MobePlus </h1>
+                            75 Minutes @ $35
                             <br />
-                            Full Exterior Car Wash Service
+                            The Full Exterior and Interior Car Wash Service
                             <br />
                             Quality Hand Wash with Wheel & Tire Shine
+                            <br />
+                            Floor & Seat Vacuum
+                            <br />
+                            Dash & Panel Clean
+                            <br />
+                            {'Interior Window Wipedown'}
                             <br />
                           </div>
                        </div>
