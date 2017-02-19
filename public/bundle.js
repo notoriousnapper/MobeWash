@@ -26652,6 +26652,8 @@
 	      plusPrice: 3500,
 	      plusAdditional: 1000,
 	      indicatorMessage: 'I would Like to schedule...', // Lets you know which option selected
+	      additionDescription: '+25 minutes @ $',
+	      currentAdditionDescription: "6.00", // Turns into string for ^ line
 	      checked: false //
 	    };
 	  },
@@ -26662,6 +26664,18 @@
 	  /*
 	   * Function changes state of checked at end
 	   */
+	  /* Eventually put everything in here */
+	  masterChange: function masterChange(bool) {
+	    var text = bool ? this.state.mobeAdditional : this.state.plusAdditional;
+	    var dollars = text / 100;
+	    // text = text.toString();
+	    text = dollars + "." + "00";
+	    // text = text.substring(0, text.length - 1);
+	    // var text = text.slice(0, 1) + "." + text.slice(1);
+	    this.setState({
+	      currentAdditionDescription: text
+	    });
+	  },
 	  priceIncrease: function priceIncrease() {
 	    if (this.props.currentForm == 1) {
 	      if (!this.state.checked) {
@@ -26696,7 +26710,6 @@
 	        }
 	      }
 	    }
-
 	    /* At the end, change state */
 	    this.setState({
 	      checked: !this.state.checked
@@ -26712,6 +26725,7 @@
 	      $('.masteropt').css("height", "100%");
 	      this.props.priceChange(this.state.mobePrice);
 	      this.revealOnce();
+	      this.masterChange(true);
 	      // $('body').scrollTo('#componentTime'); // Scroll screen to target element
 	    }
 	  },
@@ -26727,6 +26741,7 @@
 	      this.props.priceChange(this.state.plusPrice);
 	      // $('body').scrollTo('#componentTime'); // Scroll screen to target element
 	      this.revealOnce();
+	      this.masterChange(false);
 	    }
 	  },
 	  render: function render() {
@@ -26744,7 +26759,7 @@
 	      flex: "1", display: "block", margin: "10", padding: "10px 20px", width: "45%", height: "150px",
 	      textAlign: "left", borderStyle: "solid", borderColor: "#E2E2E2", borderWidth: "1px"
 	    };
-	    var boxStyle2 = (0, _extends3.default)({}, boxStyle, { width: "100%" });
+	    var boxStyle2 = (0, _extends3.default)({}, boxStyle, { height: "75px", width: "100%" });
 	    return React.createElement(
 	      'div',
 	      { className: 'form masteropt', style: { padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor: "#FBFDFF" } },
@@ -26804,8 +26819,16 @@
 	      ),
 	      React.createElement(
 	        'div',
-	        { className: 'opt option2', style: boxStyle2 },
-	        React.createElement('input', { type: 'checkbox', name: 'additional', value: 'Is Your Car a Truck, SUV, or Van?', checked: this.state.checked, onChange: this.priceIncrease })
+	        { style: (0, _extends3.default)({ fontWeight: " bold", fontSize: "14", color: "#444343", font: 'Helvetica Neue' }, boxStyle2) },
+	        React.createElement('input', { style: { display: "inline-block", marginRight: "10px" }, type: 'checkbox', name: 'additional', checked: this.state.checked, onChange: this.priceIncrease }),
+	        'Is your car a Truck, SUV, or Van? *',
+	        React.createElement(
+	          'div',
+	          { style: innerStyle },
+	          ' ',
+	          this.state.additionDescription + this.state.currentAdditionDescription,
+	          ' '
+	        )
 	      )
 	    );
 	  }
