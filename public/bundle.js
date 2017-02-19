@@ -21569,7 +21569,7 @@
 	    console.log("first form is" + m);
 	    m.style.display = "block";
 	    $('html, body').animate({
-	      scrollTop: $('#componentTime').offset().top
+	      scrollTop: $('#componentTime').offset().top - 100
 	    }, 1000); // Change Responsiveness
 	  },
 	  reveal: function reveal() {
