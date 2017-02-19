@@ -40,6 +40,17 @@ var ServiceInfo = React.createClass({
     }
   },
   render:function(){
+
+    var innerStyle= {
+        fontSize: "12px", color: '#696969',
+        font: 'Arial'
+    };
+    var titleStyle= {
+        fontWeight:" bold", fontSize:"16", color:"#444343", padding:"0", margin:"0", marginBottom:"4px",
+        font: 'Arial'
+    };
+
+
     return (
                 <div className="form masteropt" style={{padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor:"#FBFDFF"}} >
 
@@ -50,8 +61,9 @@ var ServiceInfo = React.createClass({
 
                     <div className="opt option1" onClick={this.optionClick1} style={{flex:"1", display:"block", margin:"10", padding:"10px 20px", width:"45%", height:"120px",
                     textAlign: "left", borderStyle:"solid", borderColor:"#E2E2E2", borderWidth:"1px"}}>
-                        <div style={{fontSize: "12px"}}>
-                          <h1 style={{fontWeight:" bold", fontSize:"16", color:"#444343", padding:"0", margin:"0"}}> MobePlus(Corporate) </h1>
+                        <div style={innerStyle}>
+                          <h1 style={titleStyle}> MobePlus </h1>
+
                           55 Minutes @ $24
                           <br />
                           Full Exterior Car Wash Service
@@ -64,11 +76,9 @@ var ServiceInfo = React.createClass({
 
                       <div className="opt option2" onClick={this.optionClick2}style={{flex:"1", display:"block", margin:"10", padding:"10px 20px", width:"45%", height:"120px",
                       textAlign: "left", borderStyle:"solid", borderColor:"#E2E2E2", borderWidth:"1px"}}>
-                          <div style={{fontSize: "12px"}}>
-                            <h1 style={{fontWeight:" bold", fontSize:"16", color:"#444343", padding:"0", margin:"0"}}> MobePlus(Corporate) for Trucks, Vans, or SUVs</h1>
+                          <div style={innerStyle}>
+                            <h1 style={titleStyle}> MobePlus for Trucks, Vans, or SUVs</h1>
                             75 Minutes @ $30
-                            <FontAwesome name='truck' size="2x" />
-
                             <br />
                             Full Exterior Car Wash Service
                             <br />
@@ -87,3 +97,4 @@ var ServiceInfo = React.createClass({
 module.exports = ServiceInfo;
                       // <input type="radio" value="sth"/>  <div> Do you have a truck </div>
                         // <img style={{width: "50px", height:"50px"}} src="/img/Sparkle_MobePlus.png"/>
+                            // <FontAwesome name='truck' size="2x" />
