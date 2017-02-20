@@ -15,10 +15,10 @@ var TimeSlot = React.createClass({
       hour: "9:00"
     }
   },
-  scrollDown: function(){
-    $("html, body").animate({
-      scrollTop: $(document).height() }, "slow");
-  },
+  // scrollDown: function(){
+  //   $("html, body").animate({
+  //     scrollTop: $(document).height() }, "slow");
+  // },
   revealInfoBox: function(e){
     // var t1 = "2016-11";
     // var time = "2016-11-15T09:00:00-0800";
@@ -26,6 +26,8 @@ var TimeSlot = React.createClass({
     // document.getElementsByClassName("hideaway")[0];
     // var m = document.getElementsByClassName("bookform")[0];
     // var n = document.getElementsByClassName("timeslot")[0];
+    $('.continue').css("display", "none");
+    $(e.target).parent().children('.continue').css("display", "inline-block");
     var hour = ($(e.target).parent().children('.test2').text()).split(" ")[0];
     var ampm = ($(e.target).parent().children('.test2').text()).split(" ")[1];
     if(hour.length == 4){ // If hour is single digits, prepend a 0 in front
@@ -36,9 +38,8 @@ var TimeSlot = React.createClass({
       hour = (parseInt(hour) + 12).toString();
     }
     var time = "T" + hour + ":00";
-
     this.props.parentFn(time);
-    this.scrollDown();
+    // this.scrollDown();
     // console.log('before: ' + l.value);
     // l.value = time;  // The part that changes the value we need
     console.log("time is : ");
@@ -54,6 +55,9 @@ var TimeSlot = React.createClass({
     // }, 700);
     // n.style.display = "none";
   },
+  updateForm: function(){
+    this.props.nextForm();
+  },
   render: function() {
     var rowStyle = {
       padding: "10px",
@@ -68,8 +72,19 @@ var TimeSlot = React.createClass({
       borderStyle: "solid",
       borderRadius:"5px",
       height: "30px",
-      width: "60%"
+      width: "50%",
+      color: "white"
     };
+    var buttonStyle2 = {
+          display:"none" ,
+          backgroundColor: "white",
+          width:"23%",
+          padding: "5px 10px",
+          borderStyle: "solid",
+          marginLeft: "10px",
+          borderColor: "00B2EE"
+      };
+
     var times = [
       "9:00 am",
       "10:00 am",
@@ -81,6 +96,8 @@ var TimeSlot = React.createClass({
       "4:00 pm"
     ];
     var self = this.revealInfoBox;
+    var self2 = this.updateForm;
+    // this.props.nextForm();
     var i = 0;
     var list = times.map(function(item){
       i++;
@@ -89,6 +106,7 @@ var TimeSlot = React.createClass({
       <div style={rowStyle}>
         <div className="test2" style={{width:"100px", display:"inline-block"}}>{item} </div>
         <button className="test" style={buttonStyle} key={i} onClick={self}> Open </button>
+        <button className="continue" style={buttonStyle2} onClick={self2} > Continue >> </button>
       </div>
       </td>
       </tr>;

@@ -17,6 +17,7 @@ var Time = React.createClass({
   },
   updateDateYear: function(data){
       var m = document.getElementsByClassName("timeslot")[0];
+      console.log(this.props.nextForm);
       m.style.display = "block";
       $('html, body').animate({
         scrollTop: $('.timeslot').offset().top
@@ -28,6 +29,7 @@ var Time = React.createClass({
       m.style.display = "block";
       this.props.update(2, data); // Calling parent passed in function
   },
+
   render: function(){
     // Try to pass selected date, and checked information to Time Parent
     return <div id="componentTime" className="form form_one" style={{margin:"0 auto", display:"none"}} >

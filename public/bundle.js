@@ -21600,6 +21600,7 @@
 	  callMagic: function callMagic() {
 	    this.reveal();
 	    console.log("checked");
+	    $("#continueButton").css("display", "block");
 	    // alert(JSON.stringify(this.state, null, 4));
 	  },
 	  render: function render() {
@@ -21621,9 +21622,9 @@
 	            nextForm: this.callMagic }),
 	          React.createElement(
 	            'button',
-	            { style: { display: "block", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin: "0 auto",
+	            { id: 'continueButton', style: { display: "none", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin: "0 auto",
 	                padding: "10px 20px 10px 20px", borderRadius: "10px",
-	                borderStyle: "none", marginBottom: "230px" },
+	                borderStyle: "none", marginBottom: "300px" },
 	              onClick: this.callMagic },
 	            ' ',
 	            'Continue >',
@@ -39378,6 +39379,7 @@
 	  },
 	  updateDateYear: function updateDateYear(data) {
 	    var m = document.getElementsByClassName("timeslot")[0];
+	    console.log(this.props.nextForm);
 	    m.style.display = "block";
 	    $('html, body').animate({
 	      scrollTop: $('.timeslot').offset().top
@@ -39389,6 +39391,7 @@
 	    m.style.display = "block";
 	    this.props.update(2, data); // Calling parent passed in function
 	  },
+
 	  render: function render() {
 	    // Try to pass selected date, and checked information to Time Parent
 	    return React.createElement(
@@ -39427,10 +39430,10 @@
 	      hour: "9:00"
 	    };
 	  },
-	  scrollDown: function scrollDown() {
-	    $("html, body").animate({
-	      scrollTop: $(document).height() }, "slow");
-	  },
+	  // scrollDown: function(){
+	  //   $("html, body").animate({
+	  //     scrollTop: $(document).height() }, "slow");
+	  // },
 	  revealInfoBox: function revealInfoBox(e) {
 	    // var t1 = "2016-11";
 	    // var time = "2016-11-15T09:00:00-0800";
@@ -39438,6 +39441,8 @@
 	    // document.getElementsByClassName("hideaway")[0];
 	    // var m = document.getElementsByClassName("bookform")[0];
 	    // var n = document.getElementsByClassName("timeslot")[0];
+	    $('.continue').css("display", "none");
+	    $(e.target).parent().children('.continue').css("display", "inline-block");
 	    var hour = $(e.target).parent().children('.test2').text().split(" ")[0];
 	    var ampm = $(e.target).parent().children('.test2').text().split(" ")[1];
 	    if (hour.length == 4) {
@@ -39451,9 +39456,8 @@
 	      hour = (parseInt(hour) + 12).toString();
 	    }
 	    var time = "T" + hour + ":00";
-
 	    this.props.parentFn(time);
-	    this.scrollDown();
+	    // this.scrollDown();
 	    // console.log('before: ' + l.value);
 	    // l.value = time;  // The part that changes the value we need
 	    console.log("time is : ");
@@ -39469,6 +39473,9 @@
 	    // }, 700);
 	    // n.style.display = "none";
 	  },
+	  updateForm: function updateForm() {
+	    this.props.nextForm();
+	  },
 	  render: function render() {
 	    var rowStyle = {
 	      padding: "10px",
@@ -39483,10 +39490,23 @@
 	      borderStyle: "solid",
 	      borderRadius: "5px",
 	      height: "30px",
-	      width: "60%"
+	      width: "50%",
+	      color: "white"
 	    };
+	    var buttonStyle2 = {
+	      display: "none",
+	      backgroundColor: "white",
+	      width: "23%",
+	      padding: "5px 10px",
+	      borderStyle: "solid",
+	      marginLeft: "10px",
+	      borderColor: "00B2EE"
+	    };
+
 	    var times = ["9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm"];
 	    var self = this.revealInfoBox;
+	    var self2 = this.updateForm;
+	    // this.props.nextForm();
 	    var i = 0;
 	    var list = times.map(function (item) {
 	      i++;
@@ -39509,6 +39529,11 @@
 	              'button',
 	              { className: 'test', style: buttonStyle, key: i, onClick: self },
 	              ' Open '
+	            ),
+	            React.createElement(
+	              'button',
+	              { className: 'continue', style: buttonStyle2, onClick: self2 },
+	              ' Continue >> '
 	            )
 	          )
 	        )
