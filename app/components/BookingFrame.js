@@ -95,8 +95,10 @@ var BookingFrame = React.createClass({
           this.reveal();
           console.log("checked");
           $("#continueButton").css("display", "block");
+          $("#serviceInfo").css("display", "none");
           // alert(JSON.stringify(this.state, null, 4));
         },
+        // Serviceinfo id is named within component
         render: function(){
         return(
                     <div style={{display: "block", margin: "auto", backgroundColor:"white", height:"400px", width: "100%", padding: "0px"}}>

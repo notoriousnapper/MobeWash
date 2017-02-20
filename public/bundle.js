@@ -21601,8 +21601,10 @@
 	    this.reveal();
 	    console.log("checked");
 	    $("#continueButton").css("display", "block");
+	    $("#serviceInfo").css("display", "none");
 	    // alert(JSON.stringify(this.state, null, 4));
 	  },
+	  // Serviceinfo id is named within component
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -26764,7 +26766,7 @@
 	    // indicator Message = If you want to leave an inndicator of which message
 	    return React.createElement(
 	      'div',
-	      { className: 'form masteropt', style: { padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor: "#FBFDFF" } },
+	      { id: 'serviceInfo', className: 'form masteropt', style: { padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor: "#FBFDFF" } },
 	      React.createElement(
 	        'div',
 	        null,

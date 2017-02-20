@@ -129,7 +129,7 @@ var ServiceInfo = React.createClass({
     var boxStyle2= { ...boxStyle, ...{height: "75px", width:"100%"} };
     // indicator Message = If you want to leave an inndicator of which message
     return (
-                <div className="form masteropt" style={{padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor:"#FBFDFF"}} >
+                <div id="serviceInfo" className="form masteropt" style={{padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor:"#FBFDFF"}} >
                 <div> {'I would like to schedule...'} </div>
                   <div  style={{display:"flex"}}>
 
