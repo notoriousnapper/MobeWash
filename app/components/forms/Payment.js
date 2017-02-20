@@ -3,7 +3,6 @@ var ReactScriptLoaderMixin = require('react-script-loader').ReactScriptLoaderMix
 var FontAwesome = require('react-fontawesome');
 var $ = require('jquery');
 
-
 var monthExp = [ '01', '02', '03', '04',
         '05', '06', '07', '08', '09', '10', '11', '12'
 ];
@@ -229,7 +228,7 @@ return (
 
               <input className="half" type="text" id="input" placeholder="CardHolder Address"  />
               <FontAwesome id="input_img" name='location-arrow' size="2x" />
-              <input className="half" type="text" id="input" placeholder="CVC"  />
+              <input className="half2" type="text" id="input" placeholder="CVC"  />
               <FontAwesome id="input_img_half" name='lock' size="2x" />
             </div>
 
@@ -256,6 +255,7 @@ return (
                   <h1 className="date-label"> Month </h1>
                   <h1 className="date-label"> Year </h1>
             </div>
+
   <input type="button" onClick={this.formSubmit} style={{centerAlign: "center"}} value="Submit"/>
   <input id="#finalPrice" type="hidden" name="price" value={this.state.finalPrice} />
             </div>

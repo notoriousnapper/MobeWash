@@ -1,6 +1,5 @@
 var React = require('react');
 var FontAwesome = require('react-fontawesome');
-
 var PrettyForm = React.createClass({
         getInitialState: function(){
           return {

@@ -127,12 +127,10 @@ var ServiceInfo = React.createClass({
         textAlign: "left", borderStyle:"solid", borderColor:"#E2E2E2", borderWidth:"1px"
     };
     var boxStyle2= { ...boxStyle, ...{height: "75px", width:"100%"} };
+    // indicator Message = If you want to leave an inndicator of which message
     return (
                 <div className="form masteropt" style={{padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor:"#FBFDFF"}} >
-
-
-                <div> {this.state.indicatorMessage} </div>
-
+                <div> {'I would like to schedule...'} </div>
                   <div  style={{display:"flex"}}>
 
                     <div className="opt option1" onClick={this.optionClick1} style={boxStyle}>
@@ -169,7 +167,7 @@ var ServiceInfo = React.createClass({
                      </div>
                      <div  style={{...{fontWeight:" bold", fontSize:"14", color:"#444343", font: 'Helvetica Neue'}, ...boxStyle2 }}>
                        <input style={{display: "inline-block", marginRight: "10px"}} type="checkbox" name="additional" checked={this.state.checked} onChange={this.priceIncrease} />
-                       {'Is your car a Truck, SUV, or Van? *'}
+                       {'Is your car a SUV, Van, or Truck? *'}
                        <div style={innerStyle}> {this.state.additionDescription + this.state.currentAdditionDescription} </div>
                     </div>
 

@@ -15,6 +15,10 @@ var TimeSlot = React.createClass({
       hour: "9:00"
     }
   },
+  scrollDown: function(){
+    $("html, body").animate({
+      scrollTop: $(document).height() }, "slow");
+  },
   revealInfoBox: function(e){
     // var t1 = "2016-11";
     // var time = "2016-11-15T09:00:00-0800";
@@ -34,11 +38,11 @@ var TimeSlot = React.createClass({
     var time = "T" + hour + ":00";
 
     this.props.parentFn(time);
+    this.scrollDown();
     // console.log('before: ' + l.value);
     // l.value = time;  // The part that changes the value we need
     console.log("time is : ");
     console.log(time);
-
     // console.log("l is " + JSON.stringify(l,null,4));
     // console.log("n is " + JSON.stringify(n,null,4));
     // console.log(l.value);

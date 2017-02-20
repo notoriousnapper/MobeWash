@@ -259,7 +259,6 @@ var CorporateCalendar = React.createClass({
           <button style={{float:"right", width: "100px", padding: "10px 20px 10px 20px"}}
            onClick={this.nextCalendar}> Next
            </button>
-           <button onClick={this.selectDate}> </button>
         </th></tr>
       <tbody> {calHTML} </tbody> </table></div>
     );

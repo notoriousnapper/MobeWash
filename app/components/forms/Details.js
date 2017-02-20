@@ -31,7 +31,7 @@ return (
             <div className="fire" id="form_container">
               <div id="input_container">
                 <input className="half" type="text" id="input" placeholder="First" name="firstname"  />
-                <input className="half" type="text" id="input" placeholder="Last"  name="lastname"/>
+                <input className="half2" type="text" id="input" placeholder="Last"  name="lastname"/>
                 <FontAwesome id="input_img" name='user' size="2x" />
               </div>
               <div id="input_container">
@@ -44,7 +44,7 @@ return (
               </div>
               <div id="input_container">
                 <input className="half" type="text" id="input" placeholder="Car Make & Model" name="cartype"/>
-                <input className="half" type="text" id="input" placeholder="Car Color" name="carcolor"/>
+                <input className="half2" type="text" id="input" placeholder="Car Color" name="carcolor"/>
                 <FontAwesome id="input_img" name='car' size="2x" />
               </div>
               <div id="input_container">

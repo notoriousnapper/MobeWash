@@ -6,6 +6,14 @@
   border-color: #E0E0E0 !important;
   border-style: solid !important;
 }
+.half2{
+  width: 50% !important;
+  border-width: 0;
+  /*border-right-width: 1px;*/
+  border-width: 0px 0px 0px 0px !important;
+  border-color: #E0E0E0 !important;
+  border-style: solid !important;
+}
 .full{
   width: 100% !important;
   border-right-width: 1px;
@@ -76,18 +84,22 @@
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   /*color: pink;*/
   padding-left: 0px;
+  font-family: 'Helvetica Neue';
 }
 ::-moz-placeholder { /* Firefox 19+ */
   /*color: pink;*/
   padding-left: 0px;
+  font-family: 'Helvetica Neue';
 }
 :-ms-input-placeholder { /* IE 10+ */
   /*color: pink;*/
   padding-left: 0px;
+  font-family: 'Helvetica Neue';
 }
 :-moz-placeholder { /* Firefox 18- */
   /*color: pink;*/
   padding-left: 0px;
+  font-family: 'Helvetica Neue';
 }
 
 

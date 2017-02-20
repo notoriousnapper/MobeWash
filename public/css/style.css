@@ -290,10 +290,11 @@ tr:nth-child(even) {
     pointer-events: none;
 }
 
-input{
+input {
   /*width: 500px; */
   height:        22px;
   font-size:     18px;
+  font-family:   'Helvetica Neue !important';
   margin-bottom: 10px;
   border-width:  1px;
   padding:       12px 20px 15px 10px;
@@ -303,6 +304,7 @@ input{
   border-radius: 3px 3px 3px 3px;
   /*background-color: red;*/
 }
+
 .form {
   border: 1px solid #E7E7E7;
   box-shadow: 2px 2px 10px #E7E7E7;
