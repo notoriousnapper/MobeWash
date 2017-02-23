@@ -63,6 +63,35 @@ var BookingFrame = React.createClass({
         scrollTop: $('#componentTime').offset().top - 100
       }, 1000); // Change Responsiveness
         },
+
+        goBack: function(){
+          if (this.state.form==2){
+            var n = document.getElementsByClassName("form_one")[0]; // Works because named class within component
+            var m = document.getElementsByClassName("form_two")[0];
+            console.log("first form is" + m);
+            console.log("first form is" + n);
+          m.style.display = "none";
+          n.style.display = "block";
+            this.setState({
+              checked: true,
+              form: this.state.form - 1,
+              bookingData: this.state.bookingData
+            });
+          }
+
+          else if (this.state.form == 3){
+            var o = document.getElementsByClassName("form_two")[0];
+            var n = document.getElementsByClassName("form_three")[0];
+            n.style.display = "none";
+            o.style.display = "block";
+            this.setState({
+              checked: true,
+              form: this.state.form - 1,
+              bookingData: this.state.bookingData
+            });
+          }
+          else {}
+        },
         reveal: function(){
           if (this.state.form==1){
             var m = document.getElementsByClassName("form_one")[0]; // Works because named class within component
@@ -71,6 +100,9 @@ var BookingFrame = React.createClass({
             console.log("first form is" + n);
           m.style.display = "none";
           n.style.display = "block";
+          $('html, body').animate({
+            scrollTop: $('#detailForm').offset().top 
+          }, 1000); // Change Responsiveness
             this.setState({
               checked: true,
               form: this.state.form + 1,
@@ -105,11 +137,11 @@ var BookingFrame = React.createClass({
                 		<div style={{padding:"0px", margin: "0 auto", width: "100%", height: "700px"}}>
                       <LabelCarousel checked={this.state.checked}/>
                       <div style={{display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center"}} >
-                        <ServiceInfo magic={this.revealCal} priceChange={this.updatePrice} currentForm={this.state.form} />
-                        <Time update={this.updateBookingData} nextForm={this.callMagic}/>
-                        <Details time={this.state.bookingData.date + this.state.bookingData.hour }
+                        <ServiceInfo  magic={this.revealCal} priceChange={this.updatePrice} currentForm={this.state.form} />
+                        <Time  update={this.updateBookingData} nextForm={this.callMagic}/>
+                        <Details id="#detailForm" back={this.goBack} time={this.state.bookingData.date + this.state.bookingData.hour }
                           nextForm={this.callMagic}/>
-                        <Payment price={this.state.price}
+                        <Payment id="#paymentForm" back={this.goBack} price={this.state.price}
                           nextForm={this.callMagic}/>
 
                             <button id="continueButton" style={{display: "none", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",

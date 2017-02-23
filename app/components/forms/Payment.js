@@ -202,13 +202,12 @@ render: function(){
 
 
 return (
-
   <div>
   <div id="charge-error"></div>
 
-
   <form  id="checkout-form" className="form form_three" style={{backgroundColor: "white", display:"none", margin: "auto", fontFamily: "Helvetica",
    height: "400px", padding: "10px 20% 10px 20%"}} method="POST" action="/booking">
+   <button type="button" onClick={this.props.back}> Back </button>
           <div>
             <button id="couponButton" style={buttonStyle} type="button" onClick={this.revealCoupon} > Redeem Coupon </button>
             <div id="couponLine">

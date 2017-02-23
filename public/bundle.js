@@ -21572,6 +21572,32 @@
 	      scrollTop: $('#componentTime').offset().top - 100
 	    }, 1000); // Change Responsiveness
 	  },
+
+	  goBack: function goBack() {
+	    if (this.state.form == 2) {
+	      var n = document.getElementsByClassName("form_one")[0]; // Works because named class within component
+	      var m = document.getElementsByClassName("form_two")[0];
+	      console.log("first form is" + m);
+	      console.log("first form is" + n);
+	      m.style.display = "none";
+	      n.style.display = "block";
+	      this.setState({
+	        checked: true,
+	        form: this.state.form - 1,
+	        bookingData: this.state.bookingData
+	      });
+	    } else if (this.state.form == 3) {
+	      var o = document.getElementsByClassName("form_two")[0];
+	      var n = document.getElementsByClassName("form_three")[0];
+	      n.style.display = "none";
+	      o.style.display = "block";
+	      this.setState({
+	        checked: true,
+	        form: this.state.form - 1,
+	        bookingData: this.state.bookingData
+	      });
+	    } else {}
+	  },
 	  reveal: function reveal() {
 	    if (this.state.form == 1) {
 	      var m = document.getElementsByClassName("form_one")[0]; // Works because named class within component
@@ -21580,6 +21606,9 @@
 	      console.log("first form is" + n);
 	      m.style.display = "none";
 	      n.style.display = "block";
+	      $('html, body').animate({
+	        scrollTop: $('#detailForm').offset().top
+	      }, 1000); // Change Responsiveness
 	      this.setState({
 	        checked: true,
 	        form: this.state.form + 1,
@@ -21618,9 +21647,9 @@
 	          { style: { display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center" } },
 	          React.createElement(ServiceInfo, { magic: this.revealCal, priceChange: this.updatePrice, currentForm: this.state.form }),
 	          React.createElement(Time, { update: this.updateBookingData, nextForm: this.callMagic }),
-	          React.createElement(Details, { time: this.state.bookingData.date + this.state.bookingData.hour,
+	          React.createElement(Details, { id: '#detailForm', back: this.goBack, time: this.state.bookingData.date + this.state.bookingData.hour,
 	            nextForm: this.callMagic }),
-	          React.createElement(Payment, { price: this.state.price,
+	          React.createElement(Payment, { id: '#paymentForm', back: this.goBack, price: this.state.price,
 	            nextForm: this.callMagic }),
 	          React.createElement(
 	            'button',
@@ -37845,6 +37874,11 @@
 	      { className: 'form form_two', style: { backgroundColor: "white", display: "none", margin: "0 auto", fontFamily: "Helvetica",
 	          height: "400px", width: "100%", padding: "10px 20% 10px 20%" }, method: 'post', action: '/acuity' },
 	      React.createElement(
+	        'button',
+	        { type: 'button', onClick: this.props.back },
+	        ' Back '
+	      ),
+	      React.createElement(
 	        'div',
 	        { style: { padding: "20px 20px", width: "100%", backgroundColor: "#FBFDFF", margin: "0 auto" } },
 	        React.createElement('input', { className: 'hideaway', id: 'hiddenTime', type: 'hidden', name: 'time', value: this.props.time }),
@@ -40262,6 +40296,11 @@
 	        'form',
 	        { id: 'checkout-form', className: 'form form_three', style: { backgroundColor: "white", display: "none", margin: "auto", fontFamily: "Helvetica",
 	            height: "400px", padding: "10px 20% 10px 20%" }, method: 'POST', action: '/booking' },
+	        React.createElement(
+	          'button',
+	          { type: 'button', onClick: this.props.back },
+	          ' Back '
+	        ),
 	        React.createElement(
 	          'div',
 	          null,
