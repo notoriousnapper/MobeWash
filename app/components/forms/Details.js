@@ -65,7 +65,7 @@ return (
                 <input type="button" style={{width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
                 padding: "10px 20px 10px 20px", borderRadius:"10px",
                 borderStyle: "none", marginTop: "20px", marginBottom: "20px"}}
-                onClick={this.props.continue} value="Next" />
+                onClick={this.props.next} value="Next" />
               </div>
           </div>
 
