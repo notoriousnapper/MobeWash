@@ -26,6 +26,7 @@ componentDidMount: function(){
     // alert()  ;
   });
 },
+
 render: function(){
 var buttonStyle = {height: "40px", width: "100px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
 padding: "10px 20px 10px 20px", borderRadius:"10px",

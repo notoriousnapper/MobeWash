@@ -101,9 +101,9 @@ var BookingFrame = React.createClass({
       console.log("first form is" + n);
       m.style.display = "none";
       n.style.display = "block";
-      $('html, body').animate({
-        scrollTop: $('.form_two').offset().top
-      }, 1000); // Change Responsiveness
+      // $('html, body').animate({
+      //   scrollTop: $('.form_two').offset().top
+      // }, 1000); // Change Responsiveness
       this.setState({
         checked: true,
         form: this.state.form + 1,

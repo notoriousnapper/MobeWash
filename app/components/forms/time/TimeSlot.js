@@ -57,6 +57,9 @@ var TimeSlot = React.createClass({
   },
   updateForm: function(){
     this.props.nextForm();
+    $('html, body').animate({
+      scrollTop: $('.form_two').offset().top
+    }, 1000);
   },
   render: function() {
     var rowStyle = {
