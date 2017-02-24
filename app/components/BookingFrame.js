@@ -184,6 +184,7 @@ var BookingFrame = React.createClass({
         />
         <Payment id="#paymentForm" back={this.goBack} price={this.state.price}
         next={this.callMagic}/>
+
         <br/>
         <br/>
         <br/>

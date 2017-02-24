@@ -37910,7 +37910,7 @@
 	    return React.createElement(
 	      'form',
 	      { className: 'form form_two', style: { backgroundColor: "white", display: "none", margin: "0 auto", fontFamily: "Helvetica",
-	          height: "400px", width: "100%", padding: "10px 20% 10px 20%" }, method: 'post', action: '/acuity' },
+	          width: "100%", padding: "10px 20% 10px 20%" }, method: 'post', action: '/acuity' },
 	      React.createElement(
 	        'button',
 	        { type: 'button', onClick: this.props.back },
@@ -37958,14 +37958,18 @@
 	            'div',
 	            { id: 'input_container' },
 	            React.createElement('input', { className: 'full', type: 'text', id: 'input', placeholder: 'Extra location information i.e. parking level', name: 'extrainfo' })
-	          ),
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { style: { height: "60px", padding: "10px 20px" } },
 	          React.createElement(
-	            'div',
-	            { id: 'input_container' },
-	            React.createElement('input', { type: 'button', style: { width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin: "0 auto",
+	            'button',
+	            { type: 'button', style: { height: "50px", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin: "0 auto",
 	                padding: "10px 20px 10px 20px", borderRadius: "10px",
-	                borderStyle: "none", marginTop: "20px", marginBottom: "20px" },
-	              onClick: this.props.next, value: 'Next' })
+	                borderStyle: "none" },
+	              onClick: this.props.next },
+	            ' Next '
 	          )
 	        )
 	      )

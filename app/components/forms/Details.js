@@ -29,7 +29,7 @@ componentDidMount: function(){
 render: function(){
 return (
   <form   className="form form_two" style={{backgroundColor: "white", display:"none", margin: "0 auto", fontFamily: "Helvetica",
-   height: "400px", width: "100%", padding: "10px 20% 10px 20%"  }} method="post" action="/acuity">
+    width: "100%", padding: "10px 20% 10px 20%"  }} method="post" action="/acuity">
 
    <button type="button" onClick={this.props.back}> Back </button>
 
@@ -61,13 +61,13 @@ return (
               <div id="input_container">
                 <input className="full" type="text" id="input" placeholder="Extra location information i.e. parking level" name="extrainfo"/>
               </div>
-              <div id="input_container">
-                <input type="button" style={{width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
-                padding: "10px 20px 10px 20px", borderRadius:"10px",
-                borderStyle: "none", marginTop: "20px", marginBottom: "20px"}}
-                onClick={this.props.next} value="Next" />
-              </div>
           </div>
+                <div style={{height: "60px", padding: "10px 20px"}}>
+                  <button type="button" style={{height: "50px", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
+                  padding: "10px 20px 10px 20px", borderRadius:"10px",
+                  borderStyle: "none"}}
+                  onClick={this.props.next}> Next </button>
+                </div>
 
       </div>
     </form>
