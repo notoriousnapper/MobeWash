@@ -186,9 +186,13 @@ formSubmit: function(){
 
 render: function(){
 
+  var buttonStyle2 = {height: "40px", width: "100px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
+  padding: "10px 20px 10px 20px", borderRadius:"10px",
+  borderStyle: "none"};
+
 
   var buttonStyle={backgroundColor:"#5CA6E9", color:"white", borderRadius:"5px",
-  borderColor:"#4E8DC6", padding: "3px 20px", marginBottom: "20px"};
+  borderColor:"#4E8DC6", padding: "3px 20px", marginBottom: "20px", float: "right"};
     // alert(this.state.price);
 
   // Generating expiration months
@@ -208,14 +212,16 @@ return (
 
   <form  id="checkout-form" className="form form_three" style={{backgroundColor: "white", display:"none", margin: "auto", fontFamily: "Helvetica",
    height: "400px", padding: "10px 20% 10px 20%"}} method="POST" action="/payment">
-   <button type="button" onClick={this.props.back}> Back </button>
+   <a style={{color: "black", float:"left", paddingLeft: "20px", marginBottom:"10px"}}type="button" onClick={this.props.back}> ◄ Back </a>
           <div>
+
             <button id="couponButton" style={buttonStyle} type="button" onClick={this.revealCoupon} > Redeem Coupon </button>
-            <div id="couponLine">
-              <div> Coupon </div>
-              <input  id="couponCode" text="really"/>
-              <button id="applyButton" style={buttonStyle}  type="button" onClick={this.verifyCoupon}> Apply </button>
+            <div  id="couponLine">
+              <div style={{float:"right"}}> Coupon </div>
+              <input  style={{float:"right"}} id="couponCode" text="really"/>
+              <button style={{float:"right"}} id="applyButton" style={buttonStyle}  type="button" onClick={this.verifyCoupon}> Apply </button>
             </div>
+
           </div>
 
 
@@ -255,10 +261,7 @@ return (
                   <h1 className="date-label"> Month </h1>
                   <h1 className="date-label"> Year </h1>
             </div>
-  <input type="button" style={{width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
-  padding: "10px 20px 10px 20px", borderRadius:"10px",
-  borderStyle: "none", textAlign: "center"}}
-  onClick={()=>{this.formSubmit(); this.props.next();}} value="Pay Now"/>
+  <input type="button" style={buttonStyle2} onClick={()=>{this.formSubmit(); this.props.next();}} value="Pay Now"/>
   <input id="#finalPrice" type="hidden" name="price" value={this.state.finalPrice} />
             </div>
   </form>

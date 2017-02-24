@@ -27,11 +27,14 @@ componentDidMount: function(){
   });
 },
 render: function(){
+var buttonStyle = {height: "40px", width: "100px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
+padding: "10px 20px 10px 20px", borderRadius:"10px",
+borderStyle: "none"};
 return (
   <form   className="form form_two" style={{backgroundColor: "white", display:"none", margin: "0 auto", fontFamily: "Helvetica",
     width: "100%", padding: "10px 20% 10px 20%"  }} method="post" action="/acuity">
 
-   <button type="button" onClick={this.props.back}> Back </button>
+   <a style={{color: "black", float:"left", paddingLeft: "20px", marginBottom:"10px"}} type="button" onClick={this.props.back}> ◄ Back </a>
 
     <div style={{padding: "20px 20px", width:"100%", backgroundColor:"#FBFDFF", margin: "0 auto"}}>
 
@@ -63,9 +66,7 @@ return (
               </div>
           </div>
                 <div style={{height: "60px", padding: "10px 20px"}}>
-                  <button type="button" style={{height: "50px", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
-                  padding: "10px 20px 10px 20px", borderRadius:"10px",
-                  borderStyle: "none"}}
+                  <button type="button" style={buttonStyle}
                   onClick={this.props.next}> Next </button>
                 </div>
 
