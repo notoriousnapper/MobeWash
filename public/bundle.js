@@ -21599,6 +21599,7 @@
 	    } else {}
 	  },
 	  reveal: function reveal() {
+	    // Go to Details Page
 	    if (this.state.form == 1) {
 	      var m = document.getElementsByClassName("form_one")[0]; // Works because named class within component
 	      var n = document.getElementsByClassName("form_two")[0];
@@ -21607,24 +21608,66 @@
 	      m.style.display = "none";
 	      n.style.display = "block";
 	      $('html, body').animate({
-	        scrollTop: $('#detailForm').offset().top
+	        scrollTop: $('.form_two').offset().top
 	      }, 1000); // Change Responsiveness
 	      this.setState({
 	        checked: true,
 	        form: this.state.form + 1,
 	        bookingData: this.state.bookingData
 	      });
-	    } else if (this.state.form == 2) {
-	      var n = document.getElementsByClassName("form_two")[0];
-	      var o = document.getElementsByClassName("form_three")[0];
-	      n.style.display = "none";
-	      o.style.display = "block";
-	      this.setState({
-	        checked: true,
-	        form: this.state.form + 1,
-	        bookingData: this.state.bookingData
-	      });
-	    } else {}
+	    }
+
+	    // Go to Payment Page
+	    else if (this.state.form == 2) {
+	        // alert(JSON.stringify($('.form_two').serialize(), null, 4));
+	        var bookingData = ($('.form_two').serializeObject = function () {
+	          var o = {};
+	          var a = $('.form_two').serializeArray();
+	          $.each(a, function () {
+	            if (o[this.name] !== undefined) {
+	              if (!o[this.name].push) {
+	                o[this.name] = [o[this.name]];
+	              }
+	              o[this.name].push(this.value || '');
+	            } else {
+	              o[this.name] = this.value || '';
+	            }
+	          });
+	          return o;
+	        })();
+	        // alert(JSON.stringify(bookingData, null, 4));
+
+	        // var bookingData = getFormDataAsJSON($('.form_two').serialize());
+	        var n = document.getElementsByClassName("form_two")[0];
+	        var o = document.getElementsByClassName("form_three")[0];
+	        n.style.display = "none";
+	        o.style.display = "block";
+	        this.setState({
+	          checked: true,
+	          form: this.state.form + 1,
+	          bookingData: bookingData
+	        });
+	      }
+
+	      // About to Submit both forms
+	      else if (this.state.form == 3) {
+	          $.ajax({
+	            url: '/acuity',
+	            type: 'post',
+	            data: this.state.bookingData,
+	            success: function success() {
+	              alert("worked");
+	            }
+	          });
+	          // $.ajax({
+	          //   url:'/booking',
+	          //   type:'post',
+	          //   data: this.state.bookingData,
+	          //   success:function(){
+	          //     alert("worked");
+	          //   }
+	          // });
+	        } else {}
 	  },
 	  callMagic: function callMagic() {
 	    this.reveal();
@@ -21647,10 +21690,10 @@
 	          { style: { display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center" } },
 	          React.createElement(ServiceInfo, { magic: this.revealCal, priceChange: this.updatePrice, currentForm: this.state.form }),
 	          React.createElement(Time, { update: this.updateBookingData, nextForm: this.callMagic }),
-	          React.createElement(Details, { id: '#detailForm', back: this.goBack, time: this.state.bookingData.date + this.state.bookingData.hour,
-	            nextForm: this.callMagic }),
+	          React.createElement(Details, { id: '#detailForm', back: this.goBack, next: this.callMagic, time: this.state.bookingData.date + this.state.bookingData.hour
+	          }),
 	          React.createElement(Payment, { id: '#paymentForm', back: this.goBack, price: this.state.price,
-	            nextForm: this.callMagic }),
+	            next: this.callMagic }),
 	          React.createElement(
 	            'button',
 	            { id: 'continueButton', style: { display: "none", width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin: "0 auto",
@@ -37858,6 +37901,11 @@
 
 
 	  // having form with className form two works well, but not in design
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    this.setState({
+	      currentForm: nextProps
+	    });
+	  },
 	  componentDidMount: function componentDidMount() {
 	    console.log('Payment form loaded');
 	    var $form = $('#form-two');
@@ -37924,7 +37972,10 @@
 	          React.createElement(
 	            'div',
 	            { id: 'input_container' },
-	            React.createElement('input', { className: 'full', type: 'submit', id: 'input', placeholder: 'Submit' })
+	            React.createElement('input', { type: 'button', style: { width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin: "0 auto",
+	                padding: "10px 20px 10px 20px", borderRadius: "10px",
+	                borderStyle: "none", textAlign: "center" },
+	              onClick: this.props.next, value: 'Next' })
 	          )
 	        )
 	      )
@@ -37933,10 +37984,6 @@
 	});
 
 	module.exports = Details;
-	// <Glyphicon glyph="chevron-right" />
-	//   <FontAwesome className='super-crazy-colors' name='rocket' size='2x' spin
-	//   style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-	// />
 
 /***/ },
 /* 281 */
@@ -40261,6 +40308,7 @@
 	  },
 
 	  render: function render() {
+	    var _this = this;
 
 	    var buttonStyle = { backgroundColor: "#5CA6E9", color: "white", borderRadius: "5px",
 	      borderColor: "#4E8DC6", padding: "3px 20px", marginBottom: "20px" };
@@ -40295,7 +40343,7 @@
 	      React.createElement(
 	        'form',
 	        { id: 'checkout-form', className: 'form form_three', style: { backgroundColor: "white", display: "none", margin: "auto", fontFamily: "Helvetica",
-	            height: "400px", padding: "10px 20% 10px 20%" }, method: 'POST', action: '/booking' },
+	            height: "400px", padding: "10px 20% 10px 20%" }, method: 'POST', action: '/payment' },
 	        React.createElement(
 	          'button',
 	          { type: 'button', onClick: this.props.back },
@@ -40384,7 +40432,12 @@
 	              ' Year '
 	            )
 	          ),
-	          React.createElement('input', { type: 'button', onClick: this.formSubmit, style: { centerAlign: "center" }, value: 'Submit' }),
+	          React.createElement('input', { type: 'button', style: { width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin: "0 auto",
+	              padding: "10px 20px 10px 20px", borderRadius: "10px",
+	              borderStyle: "none", textAlign: "center" },
+	            onClick: function onClick() {
+	              _this.formSubmit();_this.props.next();
+	            }, value: 'Pay Now' }),
 	          React.createElement('input', { id: '#finalPrice', type: 'hidden', name: 'price', value: this.state.finalPrice })
 	        )
 	      )

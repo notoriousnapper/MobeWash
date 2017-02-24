@@ -7,6 +7,7 @@ var monthExp = [ '01', '02', '03', '04',
         '05', '06', '07', '08', '09', '10', '11', '12'
 ];
 
+
 function genYears(){
   var currentYear = new Date().getFullYear();
   var arr = [];
@@ -206,7 +207,7 @@ return (
   <div id="charge-error"></div>
 
   <form  id="checkout-form" className="form form_three" style={{backgroundColor: "white", display:"none", margin: "auto", fontFamily: "Helvetica",
-   height: "400px", padding: "10px 20% 10px 20%"}} method="POST" action="/booking">
+   height: "400px", padding: "10px 20% 10px 20%"}} method="POST" action="/payment">
    <button type="button" onClick={this.props.back}> Back </button>
           <div>
             <button id="couponButton" style={buttonStyle} type="button" onClick={this.revealCoupon} > Redeem Coupon </button>
@@ -254,8 +255,10 @@ return (
                   <h1 className="date-label"> Month </h1>
                   <h1 className="date-label"> Year </h1>
             </div>
-
-  <input type="button" onClick={this.formSubmit} style={{centerAlign: "center"}} value="Submit"/>
+  <input type="button" style={{width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
+  padding: "10px 20px 10px 20px", borderRadius:"10px",
+  borderStyle: "none", textAlign: "center"}}
+  onClick={()=>{this.formSubmit(); this.props.next();}} value="Pay Now"/>
   <input id="#finalPrice" type="hidden" name="price" value={this.state.finalPrice} />
             </div>
   </form>

@@ -83,15 +83,10 @@ app.post('/test', function(request, response) {
 });
 
 
-app.post('/booking', function(req, res){
+app.post('/payment', function(req, res){
   // Set your secret key: remember to change this to your live secret key in production
   //Initializations
    var amount = 100; // 1 dollar
-
-
-
-
-
 
    var stripeToken = req.body.stripeToken;
    console.log("A Booking Process is in the works");

@@ -11,6 +11,11 @@ var $ = require('jquery');
 var Details = React.createClass({
 
 // having form with className form two works well, but not in design
+componentWillReceiveProps: function (nextProps) {
+  this.setState({
+    currentForm: nextProps
+  });
+},
 componentDidMount: function(){
   console.log('Payment form loaded');
   var $form = $('#form-two');
@@ -23,7 +28,7 @@ componentDidMount: function(){
 },
 render: function(){
 return (
-  <form  className="form form_two" style={{backgroundColor: "white", display:"none", margin: "0 auto", fontFamily: "Helvetica",
+  <form   className="form form_two" style={{backgroundColor: "white", display:"none", margin: "0 auto", fontFamily: "Helvetica",
    height: "400px", width: "100%", padding: "10px 20% 10px 20%"  }} method="post" action="/acuity">
 
    <button type="button" onClick={this.props.back}> Back </button>
@@ -57,19 +62,18 @@ return (
                 <input className="full" type="text" id="input" placeholder="Extra location information i.e. parking level" name="extrainfo"/>
               </div>
               <div id="input_container">
-                <input className="full" type="submit" id="input" placeholder="Submit" />
+                <input type="button" style={{width: "120px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
+                padding: "10px 20px 10px 20px", borderRadius:"10px",
+                borderStyle: "none", textAlign: "center"}}
+                onClick={this.props.next} value="Next"/>
               </div>
           </div>
 
-    </div>
-  </form>
+      </div>
+    </form>
 );
 }
 });
 
 
 module.exports = Details;
-// <Glyphicon glyph="chevron-right" />
-      //   <FontAwesome className='super-crazy-colors' name='rocket' size='2x' spin
-      //   style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }}
-      // />
