@@ -120,21 +120,21 @@ var CorporateCalendar = React.createClass({
   render: function(){
     var topStyle={
       height: '100px', width: '100px', textAlign: 'right', marginTop: '10px', paddingLeft: '4px', paddingRight: '4px',
-      fontFamily: 'Helvetica', backgroundColor: '#444444b', borderColor:"black"
+      fontFamily: 'Helvetica Neue', backgroundColor: '#444444b', borderColor:"black"
     };
     var headStyle={ // For The Month Titles
       height: '30px', width: '100px', textAlign: 'center', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-      paddingLeft: '4px', paddingRight: '4px', paddingBottom: "10px", fontFamily: 'Helvetica', fontWeight: '200px', fontSize: '14px', backgroundColor: '#444444',
+      paddingLeft: '4px', paddingRight: '4px', paddingBottom: "10px", fontFamily: 'Helvetica Neue', fontWeight: '200px', fontSize: '14px', backgroundColor: '#444444',
       borderColor:"black", color: "white"};
 
       var hoverStyle={
         height: '40px', width: '100px', textAlign: 'center',
-        paddingLeft: '4px',  fontFamily: 'Helvetica', fontSize: '1.4vw', backgroundColor: 'white',
+        paddingLeft: '4px',  fontFamily: 'Helvetica Neue', fontSize: '1.4vw', backgroundColor: 'white',
         borderColor:"black", color: '#CBCBCB', padding: "0", margin: "0"
       };
       var defaultStyle={
         height: '40px', width: '100px', textAlign: 'right', verticalAlign: 'top',
-        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '1.3vw', backgroundColor: 'white',
+        paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica Neue', fontSize: '1.3vw', backgroundColor: 'white',
         borderColor:"black", color: '#ADADAB' ,  margin: '0'
       };
 
@@ -210,7 +210,7 @@ var CorporateCalendar = React.createClass({
       for (var i = 0; i < 5; i++) {  // this loop is for is weeks (rows)
         for (var j = 0; j <= 6; j++) {  // this loop is for weekdays (cells)
           if (day <= monthLength && (i > 0 || j >= startingDay)) {  // Sets up for starting day
-            console.log("first day here!" + day);
+            //console.log("first day here!" + day);
             item = day;
             day++;
             if(day == monthLength + 1){ // Important so it resets

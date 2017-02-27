@@ -26656,7 +26656,7 @@
 	    // <button className="next active" onClick={this.switchLabel}>
 	    return React.createElement(
 	      'div',
-	      { className: 'carouselbox', style: { fontFamily: 'Helvetica Neue, Arial' } },
+	      { className: 'carouselbox', style: { fontFamily: 'Helvetica Neue Neue, Arial' } },
 	      React.createElement(
 	        'ol',
 	        { className: 'content active' },
@@ -26817,7 +26817,7 @@
 	    };
 	    var titleStyle = {
 	      fontWeight: " bold", fontSize: "14", color: "#444343", padding: "0", margin: "0", marginBottom: "4px",
-	      font: 'Helvetica Neue'
+	      font: 'Helvetica Neue Neue'
 	    };
 
 	    var boxStyle = {
@@ -26885,7 +26885,7 @@
 	      ),
 	      React.createElement(
 	        'div',
-	        { style: (0, _extends3.default)({ fontWeight: " bold", fontSize: "14", color: "#444343", font: 'Helvetica Neue' }, boxStyle2) },
+	        { style: (0, _extends3.default)({ fontWeight: " bold", fontSize: "14", color: "#444343", font: 'Helvetica Neue Neue' }, boxStyle2) },
 	        React.createElement('input', { style: { display: "inline-block", marginRight: "10px" }, type: 'checkbox', name: 'additional', checked: this.state.checked, onChange: this.priceIncrease }),
 	        'Is your car a SUV, Van, or Truck? *',
 	        React.createElement(
@@ -37908,18 +37908,16 @@
 	  },
 
 	  render: function render() {
-	    var buttonStyle = { height: "40px", width: "100px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin: "0 auto",
+	    var buttonStyle = { height: "40px", width: "100px", font: "Helvetica Neue", color: "white", backgroundColor: "#00B2EE", margin: "0 auto",
 	      padding: "10px 20px 10px 20px", borderRadius: "10px",
 	      borderStyle: "none" };
+	    var buttonStyle2 = { height: "40px", width: "100px", font: "Helvetica Neue", color: "#757575", backgroundColor: "white", margin: "0 auto",
+	      padding: "10px 20px 10px 20px", borderRadius: "10px", borderColor: "#757575",
+	      borderStyle: "solid" };
 	    return React.createElement(
 	      'form',
-	      { className: 'form form_two', style: { backgroundColor: "white", display: "none", margin: "0 auto", fontFamily: "Helvetica",
+	      { className: 'form form_two', style: { backgroundColor: "white", display: "none", margin: "0 auto", fontFamily: "Helvetica Neue Neue",
 	          width: "100%", padding: "10px 20% 10px 20%" }, method: 'post', action: '/acuity' },
-	      React.createElement(
-	        'a',
-	        { style: { color: "black", float: "left", paddingLeft: "20px", marginBottom: "10px" }, type: 'button', onClick: this.props.back },
-	        ' \u25C4 Back '
-	      ),
 	      React.createElement(
 	        'div',
 	        { style: { padding: "20px 20px", width: "100%", backgroundColor: "#FBFDFF", margin: "0 auto" } },
@@ -37966,12 +37964,26 @@
 	        ),
 	        React.createElement(
 	          'div',
-	          { style: { height: "60px", padding: "10px 20px" } },
+	          { style: { margin: "0 auto", display: "flex", width: "40%" } },
 	          React.createElement(
-	            'button',
-	            { type: 'button', style: buttonStyle,
-	              onClick: this.props.next },
-	            ' Next '
+	            'div',
+	            { style: { flex: "1", height: "60px", padding: "10px 20px", float: "left" } },
+	            React.createElement(
+	              'button',
+	              { type: 'button', style: buttonStyle2,
+	                onClick: this.props.back },
+	              ' Back '
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { style: { flex: "1", height: "60px", padding: "10px 20px" } },
+	            React.createElement(
+	              'button',
+	              { type: 'button', style: buttonStyle,
+	                onClick: this.props.next },
+	              ' Continue '
+	            )
 	          )
 	        )
 	      )
@@ -37980,6 +37992,7 @@
 	});
 
 	module.exports = Details;
+	//  <a style={{color: "black", float:"left", paddingLeft: "20px", marginBottom:"10px"}} type="button" onClick={this.props.back}> ◄ Back </a>
 
 /***/ },
 /* 281 */
@@ -39780,21 +39793,21 @@
 	  render: function render() {
 	    var topStyle = {
 	      height: '100px', width: '100px', textAlign: 'right', marginTop: '10px', paddingLeft: '4px', paddingRight: '4px',
-	      fontFamily: 'Helvetica', backgroundColor: '#444444b', borderColor: "black"
+	      fontFamily: 'Helvetica Neue', backgroundColor: '#444444b', borderColor: "black"
 	    };
 	    var headStyle = { // For The Month Titles
 	      height: '30px', width: '100px', textAlign: 'center', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-	      paddingLeft: '4px', paddingRight: '4px', paddingBottom: "10px", fontFamily: 'Helvetica', fontWeight: '200px', fontSize: '14px', backgroundColor: '#444444',
+	      paddingLeft: '4px', paddingRight: '4px', paddingBottom: "10px", fontFamily: 'Helvetica Neue', fontWeight: '200px', fontSize: '14px', backgroundColor: '#444444',
 	      borderColor: "black", color: "white" };
 
 	    var hoverStyle = {
 	      height: '40px', width: '100px', textAlign: 'center',
-	      paddingLeft: '4px', fontFamily: 'Helvetica', fontSize: '1.4vw', backgroundColor: 'white',
+	      paddingLeft: '4px', fontFamily: 'Helvetica Neue', fontSize: '1.4vw', backgroundColor: 'white',
 	      borderColor: "black", color: '#CBCBCB', padding: "0", margin: "0"
 	    };
 	    var defaultStyle = {
 	      height: '40px', width: '100px', textAlign: 'right', verticalAlign: 'top',
-	      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '1.3vw', backgroundColor: 'white',
+	      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica Neue', fontSize: '1.3vw', backgroundColor: 'white',
 	      borderColor: "black", color: '#ADADAB', margin: '0'
 	    };
 
@@ -39920,7 +39933,7 @@
 	        // this loop is for weekdays (cells)
 	        if (day <= monthLength && (i > 0 || j >= startingDay)) {
 	          // Sets up for starting day
-	          console.log("first day here!" + day);
+	          //console.log("first day here!" + day);
 	          item = day;
 	          day++;
 	          if (day == monthLength + 1) {
@@ -40356,7 +40369,7 @@
 	            height: "400px", padding: "10px 20% 10px 20%" }, method: 'POST', action: '/payment' },
 	        React.createElement(
 	          'a',
-	          { style: { color: "black", float: "left", paddingLeft: "20px", marginBottom: "10px" }, type: 'button', onClick: this.props.back },
+	          { style: { float: "left", paddingLeft: "20px", marginBottom: "10px" }, type: 'button', onClick: this.props.back },
 	          ' \u25C4 Back '
 	        ),
 	        React.createElement(
@@ -40446,6 +40459,30 @@
 	              _this.formSubmit();_this.props.next();
 	            }, value: 'Pay Now' }),
 	          React.createElement('input', { id: '#finalPrice', type: 'hidden', name: 'price', value: this.state.finalPrice })
+	        ),
+	        React.createElement(
+	          'div',
+	          { style: { margin: "0 auto", display: "flex", width: "40%" } },
+	          React.createElement(
+	            'div',
+	            { style: { flex: "1", height: "60px", padding: "10px 20px", float: "left" } },
+	            React.createElement(
+	              'button',
+	              { type: 'button', style: buttonStyle2,
+	                onClick: this.props.back },
+	              ' Back '
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { style: { flex: "1", height: "60px", padding: "10px 20px" } },
+	            React.createElement(
+	              'button',
+	              { type: 'button', style: buttonStyle,
+	                onClick: this.props.next },
+	              ' Continue '
+	            )
+	          )
 	        )
 	      )
 	    );
@@ -40665,10 +40702,10 @@
 
 	exports = module.exports = __webpack_require__(349)();
 	// imports
-	exports.push([module.id, "@import url(//db.onlinewebfonts.com/c/5c05f0418474bdbfdd575778d76506cd?family=Helvetica);", ""]);
+	exports.push([module.id, "@import url(//db.onlinewebfonts.com/c/5c05f0418474bdbfdd575778d76506cd?family=Helvetica Neue);", ""]);
 
 	// module
-	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\n@font-face {font-family: \"Helvetica\";\n    src: url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.eot\");\n    src: url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.eot?#iefix\") format(\"embedded-opentype\"),\n    url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.woff2\") format(\"woff2\"),\n    url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.woff\") format(\"woff\"),\n    url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.ttf\") format(\"truetype\"),\n    url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.svg#Helvetica\") format(\"svg\");\n}\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    /*font-size: 100%;*/\n    /*font: inherit;*/\n    vertical-align: baseline;\n}\nbody{\n  background-color: #D9D9D9;\n\n}\n\n\n.corporateBtn{\n  display: block;\n  margin: auto;\n  background-color:#5CB85C;\n  border-color:#5CB85C;\n  border-style: solid;\n  border-radius:5px;\n  height: 40px;\n  width: 180px;\n  color: white;\n  font-family: 19px;\n  flex: 1;\n}\n:placeholder-shown{\n  /*padding:4px;*/\n  font-size:14px;\n}\n::placeholder{\n  /*padding:4px;*/\n  font-size:14px;\n}\n.bookform{\n  background-color: #FBFDFF;\n  margin:auto;\n  height: 400px;\n  width: 500px;\n  padding-left: 30px;\n  padding-right:30px;\n}\n\n#bookingBtn{\n  background-color: #5FA7E6;\n  color: white;\n  height: 30px;\n  width: 150px;\n  font-size: 14px;\n  border-radius: 5px;\n  border-width: 1px;\n  border-bottom-width:4px;\n  border-color: #518EC4;\n  border-style: solid;\n}\n\n\n#times{\n  text-align: right;\n  color:   #BBB9BB;\n  padding-right:2px;\n  width:20px;\n}\n#tableform{\n  /*display:none;*/\n  margin:auto;\n  width:60%;\n}\n/*#table1{\n  margin:auto;\n}*/\n#sideTh{\n  text-align: center;\n  font-family: Helvetica;\n  font-size: 14px;\n  padding-bottom: 8px;\n\n}\n\n#headTh{\n  margin-top: 10px;\n  color: #BBB9B9;\n  font-family: Helvetica;\n  font-size: 14px;\n  padding-bottom: 8px;\n  padding-bottom: 8px;\n}\n#hth{\n  width: 60px;\n  text-align: center;\n  margin-top: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-family: Helvetica;\n  background-color: #444444;\n}\n\n#avail{\n  width:100%;\n  height:30px;\n  /*width:100%;\n  height:100%;*/\n  border-radius: 10px;\n  border-style: none;\n  background-color: white;\n  background-color: #3DA8E4;\n}\ntable {\n    font-family: arial, sans-serif;\n    border-collapse: collapse;\n    /*width: 100%;*/\n    background-color: #FBFBFB;\n    padding: 0;\n    margin: 0;\n    border:2px solid #CCC;\n    border-collapse:collapse;\n    /*padding-left: 5px;*/\n}\n\ntd, th {\n    height:30px;\n    width:70px;\n    border: 1px solid #dddddd;\n    text-align: left;\n    /*padding: 8px;*/\n}\n\ntd{\n  width:50px;\n}\n\nth.avail {\n  background-color: white;\n}\n\ntr:nth-child(even) {\n    /*background-color: #dddddd;*/\n}\n\n\n/* Carousel Things */\n.carouselbox {\n  margin: auto;\n  font-family: helvetica, sans-serif;\n  font-size: 14px;\n  width: 100%;\n  border: 1px solid #E7E7E7;\n  box-shadow: 2px 2px 10px #E7E7E7;\n  background-color: white;\n}\n\n.content {\n  margin: 0;\n  padding: 0;\n  display: flex;\n}\n\n.content li {\n  font-size: 15px;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  list-style: none;\n  text-align: center;\n  padding: 10px 0px 10px 0px;\n}\n\n.active {\n  /*height: 200px;*/\n  /*height: 20px;*/\n  /*height: 50px;*/\n  width: 100%;\n}\n.active li {\n  /*position: absolute;*/\n  flex: 1;\n  /*height: 50px;*/\n  /*height: 200px;*/\n}\n.active li.current { /* Important */\n  /*top: 30px;*/\n  color: black;\n  background-color: #F5F5F5;\n  border-bottom-color: #5fa7e6;\n  border-bottom-width: 3px;\n  border-style: solid;\n}\n\n.corp-calendar {\n  font-family:  helvetica, sans-serif !important;\n  font-weight: 300;\n}\n.corp-calendar button{\n  background-color: #444444;\n  border-color: none;\n  border-radius: 3px;\n  border-style: none;\n  font-family:  helvetica, sans-serif !important;\n  font-weight: 300;\n}\n\n.active .buttons {\n  padding: 5px 0;\n  background: #eee;\n  text-align: center;\n  z-index: 10;\n  position: relative;\n  height: 100px;\n  width: 100px;\n}\n.carouselbox{\n  border-radius: 7px 7px 0 0;\n}\n.carouselbox li {\n  border-style: solid;\n  border-width: 0.01em;\n  border-color: #E3E3E3;\n  /*border: none;*/\n  /*display: none;*/\n}\n.active button {\n  display: block;\n}\n.offscreen {\n  /*position: absolute;*/\n  /*left: -2000px;*/\n}\n\n\n\n/* Buttons */\n.submit button{\n  background-color: #00B2EE;\n  margin:auto;\n  padding: 10px 20px 20px 10px;\n  border-radius: 10px;\n  border-style: none;\n}\n\n.left-inner-addon {\n    position: relative;\n}\n.left-inner-addon input {\n    padding-left: 30px;\n}\n.left-inner-addon i {\n    position: absolute;\n    padding: 10px 12px;\n    pointer-events: none;\n}\n\n.right-inner-addon {\n    position: relative;\n}\n.right-inner-addon input {\n    padding-right: 30px;\n}\n.right-inner-addon i {\n    position: absolute;\n    right: 0px;\n    padding: 10px 12px;\n    pointer-events: none;\n}\n\ninput {\n  /*width: 500px; */\n  height:        22px;\n  font-size:     18px;\n  font-family:   'Helvetica Neue !important';\n  margin-bottom: 10px;\n  border-width:  1px;\n  padding:       12px 20px 15px 10px;\n\n  margin-right:  10px;\n  border-color: white !important;\n  border-radius: 3px 3px 3px 3px;\n  /*background-color: red;*/\n}\n\n.form {\n  border: 1px solid #E7E7E7;\n  box-shadow: 2px 2px 10px #E7E7E7;\n}\n\n.selected{\n  background-color: #E7E9EB;\n  border-color: #B5BBC1;\n  border-width: 1px;\n}\n\n\n.opt:hover{\n  background-color: #E7E9EB;\n}\n", ""]);
+	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\n@font-face {font-family: \"Helvetica Neue\";\n    src: url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.eot\");\n    src: url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.eot?#iefix\") format(\"embedded-opentype\"),\n    url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.woff2\") format(\"woff2\"),\n    url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.woff\") format(\"woff\"),\n    url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.ttf\") format(\"truetype\"),\n    url(\"//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.svg#Helvetica Neue\") format(\"svg\");\n}\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    /*font-size: 100%;*/\n    /*font: inherit;*/\n    vertical-align: baseline;\n}\nbody{\n  background-color: #D9D9D9;\n\n}\n\n\n.corporateBtn{\n  display: block;\n  margin: auto;\n  background-color:#5CB85C;\n  border-color:#5CB85C;\n  border-style: solid;\n  border-radius:5px;\n  height: 40px;\n  width: 180px;\n  color: white;\n  font-family: 19px;\n  flex: 1;\n}\n:placeholder-shown{\n  /*padding:4px;*/\n  font-size:14px;\n}\n::placeholder{\n  /*padding:4px;*/\n  font-size:14px;\n}\n.bookform{\n  background-color: #FBFDFF;\n  margin:auto;\n  height: 400px;\n  width: 500px;\n  padding-left: 30px;\n  padding-right:30px;\n}\n\n#bookingBtn{\n  background-color: #5FA7E6;\n  color: white;\n  height: 30px;\n  width: 150px;\n  font-size: 14px;\n  border-radius: 5px;\n  border-width: 1px;\n  border-bottom-width:4px;\n  border-color: #518EC4;\n  border-style: solid;\n}\n\n\n#times{\n  text-align: right;\n  color:   #BBB9BB;\n  padding-right:2px;\n  width:20px;\n}\n#tableform{\n  /*display:none;*/\n  margin:auto;\n  width:60%;\n}\n/*#table1{\n  margin:auto;\n}*/\n#sideTh{\n  text-align: center;\n  font-family: Helvetica Neue;\n  font-size: 14px;\n  padding-bottom: 8px;\n\n}\n\n#headTh{\n  margin-top: 10px;\n  color: #BBB9B9;\n  font-family: Helvetica Neue;\n  font-size: 14px;\n  padding-bottom: 8px;\n  padding-bottom: 8px;\n}\n#hth{\n  width: 60px;\n  text-align: center;\n  margin-top: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-family: Helvetica Neue;\n  background-color: #444444;\n}\n\n#avail{\n  width:100%;\n  height:30px;\n  /*width:100%;\n  height:100%;*/\n  border-radius: 10px;\n  border-style: none;\n  background-color: white;\n  background-color: #3DA8E4;\n}\ntable {\n    font-family: arial, sans-serif;\n    border-collapse: collapse;\n    /*width: 100%;*/\n    background-color: #FBFBFB;\n    padding: 0;\n    margin: 0;\n    border:2px solid #CCC;\n    border-collapse:collapse;\n    /*padding-left: 5px;*/\n}\n\ntd, th {\n    height:30px;\n    width:70px;\n    border: 1px solid #dddddd;\n    text-align: left;\n    /*padding: 8px;*/\n}\n\ntd{\n  width:50px;\n}\n\nth.avail {\n  background-color: white;\n}\n\ntr:nth-child(even) {\n    /*background-color: #dddddd;*/\n}\n\n\n/* Carousel Things */\n.carouselbox {\n  margin: auto;\n  font-family: Helvetica Neue, sans-serif;\n  font-size: 14px;\n  width: 100%;\n  border: 1px solid #E7E7E7;\n  box-shadow: 2px 2px 10px #E7E7E7;\n  background-color: white;\n}\n\n.content {\n  margin: 0;\n  padding: 0;\n  display: flex;\n}\n\n.content li {\n  font-size: 15px;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  list-style: none;\n  text-align: center;\n  padding: 10px 0px 10px 0px;\n}\n\n.active {\n  /*height: 200px;*/\n  /*height: 20px;*/\n  /*height: 50px;*/\n  width: 100%;\n}\n.active li {\n  /*position: absolute;*/\n  flex: 1;\n  /*height: 50px;*/\n  /*height: 200px;*/\n}\n.active li.current { /* Important */\n  /*top: 30px;*/\n  color: black;\n  background-color: #F5F5F5;\n  border-bottom-color: #5fa7e6;\n  border-bottom-width: 3px;\n  border-style: solid;\n}\n\n.corp-calendar {\n  font-family:  Helvetica Neue, sans-serif !important;\n  font-weight: 300;\n}\n.corp-calendar button{\n  background-color: #444444;\n  border-color: none;\n  border-radius: 3px;\n  border-style: none;\n  font-family:  Helvetica Neue, sans-serif !important;\n  font-weight: 300;\n}\n\n.active .buttons {\n  padding: 5px 0;\n  background: #eee;\n  text-align: center;\n  z-index: 10;\n  position: relative;\n  height: 100px;\n  width: 100px;\n}\n.carouselbox{\n  border-radius: 7px 7px 0 0;\n}\n.carouselbox li {\n  border-style: solid;\n  border-width: 0.01em;\n  border-color: #E3E3E3;\n  /*border: none;*/\n  /*display: none;*/\n}\n.active button {\n  display: block;\n}\n.offscreen {\n  /*position: absolute;*/\n  /*left: -2000px;*/\n}\n\n\n\n/* Buttons */\n.submit button{\n  background-color: #00B2EE;\n  margin:auto;\n  padding: 10px 20px 20px 10px;\n  border-radius: 10px;\n  border-style: none;\n}\n\n.left-inner-addon {\n    position: relative;\n}\n.left-inner-addon input {\n    padding-left: 30px;\n}\n.left-inner-addon i {\n    position: absolute;\n    padding: 10px 12px;\n    pointer-events: none;\n}\n\n.right-inner-addon {\n    position: relative;\n}\n.right-inner-addon input {\n    padding-right: 30px;\n}\n.right-inner-addon i {\n    position: absolute;\n    right: 0px;\n    padding: 10px 12px;\n    pointer-events: none;\n}\n\ninput {\n  /*width: 500px; */\n  height:        22px;\n  font-size:     18px;\n  font-family:   'Helvetica Neue Neue !important';\n  margin-bottom: 10px;\n  border-width:  1px;\n  padding:       12px 20px 15px 10px;\n\n  margin-right:  10px;\n  border-color: white !important;\n  border-radius: 3px 3px 3px 3px;\n  /*background-color: red;*/\n}\n\n.form {\n  border: 1px solid #E7E7E7;\n  box-shadow: 2px 2px 10px #E7E7E7;\n}\n\n.selected{\n  background-color: #E7E9EB;\n  border-color: #B5BBC1;\n  border-width: 1px;\n}\n\n\n.opt:hover{\n  background-color: #E7E9EB;\n}\n", ""]);
 
 	// exports
 
@@ -41016,7 +41053,7 @@
 
 
 	// module
-	exports.push([module.id, ".half{\n  width: 50% !important;\n  border-width: 0;\n  /*border-right-width: 1px;*/\n  border-width: 0px 1px 0px 0px !important;\n  border-color: #E0E0E0 !important;\n  border-style: solid !important;\n}\n.half2{\n  width: 50% !important;\n  border-width: 0;\n  /*border-right-width: 1px;*/\n  border-width: 0px 0px 0px 0px !important;\n  border-color: #E0E0E0 !important;\n  border-style: solid !important;\n}\n.full{\n  width: 100% !important;\n  border-right-width: 1px;\n}\n\n.fire input{\n  border: none;\n  padding-left: 30px;\n  border-width: 1px;\n  border-width: 1px;\n  /*border-color: #7CAADD !important;*/\n  height: 45px !important;\n  /*border-style: solid;*/\n}\n.fire input active{\n  /*background-color:red;*/\n  border: none;\n  border-style: solid;\n  border-color: #7CAADD !important;\n  -moz-box-shadow:    0px 0px 15px 16px #7CAADD;\n  -webkit-box-shadow: 0px 0px 15px 16px #7CAADD;\n  box-shadow:         0px 0px 15px 16px #7CAADD;\n}\n\n.backgroundForm{\n  background-color: blue;\n  width: 1000px;\n  margin: 0 auto;\n}\n\n#form_container{\n  padding: 2px 1px;\n  border-color: #DFDFDF!important;\n  border-width: 1px !important;\n  border-radius: 10px !important;\n  border-style: solid;\n  width: 100%;\n  /*height: 1400px;*/\n  background-color: white;\n  overflow: hidden;\n}\n\n#input_container {\n  position:relative; padding:0; margin:0;\n  border-color: #E0E0E0;\n  border-style: solid;\n  border-bottom-width: 1px;\n}\n\n#input {\n  height:20px; margin:0; padding-left: 60px !important;\n  /*box-sizing: border-box;*/\n }\n\n/* Font Awesome Items are just fonts, so font styles apply */\n#input_img { position:absolute;\n  bottom:8px;\n  left:10px;\n  width:10px;\n  font-size: 20px;\n }\n#input_img_half { position:absolute;\n  bottom:8px;\n  left: 52%;\n  width:10px;\n }\n\n::-webkit-input-placeholder { /* Chrome/Opera/Safari */\n  /*color: pink;*/\n  padding-left: 0px;\n  font-family: 'Helvetica Neue';\n}\n::-moz-placeholder { /* Firefox 19+ */\n  /*color: pink;*/\n  padding-left: 0px;\n  font-family: 'Helvetica Neue';\n}\n:-ms-input-placeholder { /* IE 10+ */\n  /*color: pink;*/\n  padding-left: 0px;\n  font-family: 'Helvetica Neue';\n}\n:-moz-placeholder { /* Firefox 18- */\n  /*color: pink;*/\n  padding-left: 0px;\n  font-family: 'Helvetica Neue';\n}\n\n\n/* Dropdown CSS */\n/* -------------------- Page Styles (not required) */\n\n/* -------------------- Select Box Styles: bavotasan.com Method (with special adaptations by ericrasch.com) */\n/* -------------------- Source: http://bavotasan.com/2011/style-select-box-using-only-css/ */\n.styled-select {\n  /*margin: 20px;*/\n   /*background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;*/\n   height: 29px;\n   overflow: hidden;\n   /*width: 100px !important;*/\n   background: white;\n}\n\n.styled-select select {\n   background: white;\n   border: none;\n   font-size: 14px;\n   height: 29px;\n   /*padding: 5px; /* If you add too much padding here, the options won't show in IE */*/\n   width: 40%;\n}\n\n.styled-select.slate {\n   /*background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;*/\n   height: 34px;\n   width: 40%;\n}\n\n.styled-select.slate select {\n   border: 1px solid #ccc;\n   font-size: 16px;\n   height: 34px;\n   /*width: 268px;*/\n   width: 40%;\n}\n\n/* -------------------- Rounded Corners */\n.rounded {\n   -webkit-border-radius: 20px;\n   -moz-border-radius: 20px;\n   border-radius: 20px;\n}\n\n.semi-square {\n   -webkit-border-radius: 5px;\n   -moz-border-radius: 5px;\n   border-radius: 5px;\n}\n\n/* -------------------- Colors: Background */\n.slate   { background-color: #ddd; }\n.green   { background-color: #779126; }\n.blue    { background-color: #3b8ec2; }\n.yellow  { background-color: #eec111; }\n.black   { background-color: #000; }\n\n/* -------------------- Colors: Text */\n.slate select   { color: #000; }\n.green select   { color: #fff; }\n.blue select    { color: #fff; }\n.yellow select  { color: #000; }\n.black select   { color: #fff; }\n\n\n/* -------------------- Select Box Styles: danielneumann.com Method */\n/* -------------------- Source: http://danielneumann.com/blog/how-to-style-dropdown-with-css-only/ */\n#mainselection select {\n   border: 0;\n   color: #EEE;\n   background: transparent;\n   font-size: 20px;\n   font-weight: bold;\n   padding: 2px 10px;\n   width: 378px;\n   *width: 350px;\n   *background: #58B14C;\n   -webkit-appearance: none;\n}\n\n#mainselection {\n   overflow:hidden;\n   width:350px;\n   -moz-border-radius: 9px 9px 9px 9px;\n   -webkit-border-radius: 9px 9px 9px 9px;\n   border-radius: 9px 9px 9px 9px;\n   box-shadow: 1px 1px 11px #330033;\n   background: #58B14C url(\"http://i62.tinypic.com/15xvbd5.png\") no-repeat scroll 319px center;\n}\n\n\n/* -------------------- Select Box Styles: stackoverflow.com Method */\n/* -------------------- Source: http://stackoverflow.com/a/5809186 */\nselect#soflow, select#soflow-color {\n   -webkit-appearance: button;\n   -webkit-border-radius: 2px;\n   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);\n   -webkit-padding-end: 20px;\n   -webkit-padding-start: 2px;\n   -webkit-user-select: none;\n   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);\n   background-position: 97% center;\n   background-repeat: no-repeat;\n   border: 1px solid #AAA;\n   color: #555;\n   font-size: inherit;\n   margin: 20px;\n   overflow: hidden;\n   padding: 5px 10px;\n   text-overflow: ellipsis;\n   white-space: nowrap;\n   width: 300px;\n}\n\nselect#soflow-color {\n   color: #fff;\n   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);\n   background-color: #779126;\n   -webkit-border-radius: 20px;\n   -moz-border-radius: 20px;\n   border-radius: 20px;\n   padding-left: 15px;\n}\n\n\n.date-label{\n  color:#B4A9A9!important;\n  vertical-align: middle;\n   flex:1;\n   font-size:10px;\n   height:18px !important;\n   /*position: absolute;*/\n   /*background-color:black;*/\n   margin: 0;\n   padding: 0;\n}\n", ""]);
+	exports.push([module.id, ".half{\n  width: 50% !important;\n  border-width: 0;\n  /*border-right-width: 1px;*/\n  border-width: 0px 1px 0px 0px !important;\n  border-color: #E0E0E0 !important;\n  border-style: solid !important;\n}\n.half2{\n  width: 50% !important;\n  border-width: 0;\n  /*border-right-width: 1px;*/\n  border-width: 0px 0px 0px 0px !important;\n  border-color: #E0E0E0 !important;\n  border-style: solid !important;\n}\n.full{\n  width: 100% !important;\n  border-right-width: 1px;\n}\n\n.fire input{\n  border: none;\n  padding-left: 30px;\n  border-width: 1px;\n  border-width: 1px;\n  /*border-color: #7CAADD !important;*/\n  height: 45px !important;\n  /*border-style: solid;*/\n}\n.fire input active{\n  /*background-color:red;*/\n  border: none;\n  border-style: solid;\n  border-color: #7CAADD !important;\n  -moz-box-shadow:    0px 0px 15px 16px #7CAADD;\n  -webkit-box-shadow: 0px 0px 15px 16px #7CAADD;\n  box-shadow:         0px 0px 15px 16px #7CAADD;\n}\n\n.backgroundForm{\n  background-color: blue;\n  width: 1000px;\n  margin: 0 auto;\n}\n\n#form_container{\n  padding: 2px 1px;\n  border-color: #DFDFDF!important;\n  border-width: 1px !important;\n  border-radius: 10px !important;\n  border-style: solid;\n  width: 100%;\n  /*height: 1400px;*/\n  background-color: white;\n  overflow: hidden;\n}\n\n#input_container {\n  position:relative; padding:0; margin:0;\n  border-color: #E0E0E0;\n  border-style: solid;\n  border-bottom-width: 1px;\n}\n\n#input {\n  height:20px; margin:0; padding-left: 60px !important;\n  /*box-sizing: border-box;*/\n }\n\n/* Font Awesome Items are just fonts, so font styles apply */\n#input_img { position:absolute;\n  bottom:8px;\n  left:10px;\n  width:10px;\n  font-size: 20px;\n }\n#input_img_half { position:absolute;\n  bottom:8px;\n  left: 52%;\n  width:10px;\n }\n\n::-webkit-input-placeholder { /* Chrome/Opera/Safari */\n  /*color: pink;*/\n  padding-left: 0px;\n  font-family: 'Helvetica Neue Neue';\n}\n::-moz-placeholder { /* Firefox 19+ */\n  /*color: pink;*/\n  padding-left: 0px;\n  font-family: 'Helvetica Neue Neue';\n}\n:-ms-input-placeholder { /* IE 10+ */\n  /*color: pink;*/\n  padding-left: 0px;\n  font-family: 'Helvetica Neue Neue';\n}\n:-moz-placeholder { /* Firefox 18- */\n  /*color: pink;*/\n  padding-left: 0px;\n  font-family: 'Helvetica Neue Neue';\n}\n\n\n/* Dropdown CSS */\n/* -------------------- Page Styles (not required) */\n\n/* -------------------- Select Box Styles: bavotasan.com Method (with special adaptations by ericrasch.com) */\n/* -------------------- Source: http://bavotasan.com/2011/style-select-box-using-only-css/ */\n.styled-select {\n  /*margin: 20px;*/\n   /*background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;*/\n   height: 29px;\n   overflow: hidden;\n   /*width: 100px !important;*/\n   background: white;\n}\n\n.styled-select select {\n   background: white;\n   border: none;\n   font-size: 14px;\n   height: 29px;\n   /*padding: 5px; /* If you add too much padding here, the options won't show in IE */*/\n   width: 40%;\n}\n\n.styled-select.slate {\n   /*background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;*/\n   height: 34px;\n   width: 40%;\n}\n\n.styled-select.slate select {\n   border: 1px solid #ccc;\n   font-size: 16px;\n   height: 34px;\n   /*width: 268px;*/\n   width: 40%;\n}\n\n/* -------------------- Rounded Corners */\n.rounded {\n   -webkit-border-radius: 20px;\n   -moz-border-radius: 20px;\n   border-radius: 20px;\n}\n\n.semi-square {\n   -webkit-border-radius: 5px;\n   -moz-border-radius: 5px;\n   border-radius: 5px;\n}\n\n/* -------------------- Colors: Background */\n.slate   { background-color: #ddd; }\n.green   { background-color: #779126; }\n.blue    { background-color: #3b8ec2; }\n.yellow  { background-color: #eec111; }\n.black   { background-color: #000; }\n\n/* -------------------- Colors: Text */\n.slate select   { color: #000; }\n.green select   { color: #fff; }\n.blue select    { color: #fff; }\n.yellow select  { color: #000; }\n.black select   { color: #fff; }\n\n\n/* -------------------- Select Box Styles: danielneumann.com Method */\n/* -------------------- Source: http://danielneumann.com/blog/how-to-style-dropdown-with-css-only/ */\n#mainselection select {\n   border: 0;\n   color: #EEE;\n   background: transparent;\n   font-size: 20px;\n   font-weight: bold;\n   padding: 2px 10px;\n   width: 378px;\n   *width: 350px;\n   *background: #58B14C;\n   -webkit-appearance: none;\n}\n\n#mainselection {\n   overflow:hidden;\n   width:350px;\n   -moz-border-radius: 9px 9px 9px 9px;\n   -webkit-border-radius: 9px 9px 9px 9px;\n   border-radius: 9px 9px 9px 9px;\n   box-shadow: 1px 1px 11px #330033;\n   background: #58B14C url(\"http://i62.tinypic.com/15xvbd5.png\") no-repeat scroll 319px center;\n}\n\n\n/* -------------------- Select Box Styles: stackoverflow.com Method */\n/* -------------------- Source: http://stackoverflow.com/a/5809186 */\nselect#soflow, select#soflow-color {\n   -webkit-appearance: button;\n   -webkit-border-radius: 2px;\n   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);\n   -webkit-padding-end: 20px;\n   -webkit-padding-start: 2px;\n   -webkit-user-select: none;\n   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);\n   background-position: 97% center;\n   background-repeat: no-repeat;\n   border: 1px solid #AAA;\n   color: #555;\n   font-size: inherit;\n   margin: 20px;\n   overflow: hidden;\n   padding: 5px 10px;\n   text-overflow: ellipsis;\n   white-space: nowrap;\n   width: 300px;\n}\n\nselect#soflow-color {\n   color: #fff;\n   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);\n   background-color: #779126;\n   -webkit-border-radius: 20px;\n   -moz-border-radius: 20px;\n   border-radius: 20px;\n   padding-left: 15px;\n}\n\n\n.date-label{\n  color:#B4A9A9!important;\n  vertical-align: middle;\n   flex:1;\n   font-size:10px;\n   height:18px !important;\n   /*position: absolute;*/\n   /*background-color:black;*/\n   margin: 0;\n   padding: 0;\n}\n", ""]);
 
 	// exports
 

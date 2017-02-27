@@ -91,7 +91,7 @@ body{
 }*/
 #sideTh{
   text-align: center;
-  font-family: Helvetica;
+  font-family: Helvetica Neue;
   font-size: 14px;
   padding-bottom: 8px;
 
@@ -100,7 +100,7 @@ body{
 #headTh{
   margin-top: 10px;
   color: #BBB9B9;
-  font-family: Helvetica;
+  font-family: Helvetica Neue;
   font-size: 14px;
   padding-bottom: 8px;
   padding-bottom: 8px;
@@ -111,7 +111,7 @@ body{
   margin-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
-  font-family: Helvetica;
+  font-family: Helvetica Neue;
   background-color: #444444;
 }
 
@@ -161,7 +161,7 @@ tr:nth-child(even) {
 /* Carousel Things */
 .carouselbox {
   margin: auto;
-  font-family: helvetica,sans-serif;
+  font-family: Helvetica Neue,sans-serif;
   font-size: 14px;
   width: 100%;
   border: 1px solid #E7E7E7;

@@ -92,25 +92,25 @@ var Calendar_C = React.createClass({
   render: function(){
     var topStyle={
       height: '100px', width: '100px', textAlign: 'right', marginTop: '10px', paddingLeft: '4px', paddingRight: '4px',
-      fontFamily: 'Helvetica', backgroundColor: '#444444b', borderColor:"black"
+      fontFamily: 'Helvetica Neue', backgroundColor: '#444444b', borderColor:"black"
     };
     var headStyle={
       height: '30px', width: '100px', textAlign: 'center', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#444444',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica Neue', fontSize: '14px', backgroundColor: '#444444',
       borderColor:"black", color: '#ADADAB' };
     var chosenStyle={
       height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: '#7A7A7A',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica Neue', fontSize: '12px', backgroundColor: '#7A7A7A',
       borderColor:"black", color: '#ADADAB'
     };
     var hoverStyle={
       height: '40px', width: '100px', textAlign: 'center',
-      paddingLeft: '4px',  fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: '#7A7A7A',
+      paddingLeft: '4px',  fontFamily: 'Helvetica Neue', fontSize: '12px', backgroundColor: '#7A7A7A',
       borderColor:"black", color: '#ADADAB', padding: "0", margin: "0"
     };
     var defaultStyle={
       height: '40px', width: '100px', textAlign: 'right', verticalAlign: 'top',
-      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: 'white',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica Neue', fontSize: '12px', backgroundColor: 'white',
       borderColor:"black", color: '#ADADAB' , padding: '0', margin: '0'
     };
 
@@ -245,20 +245,20 @@ var Calendar = React.createClass({
   render: function() {
     var topStyle={
       height: '100px', width: '100px', textAlign: 'right', marginTop: '10px', paddingLeft: '4px', paddingRight: '4px',
-      fontFamily: 'Helvetica', backgroundColor: '#444444b', borderColor:"black"
+      fontFamily: 'Helvetica Neue', backgroundColor: '#444444b', borderColor:"black"
     };
     var headStyle={
       height: '40px', width: '100px', textAlign: 'center', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '14px', backgroundColor: '#444444b',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica Neue', fontSize: '14px', backgroundColor: '#444444b',
       borderColor:"black", color: '#ADADAB' };
     var chosenStyle={
       height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: '#7A7A7A',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica Neue', fontSize: '12px', backgroundColor: '#7A7A7A',
       borderColor:"black", color: '#ADADAB'
     };
     var defaultStyle={
       height: '40px', width: '100px', textAlign: 'right', marginTop: '10px', marginBottom: '0px', paddingTop: '10px',
-      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica', fontSize: '12px', backgroundColor: 'white',
+      paddingLeft: '4px', paddingRight: '4px', fontFamily: 'Helvetica Neue', fontSize: '12px', backgroundColor: 'white',
       borderColor:"black", color: '#ADADAB'
     };
 

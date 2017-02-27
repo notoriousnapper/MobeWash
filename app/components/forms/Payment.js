@@ -212,7 +212,7 @@ return (
 
   <form  id="checkout-form" className="form form_three" style={{backgroundColor: "white", display:"none", margin: "auto", fontFamily: "Helvetica",
    height: "400px", padding: "10px 20% 10px 20%"}} method="POST" action="/payment">
-   <a style={{color: "black", float:"left", paddingLeft: "20px", marginBottom:"10px"}}type="button" onClick={this.props.back}> ◄ Back </a>
+   <a style={{float:"left", paddingLeft: "20px", marginBottom:"10px"}}type="button" onClick={this.props.back}> ◄ Back </a>
           <div>
 
             <button id="couponButton" style={buttonStyle} type="button" onClick={this.revealCoupon} > Redeem Coupon </button>
@@ -264,6 +264,21 @@ return (
   <input type="button" style={buttonStyle2} onClick={()=>{this.formSubmit(); this.props.next();}} value="Pay Now"/>
   <input id="#finalPrice" type="hidden" name="price" value={this.state.finalPrice} />
             </div>
+
+
+                <div style={{ margin: "0 auto", display: "flex", width: "40%"}}>
+                  <div style={{flex: "1", height: "60px", padding: "10px 20px", float:"left"}}>
+                    <button type="button" style={buttonStyle2}
+                    onClick={this.props.back}> Back </button>
+                  </div>
+
+                  <div style={{flex: "1", height: "60px", padding: "10px 20px"}}>
+                    <button type="button" style={buttonStyle}
+                    onClick={this.props.next}> Continue </button>
+                  </div>
+                </div>
+
+
   </form>
   </div>
 );

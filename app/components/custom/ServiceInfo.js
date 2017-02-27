@@ -119,7 +119,7 @@ var ServiceInfo = React.createClass({
     };
     var titleStyle= {
         fontWeight:" bold", fontSize:"14", color:"#444343", padding:"0", margin:"0", marginBottom:"4px",
-        font: 'Helvetica Neue'
+        font: 'Helvetica Neue Neue'
     };
 
     var boxStyle= {
@@ -165,7 +165,7 @@ var ServiceInfo = React.createClass({
                        </div>
 
                      </div>
-                     <div  style={{...{fontWeight:" bold", fontSize:"14", color:"#444343", font: 'Helvetica Neue'}, ...boxStyle2 }}>
+                     <div  style={{...{fontWeight:" bold", fontSize:"14", color:"#444343", font: 'Helvetica Neue Neue'}, ...boxStyle2 }}>
                        <input style={{display: "inline-block", marginRight: "10px"}} type="checkbox" name="additional" checked={this.state.checked} onChange={this.priceIncrease} />
                        {'Is your car a SUV, Van, or Truck? *'}
                        <div style={innerStyle}> {this.state.additionDescription + this.state.currentAdditionDescription} </div>

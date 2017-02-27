@@ -3,14 +3,14 @@
    License: none (public domain)
 */
 
-@import url(//db.onlinewebfonts.com/c/5c05f0418474bdbfdd575778d76506cd?family=Helvetica);
-@font-face {font-family: "Helvetica";
+@import url(//db.onlinewebfonts.com/c/5c05f0418474bdbfdd575778d76506cd?family=Helvetica Neue);
+@font-face {font-family: "Helvetica Neue";
     src: url("//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.eot");
     src: url("//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.eot?#iefix") format("embedded-opentype"),
     url("//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.woff2") format("woff2"),
     url("//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.woff") format("woff"),
     url("//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.ttf") format("truetype"),
-    url("//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.svg#Helvetica") format("svg");
+    url("//db.onlinewebfonts.com/t/5c05f0418474bdbfdd575778d76506cd.svg#Helvetica Neue") format("svg");
 }
 
 html, body, div, span, applet, object, iframe,
@@ -99,7 +99,7 @@ body{
 }*/
 #sideTh{
   text-align: center;
-  font-family: Helvetica;
+  font-family: Helvetica Neue;
   font-size: 14px;
   padding-bottom: 8px;
 
@@ -108,7 +108,7 @@ body{
 #headTh{
   margin-top: 10px;
   color: #BBB9B9;
-  font-family: Helvetica;
+  font-family: Helvetica Neue;
   font-size: 14px;
   padding-bottom: 8px;
   padding-bottom: 8px;
@@ -119,7 +119,7 @@ body{
   margin-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
-  font-family: Helvetica;
+  font-family: Helvetica Neue;
   background-color: #444444;
 }
 
@@ -169,7 +169,7 @@ tr:nth-child(even) {
 /* Carousel Things */
 .carouselbox {
   margin: auto;
-  font-family: helvetica, sans-serif;
+  font-family: Helvetica Neue, sans-serif;
   font-size: 14px;
   width: 100%;
   border: 1px solid #E7E7E7;
@@ -215,7 +215,7 @@ tr:nth-child(even) {
 }
 
 .corp-calendar {
-  font-family:  helvetica, sans-serif !important;
+  font-family:  Helvetica Neue, sans-serif !important;
   font-weight: 300;
 }
 .corp-calendar button{
@@ -223,7 +223,7 @@ tr:nth-child(even) {
   border-color: none;
   border-radius: 3px;
   border-style: none;
-  font-family:  helvetica, sans-serif !important;
+  font-family:  Helvetica Neue, sans-serif !important;
   font-weight: 300;
 }
 
@@ -294,7 +294,7 @@ input {
   /*width: 500px; */
   height:        22px;
   font-size:     18px;
-  font-family:   'Helvetica Neue !important';
+  font-family:   'Helvetica Neue Neue !important';
   margin-bottom: 10px;
   border-width:  1px;
   padding:       12px 20px 15px 10px;

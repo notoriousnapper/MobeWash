@@ -28,14 +28,16 @@ componentDidMount: function(){
 },
 
 render: function(){
-var buttonStyle = {height: "40px", width: "100px", font: "Helvetica", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
+var buttonStyle = {height: "40px", width: "100px", font: "Helvetica Neue", color: "white", backgroundColor: "#00B2EE", margin:"0 auto",
 padding: "10px 20px 10px 20px", borderRadius:"10px",
 borderStyle: "none"};
+var buttonStyle2 = {height: "40px", width: "100px", font: "Helvetica Neue", color: "#757575", backgroundColor: "white", margin:"0 auto",
+padding: "10px 20px 10px 20px", borderRadius:"10px", borderColor: "#757575",
+borderStyle: "solid"};
 return (
-  <form   className="form form_two" style={{backgroundColor: "white", display:"none", margin: "0 auto", fontFamily: "Helvetica",
+  <form   className="form form_two" style={{backgroundColor: "white", display:"none", margin: "0 auto", fontFamily: "Helvetica Neue Neue",
     width: "100%", padding: "10px 20% 10px 20%"  }} method="post" action="/acuity">
 
-   <a style={{color: "black", float:"left", paddingLeft: "20px", marginBottom:"10px"}} type="button" onClick={this.props.back}> ◄ Back </a>
 
     <div style={{padding: "20px 20px", width:"100%", backgroundColor:"#FBFDFF", margin: "0 auto"}}>
 
@@ -66,9 +68,17 @@ return (
                 <input className="full" type="text" id="input" placeholder="Extra location information i.e. parking level" name="extrainfo"/>
               </div>
           </div>
-                <div style={{height: "60px", padding: "10px 20px"}}>
-                  <button type="button" style={buttonStyle}
-                  onClick={this.props.next}> Next </button>
+
+                <div style={{ margin: "0 auto", display: "flex", width: "40%"}}>
+                  <div style={{flex: "1", height: "60px", padding: "10px 20px", float:"left"}}>
+                    <button type="button" style={buttonStyle2}
+                    onClick={this.props.back}> Back </button>
+                  </div>
+
+                  <div style={{flex: "1", height: "60px", padding: "10px 20px"}}>
+                    <button type="button" style={buttonStyle}
+                    onClick={this.props.next}> Continue </button>
+                  </div>
                 </div>
 
       </div>
@@ -79,3 +89,4 @@ return (
 
 
 module.exports = Details;
+  //  <a style={{color: "black", float:"left", paddingLeft: "20px", marginBottom:"10px"}} type="button" onClick={this.props.back}> ◄ Back </a>
