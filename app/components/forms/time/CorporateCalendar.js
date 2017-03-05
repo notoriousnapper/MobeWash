@@ -4,7 +4,6 @@
 *
 * @ Jesse Ren 2016
 */
-
 var React = require('react');
 var ReactRouter = require('react-router');
 var Hover = require('../../../components/custom/Hover');
