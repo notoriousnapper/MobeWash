@@ -73,9 +73,9 @@ var CorporateCalendar = React.createClass({
   },
   componentWillReceiveProps: function (nextProps) {
     this.setState({
-      currentCompany: nextProps.companyData
+      company: nextProps.company
   });
-  },
+},
   selectDate: function(day){
     console.log("Work");
 

@@ -30,6 +30,7 @@ var BookingFrame = React.createClass({
       checked: false,
       form: this.state.form,
       price: newPrice,
+      companySelected: this.state.companySelected,
       bookingData: this.state.bookingData
     });
   },
@@ -39,6 +40,7 @@ var BookingFrame = React.createClass({
       checked: false,
       form: this.state.form,
       companySelected: companyData,
+      price: this.state.price,
       bookingData: this.state.bookingData
     });
   },
