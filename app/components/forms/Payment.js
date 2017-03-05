@@ -266,19 +266,6 @@ return (
             </div>
 
 
-                <div style={{ margin: "0 auto", display: "flex", width: "40%"}}>
-                  <div style={{flex: "1", height: "60px", padding: "10px 20px", float:"left"}}>
-                    <button type="button" style={buttonStyle2}
-                    onClick={this.props.back}> Back </button>
-                  </div>
-
-                  <div style={{flex: "1", height: "60px", padding: "10px 20px"}}>
-                    <button type="button" style={buttonStyle}
-                    onClick={this.props.next}> Continue </button>
-                  </div>
-                </div>
-
-
   </form>
   </div>
 );
