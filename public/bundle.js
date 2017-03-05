@@ -39748,17 +39748,22 @@
 
 	'use strict';
 
+	var _stringify = __webpack_require__(338);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	/*
 	* Calendar Component that displays available booking dates based on
 	* company data, current month and year, and booking data from acuity.
 	*
 	* @ Jesse Ren 2016
 	*/
-
 	var React = __webpack_require__(2);
 	var ReactRouter = __webpack_require__(181);
 	var Hover = __webpack_require__(276);
-	var Calendar = __webpack_require__(338);
+	var Calendar = __webpack_require__(340);
 	// Data
 	var MAXCALENDARS = 2;
 	var cal_days_labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S']; // Days of Week Label
@@ -39767,17 +39772,8 @@
 	var cal_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // End dates for months
 
 
-	var companyData = [{
-	  name: "DayBreak Games",
-	  day: 3,
-	  location: "2222 San Francisco",
-	  range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
-	}, {
-	  name: "Illumina",
-	  day: 4,
-	  location: "0000 San Francisco",
-	  range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
-	}];
+	var companyData = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./../data/companies.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	console.log("WORK" + (0, _stringify2.default)(companyData, null, 4));
 	// So you don't mess up the year or month
 	//
 	var dt = new Date();
@@ -40116,9 +40112,25 @@
 /* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
+	module.exports = { "default": __webpack_require__(339), __esModule: true };
+
+/***/ },
+/* 339 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var core  = __webpack_require__(244)
+	  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
+	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
+	  return $JSON.stringify.apply($JSON, arguments);
+	};
+
+/***/ },
+/* 340 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
-	var _stringify = __webpack_require__(339);
+	var _stringify = __webpack_require__(338);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
 
@@ -40210,22 +40222,6 @@
 	};
 
 	module.exports = Calendar;
-
-/***/ },
-/* 339 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(340), __esModule: true };
-
-/***/ },
-/* 340 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var core  = __webpack_require__(244)
-	  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
-	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
-	  return $JSON.stringify.apply($JSON, arguments);
-	};
 
 /***/ },
 /* 341 */
