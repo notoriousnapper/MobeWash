@@ -26,13 +26,13 @@ var companyData =
     location: "2222 San Francisco",
     range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
   }
-  // , {
-  //   name: "Illumina",
-  //   day: 4,
-  //   location: "0000 San Francisco",
-  //   range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
-  // },
-]
+  , {
+    name: "Illumina",
+    day: 4,
+    location: "0000 San Francisco",
+    range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
+  }
+];
 // So you don't mess up the year or month
 //
 var dt = new Date();
@@ -61,12 +61,20 @@ function isValid(d, m, y) {
 
 
 
+
 var CorporateCalendar = React.createClass({
   getInitialState: function(){
     return {
       counter: 0,
-      cal1 : cal
+      cal1 : cal,
+      companies: companyData,
+      currentCompany: companyData[0]
     }
+  },
+  componentWillReceiveProps: function (nextProps) {
+    this.setState({
+      currentCompany: nextProps.companyData
+  });
   },
   selectDate: function(day){
     console.log("Work");
@@ -85,14 +93,18 @@ var CorporateCalendar = React.createClass({
       monthStr = month.toString();
     }
 
-
     var str = this.state.cal1.year + "-" +  monthStr + "-" + dayStr;
     this.props.parentFn(str);
     // alert("Day is: " + day + " & month is: " + this.state.cal1.monthString);
   },
+  switchCompany: function(companyID){
+    this.setState({
+      currentCompany: this.state.companies[companyID]
+    });
+  },
   nextCalendar: function(){
     if(this.state.counter < 2){ // Book two months in advance
-    console.log("previous calendar" + JSON.stringify(this.state.cal1, null, 4));
+    // console.log("previous calendar" + JSON.stringify(this.state.cal1, null, 4));
       if(!(this.state.counter > MAXCALENDARS)){
         this.state.cal1.nextMonth();
         this.setState({  // Need to call function for a rerender
@@ -101,11 +113,11 @@ var CorporateCalendar = React.createClass({
         })
       }
     }
-    console.log("new calendar" + JSON.stringify(this.state.cal1, null, 4));
+    // console.log("new calendar" + JSON.stringify(this.state.cal1, null, 4));
   },
   prevCalendar: function(){
     if(this.state.counter > -1) { // See previous months bookings
-    console.log("previous calendar" + JSON.stringify(this.state.cal1, null, 4));
+    // console.log("previous calendar" + JSON.stringify(this.state.cal1, null, 4));
       if(!(this.state.counter > MAXCALENDARS)){
         this.state.cal1.prevMonth();
         this.setState({  // Need to call function for a rerender
@@ -114,10 +126,12 @@ var CorporateCalendar = React.createClass({
         })
       }
     }
-    console.log("new calendar" + JSON.stringify(this.state.cal1, null, 4));
+    // console.log("new calendar" + JSON.stringify(this.state.cal1, null, 4));
 
   },
   render: function(){
+
+
     var topStyle={
       height: '100px', width: '100px', textAlign: 'right', marginTop: '10px', paddingLeft: '4px', paddingRight: '4px',
       fontFamily: 'Helvetica Neue', backgroundColor: '#444444b', borderColor:"black"
@@ -158,9 +172,13 @@ var CorporateCalendar = React.createClass({
 
       function decorateCell(companyData, inputDay, validDay, weekday){
       // THIS.selectDate();
-        var days     = companyData.map(function(c){
-          return c.day
-        })
+        // Day of the week that is available for a company
+        // Should be a single "day" after this
+        var days = companyData.day;
+        // alert(days);
+        // var days     = companyData.map(function(c){
+        //   return c.day
+        // })
         // Default Options
         var company        = null;
         var rowStyle = defaultStyle;
@@ -171,10 +189,10 @@ var CorporateCalendar = React.createClass({
         if(validDay){
           // Default
           content = <div style={{}}>{day}</div>
-          for(var k = 0; k <days.length; k++){
-            if(weekday == days[k]){
+          for(var k = 0; k < 1; k++){
+            if(weekday == days){
               rowStyle = hoverStyle;
-              company  = companyData[k];
+              company  = companyData;
               content  = <Hover ><div style={{textAlign:'right', marginRight: "10px"}}>{inputDay}</div> {company.name}  <br/>  {company.range} </Hover>;
               clicker  = function(){  self.selectDate(inputDay); // Signal to parentFn
                }
@@ -227,7 +245,7 @@ var CorporateCalendar = React.createClass({
           }
           // temp = <th style={defaultStyle}>{item} <br/>{}</th>;
             console.log(day);
-          temp = decorateCell(companyData, day, validDay, weekday);
+          temp = decorateCell(this.state.currentCompany, day, validDay, weekday);
           temp2.push(temp);
           if(weekday<6) weekday++;  else { weekday = 0; } // Update weekday
         }

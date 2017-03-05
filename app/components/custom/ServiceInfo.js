@@ -1,6 +1,32 @@
 var React = require('react');
 var Hover = require('../custom/Hover');
 var $ = require('jquery');
+
+// var companyData = [
+//                   'DayBreakGames',
+//                   'Alexandria'
+// ];
+
+
+
+
+var companyData =
+[
+  {
+    name: "DayBreak Games",
+    day: 3,
+    location: "2222 San Francisco",
+    range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
+  }
+  , {
+    name: "Illumina",
+    day: 4,
+    location: "0000 San Francisco",
+    range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
+  }
+]
+
+
 var FontAwesome = require('react-fontawesome');
 var ServiceInfo = React.createClass({
   componentWillReceiveProps: function (nextProps) {
@@ -10,6 +36,7 @@ var ServiceInfo = React.createClass({
   },
   getInitialState: function(){
     return {
+      company: companyData[0].name,
       ctr: 0,
       currentForm: this.props.currentForm,
       mobeSelected: true,
@@ -27,6 +54,22 @@ var ServiceInfo = React.createClass({
   revealOnce: function(){
     if(this.state.ctr==0) this.props.magic();
     this.setState({ctr: this.state.ctr + 1});
+  },
+  selectCompany: function(event){
+    var companyName = event.target.value;
+    // Temporary for performance
+
+    var i = 0;
+    var fin = false;
+    for(var i = 0; i < companyData.length; i++){
+      if((companyData[i]).name == companyName) break;
+        // Should at least get one company
+        // FIX THIS TO BE SAFER
+    }
+    this.setState({
+      company: companyName
+    });
+    this.props.updateCompany(companyData[i]);
   },
   /*
    * Function changes state of checked at end
@@ -128,8 +171,25 @@ var ServiceInfo = React.createClass({
     };
     var boxStyle2= { ...boxStyle, ...{height: "75px", width:"100%"} };
     // indicator Message = If you want to leave an inndicator of which message
+    var companies = companyData.map(function(item){
+      return (<option value={item.name}> {item.name} </option>);
+    });
+
     return (
                 <div id="serviceInfo" className="form masteropt" style={{padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor:"#FBFDFF"}} >
+
+
+                <div style={{margin:"0 auto", marginBottom: "20px", padding: "10px"}}>
+                  <div> {'Please select your company to get started'} </div>
+                  <br/>
+                  <div className="styled-select slate" style={{margin: "0 auto", flex:"1", backgroundColor:"white", width: "400px"}}>
+                      <select name='expireMM' id='expireMM' style={{width: "100px !important"}} value={this.state.company} onChange={this.selectCompany}>
+                        {companies}
+                      </select>
+                    </div>
+                </div>
+
+
                 <div> {'I would like to schedule...'} </div>
                   <div  style={{display:"flex"}}>
 

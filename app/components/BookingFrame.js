@@ -13,6 +13,7 @@ var BookingFrame = React.createClass({
       checked: false,
       form: 1,
       price: 2400,
+      companySelected: "DayBreak Games",
       bookingData: {
         date: "",
         hour: "",
@@ -32,6 +33,16 @@ var BookingFrame = React.createClass({
       bookingData: this.state.bookingData
     });
   },
+
+  updateCompanyData: function(companyData){
+    this.setState({
+      checked: false,
+      form: this.state.form,
+      companySelected: companyData,
+      bookingData: this.state.bookingData
+    });
+  },
+
   updateBookingData: function(type, data){
     const bkdata = this.state.bookingData;
     switch(type){
@@ -178,8 +189,8 @@ var BookingFrame = React.createClass({
         <div style={{padding:"0px", margin: "0 auto", width: "100%", height: "700px"}}>
         <LabelCarousel checked={this.state.checked}/>
         <div style={{display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center"}} >
-        <ServiceInfo  magic={this.revealCal} priceChange={this.updatePrice} currentForm={this.state.form} />
-        <Time  update={this.updateBookingData} nextForm={this.callMagic}/>
+        <ServiceInfo  magic={this.revealCal} priceChange={this.updatePrice} updateCompany={this.updateCompanyData} currentForm={this.state.form} />
+        <Time  update={this.updateBookingData} nextForm={this.callMagic} companyData={this.state.companySelected} />
         <Details id="#detailForm" back={this.goBack} next={this.callMagic} time={this.state.bookingData.date + this.state.bookingData.hour }
         />
         <Payment id="#paymentForm" back={this.goBack} price={this.state.price}

@@ -21519,6 +21519,7 @@
 	      checked: false,
 	      form: 1,
 	      price: 2400,
+	      companySelected: "DayBreak Games",
 	      bookingData: {
 	        date: "",
 	        hour: "",
@@ -21538,6 +21539,16 @@
 	      bookingData: this.state.bookingData
 	    });
 	  },
+
+	  updateCompanyData: function updateCompanyData(companyData) {
+	    this.setState({
+	      checked: false,
+	      form: this.state.form,
+	      companySelected: companyData,
+	      bookingData: this.state.bookingData
+	    });
+	  },
+
 	  updateBookingData: function updateBookingData(type, data) {
 	    var bkdata = this.state.bookingData;
 	    switch (type) {
@@ -21688,8 +21699,8 @@
 	        React.createElement(
 	          'div',
 	          { style: { display: "block", margin: "0 auto", backgroundColor: "white", textAlign: "center" } },
-	          React.createElement(ServiceInfo, { magic: this.revealCal, priceChange: this.updatePrice, currentForm: this.state.form }),
-	          React.createElement(Time, { update: this.updateBookingData, nextForm: this.callMagic }),
+	          React.createElement(ServiceInfo, { magic: this.revealCal, priceChange: this.updatePrice, updateCompany: this.updateCompanyData, currentForm: this.state.form }),
+	          React.createElement(Time, { update: this.updateBookingData, nextForm: this.callMagic, companyData: this.state.companySelected }),
 	          React.createElement(Details, { id: '#detailForm', back: this.goBack, next: this.callMagic, time: this.state.bookingData.date + this.state.bookingData.hour
 	          }),
 	          React.createElement(Payment, { id: '#paymentForm', back: this.goBack, price: this.state.price,
@@ -26697,6 +26708,25 @@
 	var React = __webpack_require__(2);
 	var Hover = __webpack_require__(276);
 	var $ = __webpack_require__(277);
+
+	// var companyData = [
+	//                   'DayBreakGames',
+	//                   'Alexandria'
+	// ];
+
+
+	var companyData = [{
+	  name: "DayBreak Games",
+	  day: 3,
+	  location: "2222 San Francisco",
+	  range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
+	}, {
+	  name: "Illumina",
+	  day: 4,
+	  location: "0000 San Francisco",
+	  range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
+	}];
+
 	var FontAwesome = __webpack_require__(278);
 	var ServiceInfo = React.createClass({
 	  displayName: 'ServiceInfo',
@@ -26708,6 +26738,7 @@
 	  },
 	  getInitialState: function getInitialState() {
 	    return {
+	      company: companyData[0].name,
 	      ctr: 0,
 	      currentForm: this.props.currentForm,
 	      mobeSelected: true,
@@ -26725,6 +26756,22 @@
 	  revealOnce: function revealOnce() {
 	    if (this.state.ctr == 0) this.props.magic();
 	    this.setState({ ctr: this.state.ctr + 1 });
+	  },
+	  selectCompany: function selectCompany(event) {
+	    var companyName = event.target.value;
+	    // Temporary for performance
+
+	    var i = 0;
+	    var fin = false;
+	    for (var i = 0; i < companyData.length; i++) {
+	      if (companyData[i].name == companyName) break;
+	      // Should at least get one company
+	      // FIX THIS TO BE SAFER
+	    }
+	    this.setState({
+	      company: companyName
+	    });
+	    this.props.updateCompany(companyData[i]);
 	  },
 	  /*
 	   * Function changes state of checked at end
@@ -26826,9 +26873,40 @@
 	    };
 	    var boxStyle2 = (0, _extends3.default)({}, boxStyle, { height: "75px", width: "100%" });
 	    // indicator Message = If you want to leave an inndicator of which message
+	    var companies = companyData.map(function (item) {
+	      return React.createElement(
+	        'option',
+	        { value: item.name },
+	        ' ',
+	        item.name,
+	        ' '
+	      );
+	    });
+
 	    return React.createElement(
 	      'div',
 	      { id: 'serviceInfo', className: 'form masteropt', style: { padding: "10px 20px 10px 20px", width: "100%", height: "500px", backgroundColor: "#FBFDFF" } },
+	      React.createElement(
+	        'div',
+	        { style: { margin: "0 auto", marginBottom: "20px", padding: "10px" } },
+	        React.createElement(
+	          'div',
+	          null,
+	          ' ',
+	          'Please select your company to get started',
+	          ' '
+	        ),
+	        React.createElement('br', null),
+	        React.createElement(
+	          'div',
+	          { className: 'styled-select slate', style: { margin: "0 auto", flex: "1", backgroundColor: "white", width: "400px" } },
+	          React.createElement(
+	            'select',
+	            { name: 'expireMM', id: 'expireMM', style: { width: "100px !important" }, value: this.state.company, onChange: this.selectCompany },
+	            companies
+	          )
+	        )
+	      ),
 	      React.createElement(
 	        'div',
 	        null,
@@ -39489,7 +39567,7 @@
 	    return React.createElement(
 	      'div',
 	      { id: 'componentTime', className: 'form form_one', style: { margin: "0 auto", display: "none" } },
-	      React.createElement(CorporateCalendar, { id: 'componentCalendar', className: 'calendar', checked: this.state.checked, parentFn: this.updateDateYear }),
+	      React.createElement(CorporateCalendar, { id: 'componentCalendar', className: 'calendar', checked: this.state.checked, parentFn: this.updateDateYear, companyData: this.props.companyData }),
 	      React.createElement(TimeSlot, { nextForm: this.props.nextForm, id: 'componentTimeSlot', className: 'timeslot', parentFn: this.updateHour })
 	    );
 	  }
@@ -39668,12 +39746,6 @@
 
 	'use strict';
 
-	var _stringify = __webpack_require__(338);
-
-	var _stringify2 = _interopRequireDefault(_stringify);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	/*
 	* Calendar Component that displays available booking dates based on
 	* company data, current month and year, and booking data from acuity.
@@ -39684,7 +39756,7 @@
 	var React = __webpack_require__(2);
 	var ReactRouter = __webpack_require__(181);
 	var Hover = __webpack_require__(276);
-	var Calendar = __webpack_require__(340);
+	var Calendar = __webpack_require__(338);
 	// Data
 	var MAXCALENDARS = 2;
 	var cal_days_labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S']; // Days of Week Label
@@ -39698,14 +39770,12 @@
 	  day: 3,
 	  location: "2222 San Francisco",
 	  range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
-	}
-	// , {
-	//   name: "Illumina",
-	//   day: 4,
-	//   location: "0000 San Francisco",
-	//   range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
-	// },
-	];
+	}, {
+	  name: "Illumina",
+	  day: 4,
+	  location: "0000 San Francisco",
+	  range: "11:00 am-5:00 pm" // Should be changed to time objects -- Later iteration
+	}];
 	// So you don't mess up the year or month
 	//
 	var dt = new Date();
@@ -39739,8 +39809,15 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      counter: 0,
-	      cal1: cal
+	      cal1: cal,
+	      companies: companyData,
+	      currentCompany: companyData[0]
 	    };
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    this.setState({
+	      currentCompany: nextProps.companyData
+	    });
 	  },
 	  selectDate: function selectDate(day) {
 	    console.log("Work");
@@ -39762,10 +39839,15 @@
 	    this.props.parentFn(str);
 	    // alert("Day is: " + day + " & month is: " + this.state.cal1.monthString);
 	  },
+	  switchCompany: function switchCompany(companyID) {
+	    this.setState({
+	      currentCompany: this.state.companies[companyID]
+	    });
+	  },
 	  nextCalendar: function nextCalendar() {
 	    if (this.state.counter < 2) {
 	      // Book two months in advance
-	      console.log("previous calendar" + (0, _stringify2.default)(this.state.cal1, null, 4));
+	      // console.log("previous calendar" + JSON.stringify(this.state.cal1, null, 4));
 	      if (!(this.state.counter > MAXCALENDARS)) {
 	        this.state.cal1.nextMonth();
 	        this.setState({ // Need to call function for a rerender
@@ -39774,12 +39856,12 @@
 	        });
 	      }
 	    }
-	    console.log("new calendar" + (0, _stringify2.default)(this.state.cal1, null, 4));
+	    // console.log("new calendar" + JSON.stringify(this.state.cal1, null, 4));
 	  },
 	  prevCalendar: function prevCalendar() {
 	    if (this.state.counter > -1) {
 	      // See previous months bookings
-	      console.log("previous calendar" + (0, _stringify2.default)(this.state.cal1, null, 4));
+	      // console.log("previous calendar" + JSON.stringify(this.state.cal1, null, 4));
 	      if (!(this.state.counter > MAXCALENDARS)) {
 	        this.state.cal1.prevMonth();
 	        this.setState({ // Need to call function for a rerender
@@ -39788,9 +39870,10 @@
 	        });
 	      }
 	    }
-	    console.log("new calendar" + (0, _stringify2.default)(this.state.cal1, null, 4));
+	    // console.log("new calendar" + JSON.stringify(this.state.cal1, null, 4));
 	  },
 	  render: function render() {
+
 	    var topStyle = {
 	      height: '100px', width: '100px', textAlign: 'right', marginTop: '10px', paddingLeft: '4px', paddingRight: '4px',
 	      fontFamily: 'Helvetica Neue', backgroundColor: '#444444b', borderColor: "black"
@@ -39833,9 +39916,13 @@
 
 	    function decorateCell(companyData, inputDay, validDay, weekday) {
 	      // THIS.selectDate();
-	      var days = companyData.map(function (c) {
-	        return c.day;
-	      });
+	      // Day of the week that is available for a company
+	      // Should be a single "day" after this
+	      var days = companyData.day;
+	      // alert(days);
+	      // var days     = companyData.map(function(c){
+	      //   return c.day
+	      // })
 	      // Default Options
 	      var company = null;
 	      var rowStyle = defaultStyle;
@@ -39850,10 +39937,10 @@
 	          { style: {} },
 	          day
 	        );
-	        for (var k = 0; k < days.length; k++) {
-	          if (weekday == days[k]) {
+	        for (var k = 0; k < 1; k++) {
+	          if (weekday == days) {
 	            rowStyle = hoverStyle;
-	            company = companyData[k];
+	            company = companyData;
 	            content = React.createElement(
 	              Hover,
 	              null,
@@ -39950,7 +40037,7 @@
 	        }
 	        // temp = <th style={defaultStyle}>{item} <br/>{}</th>;
 	        console.log(day);
-	        temp = decorateCell(companyData, day, validDay, weekday);
+	        temp = decorateCell(this.state.currentCompany, day, validDay, weekday);
 	        temp2.push(temp);
 	        if (weekday < 6) weekday++;else {
 	          weekday = 0;
@@ -40027,25 +40114,9 @@
 /* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(339), __esModule: true };
-
-/***/ },
-/* 339 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var core  = __webpack_require__(244)
-	  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
-	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
-	  return $JSON.stringify.apply($JSON, arguments);
-	};
-
-/***/ },
-/* 340 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 
-	var _stringify = __webpack_require__(338);
+	var _stringify = __webpack_require__(339);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
 
@@ -40137,6 +40208,22 @@
 	};
 
 	module.exports = Calendar;
+
+/***/ },
+/* 339 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(340), __esModule: true };
+
+/***/ },
+/* 340 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var core  = __webpack_require__(244)
+	  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
+	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
+	  return $JSON.stringify.apply($JSON, arguments);
+	};
 
 /***/ },
 /* 341 */
