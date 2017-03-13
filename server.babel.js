@@ -139,16 +139,15 @@ app.get('/acuity', function (request, response) {
     method: 'GET',
     body: {
       appointmentTypeID: appointmentTypeID,
-      calendarType: daybreakCalID
-      // cartype:          'toyota white gmc',
-      // license:          '123dearme'
-      // Calendar for daybreak:  874123
+      calendarType: daybreakCalID,
+      minDate: "2017-03-02T10:15:00-0700",
+      maxDate: "2017-13-02T10:15:00-0700"
     }
   };
   return acuity.request('/appointments', options, function (err, res, appointment) {
     // res.sendFile(path.join(__dirname + '/index.html'));
     if (err) return console.error(err);
-  console.log(appointment);
+    console.log(appointment);
 
 });
 

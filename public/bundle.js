@@ -45,8 +45,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	__webpack_require__(347);
-	module.exports = __webpack_require__(351);
+	__webpack_require__(348);
+	module.exports = __webpack_require__(352);
 
 
 /***/ },
@@ -21484,13 +21484,19 @@
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(33);
 	var BookingFrame = __webpack_require__(180);
+	var WasherCalendar = __webpack_require__(347);
 	// var PrettyForm = require('./PrettyForm.js');
 
 	var Main = React.createClass({
 	  displayName: 'Main',
 
 	  render: function render() {
-	    return React.createElement(BookingFrame, null);
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(BookingFrame, null),
+	      React.createElement(WasherCalendar, null)
+	    );
 	  }
 	});
 
@@ -40738,13 +40744,831 @@
 /* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _stringify = __webpack_require__(339);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*
+	* Calendar Component that displays available booking dates based on
+	* company data, current month and year, and booking data from acuity.
+	* "Randomize colors" to help separate appointments
+	*
+	* TODO:
+	* 1. Put appointments right next to each other, etc.
+	* 2. Put appointments right next to each other, etc.
+	* 3. Have an option to check a certain Day --> By Clicking --> and filtering by those
+	* 4. Have an option to check a certain Day --> By Clicking --> and filtering by those
+	*
+	* @ Jesse Ren 2016
+	*/
+	var React = __webpack_require__(2);
+	var $ = __webpack_require__(277);
+
+	var devUrl = 'http://localhost:3000';
+	var prodUrl = 'https://vast-hollows-67251.herokuapp.com';
+	var useUrl = prodUrl;
+
+	var companyData = [{
+	  "id": 88699542,
+	  "company": "DayBreakGames",
+	  "firstName": "Aurore",
+	  "lastName": "Dresser",
+	  "phone": "8582108009",
+	  "email": "auroredresser@gmail.com",
+	  "date": "March 16, 2017",
+	  "time": "10:00am",
+	  "endTime": "11:30am",
+	  "dateCreated": "March 13, 2017",
+	  "datetime": "2017-03-16T10:00:00-0700",
+	  "price": "35.00",
+	  "paid": "yes",
+	  "amountPaid": "40.25",
+	  "type": "MobePlus",
+	  "appointmentTypeID": 2048071,
+	  "classID": null,
+	  "addonIDs": [],
+	  "category": "Corporate",
+	  "duration": "90",
+	  "calendar": "Daybreak Game Company",
+	  "calendarID": 874123,
+	  "certificate": null,
+	  "confirmationPage": "https://www.acuityscheduling.com/schedule.php?action=appt&owner=12695911&id%5B%5D=c65ba5cc3885dd14f23e1201da12f3af",
+	  "formsText": "Name: Aurore Dresser\nPhone: (858) 210-8009\nE-mail: auroredresser@gmail.com\nPrice: $35.00\nPaid Online: $40.25\n\nCorporate Booking\n============\nLocation Details (1st floor parking, 2nd building, etc.): \n\nLast 4 Digits of License Plate: P589\n\nCar Make & Model (e.g. Toyota Camry): Fiat 500\n\nCar Color: Yellow\n\nHow did you hear about us?: \n\n",
+	  "forms": [{
+	    "id": 549637,
+	    "name": "Corporate Booking",
+	    "values": [{
+	      "id": 237770958,
+	      "fieldID": 2371545,
+	      "value": "",
+	      "name": "Location Details (1st floor parking, 2nd building, etc.)"
+	    }, {
+	      "id": 237770961,
+	      "fieldID": 2242842,
+	      "value": "P589",
+	      "name": "Last 4 Digits of License Plate"
+	    }, {
+	      "id": 237770964,
+	      "fieldID": 2371519,
+	      "value": "Fiat 500",
+	      "name": "Car Make &amp; Model (e.g. Toyota Camry)"
+	    }, {
+	      "id": 237770967,
+	      "fieldID": 2371528,
+	      "value": "Yellow",
+	      "name": "Car Color"
+	    }, {
+	      "id": 237770970,
+	      "fieldID": 2371530,
+	      "value": "",
+	      "name": "How did you hear about us?"
+	    }]
+	  }],
+	  "notes": "",
+	  "timezone": "America/Los_Angeles",
+	  "canClientCancel": true,
+	  "canClientReschedule": true
+	}, {
+	  "id": 88699197,
+	  "firstName": "Embrey",
+	  "lastName": "Hernandez",
+	  "company": "DayBreakGames",
+	  "phone": "6195598017",
+	  "email": "embreyn@gmail.com",
+	  "date": "March 16, 2017",
+	  "time": "10:00am",
+	  "endTime": "11:30am",
+	  "dateCreated": "March 13, 2017",
+	  "datetime": "2017-03-16T10:00:00-0700",
+	  "price": "35.00",
+	  "paid": "yes",
+	  "amountPaid": "40.25",
+	  "type": "MobePlus",
+	  "appointmentTypeID": 2048071,
+	  "classID": null,
+	  "addonIDs": [],
+	  "category": "Corporate",
+	  "duration": "90",
+	  "calendar": "Daybreak Game Company",
+	  "calendarID": 874123,
+	  "certificate": null,
+	  "confirmationPage": "https://www.acuityscheduling.com/schedule.php?action=appt&owner=12695911&id%5B%5D=3bcf48b3c3564698b3d7aeabf8cc7e09",
+	  "formsText": "Name: Embrey Hernandez\nPhone: (619) 559-8017\nE-mail: embreyn@gmail.com\nPrice: $35.00\nPaid Online: $40.25\n\nCorporate Booking\n============\nLocation Details (1st floor parking, 2nd building, etc.): South side of building\n\nLast 4 Digits of License Plate: C581\n\nCar Make & Model (e.g. Toyota Camry): Kia Soul\n\nCar Color: Dark Green\n\nHow did you hear about us?: Work\n\n",
+	  "forms": [{
+	    "id": 549637,
+	    "name": "Corporate Booking",
+	    "values": [{
+	      "id": 237769644,
+	      "fieldID": 2371545,
+	      "value": "South side of building",
+	      "name": "Location Details (1st floor parking, 2nd building, etc.)"
+	    }, {
+	      "id": 237769647,
+	      "fieldID": 2242842,
+	      "value": "C581",
+	      "name": "Last 4 Digits of License Plate"
+	    }, {
+	      "id": 237769650,
+	      "fieldID": 2371519,
+	      "value": "Kia Soul",
+	      "name": "Car Make &amp; Model (e.g. Toyota Camry)"
+	    }, {
+	      "id": 237769653,
+	      "fieldID": 2371528,
+	      "value": "Dark Green",
+	      "name": "Car Color"
+	    }, {
+	      "id": 237769656,
+	      "fieldID": 2371530,
+	      "value": "Work",
+	      "name": "How did you hear about us?"
+	    }]
+	  }],
+	  "notes": "",
+	  "timezone": "America/Los_Angeles",
+	  "canClientCancel": true,
+	  "canClientReschedule": true
+	}, {
+	  "id": 86672346,
+	  "firstName": "Jonathan",
+	  "lastName": "Caraker",
+	  "company": "Alexandria",
+	  "phone": "8582544601",
+	  "email": "jcaraker@gmail.com",
+	  "date": "March 2, 2017",
+	  "time": "3:00pm",
+	  "endTime": "3:55pm",
+	  "dateCreated": "March 2, 2017",
+	  "datetime": "2017-03-02T15:00:00-0800",
+	  "price": "24.00",
+	  "paid": "yes",
+	  "amountPaid": "27.60",
+	  "type": "Mobe",
+	  "appointmentTypeID": 2521935,
+	  "classID": null,
+	  "addonIDs": [],
+	  "category": "Corporate",
+	  "duration": "55",
+	  "calendar": "Daybreak Game Company",
+	  "calendarID": 874123,
+	  "certificate": null,
+	  "confirmationPage": "https://www.acuityscheduling.com/schedule.php?action=appt&owner=12695911&id%5B%5D=e61b77c67258c7defe2844a049f2f0a8",
+	  "formsText": "Name: Jonathan Caraker\nPhone: (858) 254-4601\nE-mail: jcaraker@gmail.com\nPrice: $24.00\nPaid Online: $27.60\n\nCorporate Booking\n============\nLocation Details (1st floor parking, 2nd building, etc.): Parked in front of building about the middle of the lot\n\nLast 4 Digits of License Plate: CRKRSTI\n\nCar Make & Model (e.g. Toyota Camry): Subaru Impreza WRX STI\n\nCar Color: World Rally Blue\n\nHow did you hear about us?: Office e-mail\n\n",
+	  "forms": [{
+	    "id": 549637,
+	    "name": "Corporate Booking",
+	    "values": [{
+	      "id": 231539847,
+	      "fieldID": 2371545,
+	      "value": "Parked in front of building about the middle of the lot",
+	      "name": "Location Details (1st floor parking, 2nd building, etc.)"
+	    }, {
+	      "id": 231539850,
+	      "fieldID": 2242842,
+	      "value": "CRKRSTI",
+	      "name": "Last 4 Digits of License Plate"
+	    }, {
+	      "id": 231539853,
+	      "fieldID": 2371519,
+	      "value": "Subaru Impreza WRX STI",
+	      "name": "Car Make &amp; Model (e.g. Toyota Camry)"
+	    }, {
+	      "id": 231539856,
+	      "fieldID": 2371528,
+	      "value": "World Rally Blue",
+	      "name": "Car Color"
+	    }, {
+	      "id": 231539859,
+	      "fieldID": 2371530,
+	      "value": "Office e-mail",
+	      "name": "How did you hear about us?"
+	    }]
+	  }],
+	  "notes": "",
+	  "timezone": "America/Los_Angeles",
+	  "canClientCancel": false,
+	  "canClientReschedule": false
+	}, {
+	  "id": 86209953,
+	  "firstName": "Jesse",
+	  "lastName": "Duvall",
+	  "company": "Alexandria",
+	  "phone": "8586990161",
+	  "email": "jduvall@daybreakgames.com",
+	  "date": "March 2, 2017",
+	  "time": "2:00pm",
+	  "endTime": "3:30pm",
+	  "dateCreated": "February 28, 2017",
+	  "datetime": "2017-03-02T14:00:00-0800",
+	  "price": "35.00",
+	  "paid": "yes",
+	  "amountPaid": "40.25",
+	  "type": "MobePlus",
+	  "appointmentTypeID": 2048071,
+	  "classID": null,
+	  "addonIDs": [],
+	  "category": "Corporate",
+	  "duration": "90",
+	  "calendar": "Daybreak Game Company",
+	  "calendarID": 874123,
+	  "certificate": null,
+	  "confirmationPage": "https://www.acuityscheduling.com/schedule.php?action=appt&owner=12695911&id%5B%5D=7e5a753f59e0b79802ef53a07be012f8",
+	  "formsText": "Name: Jesse Duvall\nPhone: (858) 699-0161\nE-mail: jduvall@daybreakgames.com\nPrice: $35.00\nPaid Online: $40.25\n\nCorporate Booking\n============\nLocation Details (1st floor parking, 2nd building, etc.): Normally parked behind the building but cannot guarantee that location since parking is not assigned\n\nLast 4 Digits of License Plate: X668\n\nCar Make & Model (e.g. Toyota Camry): Lexus CT200h\n\nCar Color: Grey\n\nHow did you hear about us?: Internal company email\n\n",
+	  "forms": [{
+	    "id": 549637,
+	    "name": "Corporate Booking",
+	    "values": [{
+	      "id": 230108727,
+	      "fieldID": 2371545,
+	      "value": "Normally parked behind the building but cannot guarantee that location since parking is not assigned",
+	      "name": "Location Details (1st floor parking, 2nd building, etc.)"
+	    }, {
+	      "id": 230108730,
+	      "fieldID": 2242842,
+	      "value": "X668",
+	      "name": "Last 4 Digits of License Plate"
+	    }, {
+	      "id": 230108733,
+	      "fieldID": 2371519,
+	      "value": "Lexus CT200h",
+	      "name": "Car Make &amp; Model (e.g. Toyota Camry)"
+	    }, {
+	      "id": 230108736,
+	      "fieldID": 2371528,
+	      "value": "Grey",
+	      "name": "Car Color"
+	    }, {
+	      "id": 230108739,
+	      "fieldID": 2371530,
+	      "value": "Internal company email",
+	      "name": "How did you hear about us?"
+	    }]
+	  }],
+	  "notes": "",
+	  "timezone": "America/Los_Angeles",
+	  "canClientCancel": false,
+	  "canClientReschedule": false
+	}, {
+	  "id": 84736107,
+	  "firstName": "Rick",
+	  "lastName": "Reynolds",
+	  "company": "Alexandria",
+	  "phone": "4153596720",
+	  "email": "rreynolds@daybreakgames.com",
+	  "date": "March 2, 2017",
+	  "time": "2:00pm",
+	  "endTime": "3:20pm",
+	  "dateCreated": "February 21, 2017",
+	  "datetime": "2017-03-02T14:00:00-0800",
+	  "price": "30.00",
+	  "paid": "yes",
+	  "amountPaid": "36.00",
+	  "type": "Mobe + SUV, Van, Truck",
+	  "appointmentTypeID": 2521935,
+	  "classID": null,
+	  "addonIDs": [81060],
+	  "category": "Corporate",
+	  "duration": "80",
+	  "calendar": "Daybreak Game Company",
+	  "calendarID": 874123,
+	  "certificate": null,
+	  "confirmationPage": "https://www.acuityscheduling.com/schedule.php?action=appt&owner=12695911&id%5B%5D=0d7160e69bd8ef5c6d36c7828392b4b3",
+	  "formsText": "Name: Rick Reynolds\nPhone: (415) 359-6720\nE-mail: rreynolds@daybreakgames.com\nPrice: $30.00\nPaid Online: $36.00\n\nCorporate Booking\n============\nLocation Details (1st floor parking, 2nd building, etc.): Right near the front door main entrance\n\nLast 4 Digits of License Plate: C558\n\nCar Make & Model (e.g. Toyota Camry): Buick Encore\n\nCar Color: Dark Gray\n\nHow did you hear about us?: company email\n\n",
+	  "forms": [{
+	    "id": 549637,
+	    "name": "Corporate Booking",
+	    "values": [{
+	      "id": 225568917,
+	      "fieldID": 2371545,
+	      "value": "Right near the front door main entrance",
+	      "name": "Location Details (1st floor parking, 2nd building, etc.)"
+	    }, {
+	      "id": 225568920,
+	      "fieldID": 2242842,
+	      "value": "C558",
+	      "name": "Last 4 Digits of License Plate"
+	    }, {
+	      "id": 225568923,
+	      "fieldID": 2371519,
+	      "value": "Buick Encore",
+	      "name": "Car Make &amp; Model (e.g. Toyota Camry)"
+	    }, {
+	      "id": 225568926,
+	      "fieldID": 2371528,
+	      "value": "Dark Gray",
+	      "name": "Car Color"
+	    }, {
+	      "id": 225568929,
+	      "fieldID": 2371530,
+	      "value": "company email",
+	      "name": "How did you hear about us?"
+	    }]
+	  }],
+	  "notes": "",
+	  "timezone": "America/Los_Angeles",
+	  "canClientCancel": false,
+	  "canClientReschedule": false
+	}, {
+	  "id": 86385927,
+	  "firstName": "Daniel",
+	  "lastName": "Bell",
+	  "phone": "2062652224",
+	  "email": "dbell@daybreakgames.com",
+	  "date": "March 2, 2017",
+	  "time": "1:00pm",
+	  "endTime": "2:20pm",
+	  "dateCreated": "March 1, 2017",
+	  "datetime": "2017-03-02T13:00:00-0800",
+	  "price": "30.00",
+	  "paid": "yes",
+	  "amountPaid": "36.00",
+	  "type": "Mobe + SUV, Van, Truck",
+	  "appointmentTypeID": 2521935,
+	  "classID": null,
+	  "addonIDs": [81060],
+	  "category": "Corporate",
+	  "duration": "80",
+	  "calendar": "Daybreak Game Company",
+	  "calendarID": 874123,
+	  "certificate": null,
+	  "confirmationPage": "https://www.acuityscheduling.com/schedule.php?action=appt&owner=12695911&id%5B%5D=0be0fe14cdb901946fea4cacb98c31e2",
+	  "formsText": "Name: Daniel Bell\nPhone: (206) 265-2224\nE-mail: dbell@daybreakgames.com\nPrice: $30.00\nPaid Online: $36.00\n\nCorporate Booking\n============\nLocation Details (1st floor parking, 2nd building, etc.): Usually in the handicap space in front of the building\n\nLast 4 Digits of License Plate: Florida Plates (only one in the parking lot)\n\nCar Make & Model (e.g. Toyota Camry): Lexus 400h\n\nCar Color: White\n\nHow did you hear about us?: Company email notification\n\n",
+	  "forms": [{
+	    "id": 549637,
+	    "name": "Corporate Booking",
+	    "values": [{
+	      "id": 230635107,
+	      "fieldID": 2371545,
+	      "value": "Usually in the handicap space in front of the building",
+	      "name": "Location Details (1st floor parking, 2nd building, etc.)"
+	    }, {
+	      "id": 230635110,
+	      "fieldID": 2242842,
+	      "value": "Florida Plates (only one in the parking lot)",
+	      "name": "Last 4 Digits of License Plate"
+	    }, {
+	      "id": 230635113,
+	      "fieldID": 2371519,
+	      "value": "Lexus 400h",
+	      "name": "Car Make &amp; Model (e.g. Toyota Camry)"
+	    }, {
+	      "id": 230635116,
+	      "fieldID": 2371528,
+	      "value": "White",
+	      "name": "Car Color"
+	    }, {
+	      "id": 230635119,
+	      "fieldID": 2371530,
+	      "value": "Company email notification",
+	      "name": "How did you hear about us?"
+	    }]
+	  }],
+	  "notes": "",
+	  "timezone": "America/Los_Angeles",
+	  "canClientCancel": false,
+	  "canClientReschedule": false
+	}, {
+	  "id": 86578953,
+	  "firstName": "Laura",
+	  "lastName": "Rockwell",
+	  "phone": "6199916031",
+	  "email": "lrockwell@daybreakgames.com",
+	  "date": "March 2, 2017",
+	  "time": "10:00am",
+	  "endTime": "11:55am",
+	  "dateCreated": "March 2, 2017",
+	  "datetime": "2017-03-02T10:00:00-0800",
+	  "price": "45.00",
+	  "paid": "yes",
+	  "amountPaid": "51.75",
+	  "type": "MobePlus + SUV, Van, Truck",
+	  "appointmentTypeID": 2048071,
+	  "classID": null,
+	  "addonIDs": [117702],
+	  "category": "Corporate",
+	  "duration": "115",
+	  "calendar": "Daybreak Game Company",
+	  "calendarID": 874123,
+	  "certificate": null,
+	  "confirmationPage": "https://www.acuityscheduling.com/schedule.php?action=appt&owner=12695911&id%5B%5D=1779e2d01789f838cd815ee6b929550b",
+	  "formsText": "Name: Laura Rockwell\nPhone: (619) 991-6031\nE-mail: lrockwell@daybreakgames.com\nPrice: $45.00\nPaid Online: $51.75\n\nCorporate Booking\n============\nLocation Details (1st floor parking, 2nd building, etc.): Front parking lot\n\nLast 4 Digits of License Plate: Z919\n\nCar Make & Model (e.g. Toyota Camry): Toyota Rav4 Limited\n\nCar Color: White\n\nHow did you hear about us?: \n\n",
+	  "forms": [{
+	    "id": 549637,
+	    "name": "Corporate Booking",
+	    "values": [{
+	      "id": 231241914,
+	      "fieldID": 2371545,
+	      "value": "Front parking lot",
+	      "name": "Location Details (1st floor parking, 2nd building, etc.)"
+	    }, {
+	      "id": 231241917,
+	      "fieldID": 2242842,
+	      "value": "Z919",
+	      "name": "Last 4 Digits of License Plate"
+	    }, {
+	      "id": 231241920,
+	      "fieldID": 2371519,
+	      "value": "Toyota Rav4 Limited",
+	      "name": "Car Make &amp; Model (e.g. Toyota Camry)"
+	    }, {
+	      "id": 231241923,
+	      "fieldID": 2371528,
+	      "value": "White",
+	      "name": "Car Color"
+	    }, {
+	      "id": 231241926,
+	      "fieldID": 2371530,
+	      "value": "",
+	      "name": "How did you hear about us?"
+	    }]
+	  }],
+	  "notes": "",
+	  "timezone": "America/Los_Angeles",
+	  "canClientCancel": false,
+	  "canClientReschedule": false
+	}, {
+	  "id": 85262193,
+	  "firstName": "Jesse",
+	  "lastName": "Ren",
+	  "phone": "8588475518",
+	  "email": "jeren.neurogen@gmail.com",
+	  "date": "March 2, 2017",
+	  "time": "10:00am",
+	  "endTime": "10:55am",
+	  "dateCreated": "February 23, 2017",
+	  "datetime": "2017-03-02T10:00:00-0800",
+	  "price": "24.00",
+	  "paid": "no",
+	  "amountPaid": "0.00",
+	  "type": "MobePlus (Corporate)  Test",
+	  "appointmentTypeID": 2407455,
+	  "classID": null,
+	  "addonIDs": [],
+	  "category": "Corporate",
+	  "duration": "55",
+	  "calendar": "Daybreak Game Company",
+	  "calendarID": 874123,
+	  "certificate": null,
+	  "confirmationPage": "https://www.acuityscheduling.com/schedule.php?action=appt&owner=12695911&id%5B%5D=e0144f44e18e39506c2eb1e4bedbd7f3",
+	  "formsText": "Name: Jesse Ren\nPhone: (858) 847-5518\nE-mail: jeren.neurogen@gmail.com\nPrice: $24.00\n\nCorporate Booking\n============\nLocation Details (1st floor parking, 2nd building, etc.): \n\nLast 4 Digits of License Plate: kj\n\nCar Make & Model (e.g. Toyota Camry): kjk\n\nCar Color: jkj\n\nHow did you hear about us?: \n\n",
+	  "forms": [{
+	    "id": 549637,
+	    "name": "Corporate Booking",
+	    "values": [{
+	      "id": 227343828,
+	      "fieldID": 2371545,
+	      "value": "",
+	      "name": "Location Details (1st floor parking, 2nd building, etc.)"
+	    }, {
+	      "id": 227343831,
+	      "fieldID": 2242842,
+	      "value": "kj",
+	      "name": "Last 4 Digits of License Plate"
+	    }, {
+	      "id": 227343834,
+	      "fieldID": 2371519,
+	      "value": "kjk",
+	      "name": "Car Make &amp; Model (e.g. Toyota Camry)"
+	    }, {
+	      "id": 227343837,
+	      "fieldID": 2371528,
+	      "value": "jkj",
+	      "name": "Car Color"
+	    }, {
+	      "id": 227343840,
+	      "fieldID": 2371530,
+	      "value": "",
+	      "name": "How did you hear about us?"
+	    }]
+	  }],
+	  "notes": "",
+	  "timezone": "America/Los_Angeles",
+	  "canClientCancel": false,
+	  "canClientReschedule": false
+	}, {
+	  "id": 84213021,
+	  "firstName": "Jesse",
+	  "lastName": "Ren",
+	  "phone": "8588475518",
+	  "email": "jeren@ucsd.edu",
+	  "date": "March 2, 2017",
+	  "time": "9:00am",
+	  "endTime": "9:55am",
+	  "dateCreated": "February 17, 2017",
+	  "datetime": "2017-03-02T09:00:00-0800",
+	  "price": "24.00",
+	  "paid": "no",
+	  "amountPaid": "0.00",
+	  "type": "MobePlus (Corporate)  Test",
+	  "appointmentTypeID": 2407455,
+	  "classID": null,
+	  "addonIDs": [],
+	  "category": "Corporate",
+	  "duration": "55",
+	  "calendar": "Daybreak Game Company",
+	  "calendarID": 874123,
+	  "certificate": null,
+	  "confirmationPage": "https://www.acuityscheduling.com/schedule.php?action=appt&owner=12695911&id%5B%5D=163b1d909e88581c1c76eb67cce391d1",
+	  "formsText": "Name: Jesse Ren\nPhone: (858) 847-5518\nE-mail: jeren@ucsd.edu\nPrice: $24.00\n\nCorporate Booking\n============\nLocation Details (1st floor parking, 2nd building, etc.): \n\nLast 4 Digits of License Plate: White\n\nCar Make & Model (e.g. Toyota Camry): GMC White\n\nCar Color: White\n\nHow did you hear about us?: \n\n",
+	  "forms": [{
+	    "id": 549637,
+	    "name": "Corporate Booking",
+	    "values": [{
+	      "id": 223894812,
+	      "fieldID": 2371545,
+	      "value": "",
+	      "name": "Location Details (1st floor parking, 2nd building, etc.)"
+	    }, {
+	      "id": 223894815,
+	      "fieldID": 2242842,
+	      "value": "White",
+	      "name": "Last 4 Digits of License Plate"
+	    }, {
+	      "id": 223894818,
+	      "fieldID": 2371519,
+	      "value": "GMC White",
+	      "name": "Car Make &amp; Model (e.g. Toyota Camry)"
+	    }, {
+	      "id": 223894821,
+	      "fieldID": 2371528,
+	      "value": "White",
+	      "name": "Car Color"
+	    }, {
+	      "id": 223894824,
+	      "fieldID": 2371530,
+	      "value": "",
+	      "name": "How did you hear about us?"
+	    }]
+	  }],
+	  "notes": "",
+	  "timezone": "America/Los_Angeles",
+	  "canClientCancel": false,
+	  "canClientReschedule": false
+	}, {
+	  "id": 82516176,
+	  "firstName": "Adam",
+	  "lastName": "Bell",
+	  "phone": "8582390655",
+	  "email": "abell@daybreakgames.com",
+	  "date": "March 2, 2017",
+	  "time": "9:00am",
+	  "endTime": "10:30am",
+	  "dateCreated": "February 8, 2017",
+	  "datetime": "2017-03-02T09:00:00-0800",
+	  "price": "24.00",
+	  "paid": "yes",
+	  "amountPaid": "28.80",
+	  "type": "MobePlus",
+	  "appointmentTypeID": 2048071,
+	  "classID": null,
+	  "addonIDs": [],
+	  "category": "Corporate",
+	  "duration": "90",
+	  "calendar": "Daybreak Game Company",
+	  "calendarID": 874123,
+	  "certificate": null,
+	  "confirmationPage": "https://www.acuityscheduling.com/schedule.php?action=appt&owner=12695911&id%5B%5D=cd79a8d93f66e4c6dedc5fd71e79b008",
+	  "formsText": "Name: Adam Bell\nPhone: (858) 239-0655\nE-mail: abell@daybreakgames.com\nPrice: $24.00\nPaid Online: $28.80\n\nCorporate Booking\n============\nLocation Details (1st floor parking, 2nd building, etc.): Front lot\n\nLast 4 Digits of License Plate: k duk\n\nCar Make & Model (e.g. Toyota Camry): Toyota Prius\n\nCar Color: Red\n\nHow did you hear about us?: \n\n",
+	  "forms": [{
+	    "id": 549637,
+	    "name": "Corporate Booking",
+	    "values": [{
+	      "id": 218068563,
+	      "fieldID": 2371545,
+	      "value": "Front lot",
+	      "name": "Location Details (1st floor parking, 2nd building, etc.)"
+	    }, {
+	      "id": 218068566,
+	      "fieldID": 2242842,
+	      "value": "k duk",
+	      "name": "Last 4 Digits of License Plate"
+	    }, {
+	      "id": 218068569,
+	      "fieldID": 2371519,
+	      "value": "Toyota Prius",
+	      "name": "Car Make &amp; Model (e.g. Toyota Camry)"
+	    }, {
+	      "id": 218068572,
+	      "fieldID": 2371528,
+	      "value": "Red",
+	      "name": "Car Color"
+	    }, {
+	      "id": 218068575,
+	      "fieldID": 2371530,
+	      "value": "",
+	      "name": "How did you hear about us?"
+	    }]
+	  }],
+	  "notes": "",
+	  "timezone": "America/Los_Angeles",
+	  "canClientCancel": false,
+	  "canClientReschedule": false
+	}];
+
+	var WasherCalendar = React.createClass({
+	  displayName: 'WasherCalendar',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      appointments: []
+	    };
+	  },
+	  getAllAppointments: function getAllAppointments(evt) {
+	    $.ajax({
+	      url: useUrl + '/acuity',
+	      dataType: 'json',
+	      cache: false,
+	      success: function (res) {
+	        this.setState({
+	          appointments: res
+	        });
+	        console.log("Appointments" + res);
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.log("Couldn't get all appointments");
+	        console.error(useUrl, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    this.getAllAppointments();
+	  },
+	  render: function render() {
+	    var separate = function separate(item) {};
+
+	    // Generate a new array based off old list that sorts by field and given parameters (company name values)
+	    // First sort by time
+	    // Simplify data coming in by parsing only for important itme
+	    // var companyData = companyData.map(function(item){
+	    //   return ({
+	    //     "firstName": item.firstName,
+	    //     "lastName": item.lastName,
+	    //     "time": item.lastName,
+	    //     "company": item.company
+	    //   })
+	    // });
+	    var sortedCompanies = companyData.sort(function (a, b) {
+	      var aName = a.firstName;
+	      var bName = b.firstName;
+	      a = a.time;b = b.time;
+	      var aExtra = a.substring(a.length - 2, a.length) == "pm";
+	      var bExtra = b.substring(b.length - 2, b.length) == "pm";
+	      a = a.substring(0, a.length - 2).replace(":", "");
+	      b = b.substring(0, b.length - 2).replace(":", "");
+	      var aTime = parseInt(a) + (aExtra ? 1200 : 0);
+	      var bTime = parseInt(b) + (bExtra ? 1200 : 0);
+	      console.log(bName + ":" + bTime + "-" + aName + ":" + aTime);
+	      return aTime - bTime; //Sorts by
+	    });
+	    var appointments_DB = sortedCompanies.map(function (item) {
+	      if (item.company == "DayBreakGames") {
+	        return React.createElement(
+	          'ul',
+	          { style: { borderColor: "white", borderStyle: "solid", borderWidth: "0 0 1px 0" } },
+	          React.createElement(
+	            'li',
+	            null,
+	            ' ',
+	            React.createElement(
+	              'strong',
+	              null,
+	              ' ',
+	              item.firstName + " " + item.lastName + ":",
+	              ' '
+	            ),
+	            React.createElement(
+	              'div',
+	              null,
+	              ' ',
+	              item.type,
+	              ' '
+	            ),
+	            React.createElement(
+	              'div',
+	              null,
+	              ' ',
+	              item.phone,
+	              ' '
+	            ),
+	            React.createElement(
+	              'div',
+	              null,
+	              ' ',
+	              item.time + "-" + item.endTime,
+	              ' '
+	            )
+	          )
+	        );
+	      } // Needs a lowercase/ check in case of typos
+	    });
+	    var appointments_A = sortedCompanies.map(function (item) {
+	      if (item.company == "Alexandria") {
+	        return React.createElement(
+	          'ul',
+	          null,
+	          ' ',
+	          React.createElement(
+	            'li',
+	            null,
+	            ' ',
+	            React.createElement(
+	              'strong',
+	              null,
+	              ' ',
+	              item.firstName + " " + item.lastName + ":",
+	              ' '
+	            ),
+	            React.createElement(
+	              'div',
+	              null,
+	              ' ',
+	              item.type,
+	              ' '
+	            ),
+	            React.createElement(
+	              'div',
+	              null,
+	              ' ',
+	              item.phone,
+	              ' '
+	            ),
+	            React.createElement(
+	              'div',
+	              null,
+	              ' ',
+	              item.time + "-" + item.endTime,
+	              ' '
+	            )
+	          )
+	        );
+	      } // Needs a lowercase/ check in case of typos
+	    });
+	    return React.createElement(
+	      'div',
+	      { style: { marginTop: "400px" } },
+	      ' Calendar Visualization Loaded data:',
+	      (0, _stringify2.default)(this.state.data, null, 4),
+	      'Appointments:',
+	      React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'div',
+	          { style: { backgroundColor: "#E08989", fontSize: "25px", width: "1000px" } },
+	          ' ',
+	          React.createElement(
+	            'strong',
+	            null,
+	            ' Alexandria '
+	          )
+	        ),
+	        ' - ',
+	        appointments_A,
+	        ' '
+	      ),
+	      React.createElement(
+	        'div',
+	        { style: { backgroundColor: "#94AAC6" } },
+	        ' ',
+	        React.createElement(
+	          'strong',
+	          null,
+	          ' DayBreakGames '
+	        ),
+	        ': ',
+	        appointments_DB,
+	        ' '
+	      ),
+	      (0, _stringify2.default)(companyData, null, 4),
+	      React.createElement(
+	        'div',
+	        { style: { height: "200x", width: "100%", backgroundColor: "red" } },
+	        ' '
+	      ),
+	      (0, _stringify2.default)(sortedCompanies, null, 4)
+	    );
+	  }
+	});
+
+	module.exports = WasherCalendar;
+
+	// Useful Alert on line 73
+
+/***/ },
+/* 348 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(348);
+	var content = __webpack_require__(349);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(350)(content, {});
+	var update = __webpack_require__(351)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -40761,10 +41585,10 @@
 	}
 
 /***/ },
-/* 348 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(349)();
+	exports = module.exports = __webpack_require__(350)();
 	// imports
 	exports.push([module.id, "@import url(//db.onlinewebfonts.com/c/5c05f0418474bdbfdd575778d76506cd?family=Helvetica Neue);", ""]);
 
@@ -40775,7 +41599,7 @@
 
 
 /***/ },
-/* 349 */
+/* 350 */
 /***/ function(module, exports) {
 
 	/*
@@ -40831,7 +41655,7 @@
 
 
 /***/ },
-/* 350 */
+/* 351 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -41083,16 +41907,16 @@
 
 
 /***/ },
-/* 351 */
+/* 352 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(352);
+	var content = __webpack_require__(353);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(350)(content, {});
+	var update = __webpack_require__(351)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -41109,10 +41933,10 @@
 	}
 
 /***/ },
-/* 352 */
+/* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(349)();
+	exports = module.exports = __webpack_require__(350)();
 	// imports
 
 

@@ -10,7 +10,7 @@
 6 silly lifecycle jesseren@1.0.0~predev: no script for predev, continuing
 7 info lifecycle jesseren@1.0.0~dev: jesseren@1.0.0
 8 verbose lifecycle jesseren@1.0.0~dev: unsafe-perm in lifecycle true
-9 verbose lifecycle jesseren@1.0.0~dev: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/jesseren/Development/MobeWash/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+9 verbose lifecycle jesseren@1.0.0~dev: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/jesseren/Development/MobeWash/node_modules/.bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 10 verbose lifecycle jesseren@1.0.0~dev: CWD: /Users/jesseren/Development/MobeWash
 11 silly lifecycle jesseren@1.0.0~dev: Args: [ '-c',
 11 silly lifecycle   'concurrently --kill-others "npm run webpack-watch" "npm run express-server"' ]
