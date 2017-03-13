@@ -40770,7 +40770,7 @@
 
 	var devUrl = 'http://localhost:3000';
 	var prodUrl = 'https://vast-hollows-67251.herokuapp.com';
-	var useUrl = prodUrl;
+	var useUrl = devUrl;
 
 	var companyData = [{
 	  "id": 88699542,
@@ -41383,10 +41383,11 @@
 	      dataType: 'json',
 	      cache: false,
 	      success: function (res) {
+	        // var str = JSON.stringify(res, null, 4);
 	        this.setState({
 	          appointments: res
 	        });
-	        console.log("Appointments" + res);
+	        console.log("Appointments" + str);
 	      }.bind(this),
 	      error: function (xhr, status, err) {
 	        console.log("Couldn't get all appointments");
@@ -41511,7 +41512,7 @@
 	      'div',
 	      { style: { marginTop: "400px" } },
 	      ' Calendar Visualization Loaded data:',
-	      (0, _stringify2.default)(this.state.data, null, 4),
+	      (0, _stringify2.default)(this.state.appointments, null, 4),
 	      'Appointments:',
 	      React.createElement(
 	        'div',

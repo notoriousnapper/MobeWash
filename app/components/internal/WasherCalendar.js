@@ -16,7 +16,7 @@ var $ = require('jquery');
 
 var devUrl = 'http://localhost:3000';
 var prodUrl = 'https://vast-hollows-67251.herokuapp.com'
-var useUrl = prodUrl;
+var useUrl = devUrl;
 
 var companyData = [
     {
@@ -726,10 +726,11 @@ var WasherCalendar = React.createClass({
                 dataType: 'json',
                 cache: false,
                 success: function(res) {
+                  // var str = JSON.stringify(res, null, 4);
                   this.setState({
                     appointments: res
                   });
-                  console.log( "Appointments" + res);
+                  console.log( "Appointments" + str);
                 }.bind(this),
                 error: function(xhr, status, err) {
                   console.log("Couldn't get all appointments");
@@ -800,7 +801,7 @@ var WasherCalendar = React.createClass({
     return(
       <div style={{marginTop:"400px"}}> Calendar Visualization
       Loaded data:
-      {JSON.stringify(this.state.data, null, 4)}
+      {JSON.stringify(this.state.appointments, null, 4)}
 
       Appointments:
       <div >

@@ -18,6 +18,7 @@ var trimmedKey = stripeApiKeyTesting.trim(" ");
 var stripe = require('stripe')(stripeApiKey);
 
 var express = require('express');
+var cors = require('cors');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser')
@@ -37,6 +38,12 @@ var acuity = Acuity.basic({
 
 // Booking.js still needs access to jquery, so make sure its available
 var $ = require('jquery');
+app.use(cors());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // Pull in the module, ES2015 imports also works:
 // import TimekitBooking from 'timekit-booking'
 // var TimekitBooking = require('timekit-booking');
@@ -146,6 +153,9 @@ app.get('/acuity', function (request, response) {
   };
   return acuity.request('/appointments', options, function (err, res, appointment) {
     // res.sendFile(path.join(__dirname + '/index.html'));
+  response.end(JSON.stringify(appointment, null, 4));
+  // response.end(JSON.stringify(appointment,);
+  console.log("Getting Data");
     if (err) return console.error(err);
     console.log(appointment);
 
